@@ -1,0 +1,12 @@
+.mapRoot {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: #f4f1ea;
+}
+
+.mapRoot :global(.maplibregl-ctrl-attrib) {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  background: rgba(251, 247, 240, 0.7);
+}

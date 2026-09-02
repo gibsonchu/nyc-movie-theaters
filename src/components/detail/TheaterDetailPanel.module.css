@@ -1,0 +1,137 @@
+.panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 148px;
+  z-index: 25;
+  width: min(360px, 100vw);
+  overflow-y: auto;
+  background: var(--paper);
+  border-left: 1px solid var(--ink);
+  padding: 76px 26px 32px;
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 28px;
+  height: 28px;
+  background: none;
+  border: 1px solid var(--rule-strong);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.close:hover {
+  border-color: var(--ink);
+}
+
+.eyebrow {
+  margin: 0 0 6px;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.name {
+  margin: 0 0 4px;
+  font-family: var(--font-serif);
+  font-size: 24px;
+  line-height: 1.15;
+  font-weight: 700;
+}
+
+.years {
+  margin: 0 0 16px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--accent);
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  margin-bottom: 16px;
+  display: block;
+  border: 1px solid var(--rule-strong);
+}
+
+.address {
+  margin: 0 0 16px;
+  font-size: 12.5px;
+  color: var(--ink-soft);
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin: 0 0 18px;
+  padding: 14px 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+
+.stat dt {
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin: 0 0 2px;
+}
+
+.stat dd {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 14px;
+}
+
+.description {
+  margin: 0 0 20px;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+.sources {
+  border-top: 1px solid var(--rule);
+  padding-top: 14px;
+}
+
+.sourcesLabel {
+  margin: 0 0 8px;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.sources ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.sources li {
+  font-size: 11.5px;
+  color: var(--ink-soft);
+}
+
+.sources a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+@media (max-width: 640px) {
+  .panel {
+    width: 100vw;
+    bottom: 168px;
+    padding: 64px 20px 24px;
+  }
+}
