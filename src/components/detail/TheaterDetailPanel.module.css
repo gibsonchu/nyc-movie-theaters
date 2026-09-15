@@ -44,6 +44,13 @@
   font-weight: 700;
 }
 
+.alternateNames {
+  margin: 0 0 8px;
+  font-size: 12px;
+  font-style: italic;
+  color: var(--ink-faint);
+}
+
 .years {
   margin: 0 0 16px;
   font-family: var(--font-mono);
@@ -126,6 +133,13 @@
 .sources a {
   text-decoration: underline;
   text-underline-offset: 2px;
+}
+
+.confidenceNote {
+  margin: 10px 0 0;
+  font-size: 10.5px;
+  font-style: italic;
+  color: var(--ink-faint);
 }
 
 @media (max-width: 640px) {

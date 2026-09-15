@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { Map as MapLibreMap, setWorkerUrl, type GeoJSONSource } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { theaters } from "@/data/theaters";
+import type { Theater } from "@/types/theater";
 import { getActiveZoningDataset } from "@/data/zoning";
 import { useTimeline } from "@/state/TimelineContext";
 import { MapContext } from "@/state/MapContext";
@@ -12,6 +13,7 @@ import { circleOpacityExpression, circleRadiusExpression } from "@/lib/map-expre
 import { buildTheaterFilter } from "@/lib/theater-filter";
 import { DEFAULT_ZOOM, MAX_ZOOM, MIN_ZOOM, MAP_STYLE_URL, NYC_CENTER, NYC_MAX_BOUNDS } from "@/lib/map-config";
 import { ZONING_CATEGORY_COLORS } from "@/types/zoning";
+import { TheaterHoverCard } from "./TheaterHoverCard";
 import styles from "./MapCanvas.module.css";
 
 const EMPTY_FEATURE_COLLECTION: GeoJSON.FeatureCollection = {
@@ -33,6 +35,7 @@ export function MapCanvas({ children }: { children?: React.ReactNode }) {
   const [ready, setReady] = useState(false);
   const [map, setMap] = useState<MapLibreMap | null>(null);
   const [moveTick, setMoveTick] = useState(0);
+  const [hover, setHover] = useState<{ theater: Theater; point: { x: number; y: number } } | null>(null);
 
   const { year, zoningVisible, selectTheater, selectedTheater } = useTimeline();
 
@@ -125,8 +128,17 @@ export function MapCanvas({ children }: { children?: React.ReactNode }) {
       instance.on("mouseenter", "theater-points", () => {
         instance.getCanvas().style.cursor = "pointer";
       });
+      instance.on("mousemove", "theater-points", (e) => {
+        const feature = e.features?.[0];
+        const id = feature?.properties?.id as string | undefined;
+        const theater = id ? theaterById.get(id) : undefined;
+        if (theater) {
+          setHover({ theater, point: { x: e.point.x, y: e.point.y } });
+        }
+      });
       instance.on("mouseleave", "theater-points", () => {
         instance.getCanvas().style.cursor = "";
+        setHover(null);
       });
       instance.on("click", "theater-points", (e) => {
         const feature = e.features?.[0];
@@ -134,12 +146,14 @@ export function MapCanvas({ children }: { children?: React.ReactNode }) {
         if (id) {
           const theater = theaterById.get(id) ?? null;
           selectTheater(theater);
+          setHover(null);
         }
       });
 
       const bumpMoveTick = () => setMoveTick((t) => t + 1);
       instance.on("move", bumpMoveTick);
       instance.on("resize", bumpMoveTick);
+      instance.on("movestart", () => setHover(null));
 
       setReady(true);
       setMap(instance);
@@ -163,6 +177,7 @@ export function MapCanvas({ children }: { children?: React.ReactNode }) {
     instance.setPaintProperty("theater-points", "circle-opacity", circleOpacityExpression(year));
     instance.setPaintProperty("theater-points", "circle-stroke-opacity", circleOpacityExpression(year));
     instance.setFilter("theater-points", buildTheaterFilter(year));
+    setHover(null);
   }, [year, ready]);
 
   // Swap in the zoning dataset that applies to the selected year, and toggle visibility.
@@ -191,6 +206,7 @@ export function MapCanvas({ children }: { children?: React.ReactNode }) {
     <MapContext.Provider value={{ map, moveTick }}>
       <div ref={containerRef} className={styles.mapRoot} aria-label="Map of New York City movie theaters" />
       {ready && children}
+      {hover && <TheaterHoverCard theater={hover.theater} point={hover.point} />}
     </MapContext.Provider>
   );
 }

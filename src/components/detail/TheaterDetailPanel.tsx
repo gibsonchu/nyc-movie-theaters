@@ -2,6 +2,7 @@
 
 import { useTimeline } from "@/state/TimelineContext";
 import { THEATER_TYPE_LABELS } from "@/types/theater";
+import { formatYearRange } from "@/lib/theater-format";
 import styles from "./TheaterDetailPanel.module.css";
 
 export function TheaterDetailPanel() {
@@ -9,7 +10,6 @@ export function TheaterDetailPanel() {
 
   if (!selectedTheater) return null;
   const t = selectedTheater;
-  const years = t.closingYear ? `${t.openingYear}–${t.closingYear}` : `${t.openingYear}–present`;
 
   return (
     <aside className={styles.panel}>
@@ -18,10 +18,14 @@ export function TheaterDetailPanel() {
       </button>
 
       <p className={styles.eyebrow}>
-        {t.borough} &middot; {THEATER_TYPE_LABELS[t.theaterType]}
+        {t.borough}
+        {t.theaterType !== "unknown" ? ` · ${THEATER_TYPE_LABELS[t.theaterType]}` : ""}
       </p>
       <h2 className={styles.name}>{t.name}</h2>
-      <p className={styles.years}>{years}</p>
+      {t.alternateNames.length > 0 && (
+        <p className={styles.alternateNames}>also known as {t.alternateNames.join(", ")}</p>
+      )}
+      <p className={styles.years}>{formatYearRange(t)}</p>
 
       {t.image && (
         // eslint-disable-next-line @next/next/no-img-element
@@ -69,6 +73,9 @@ export function TheaterDetailPanel() {
               </li>
             ))}
           </ul>
+          {t.confidence !== "high" && (
+            <p className={styles.confidenceNote}>Source confidence: {t.confidence}</p>
+          )}
         </div>
       )}
     </aside>

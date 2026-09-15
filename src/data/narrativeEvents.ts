@@ -1,10 +1,13 @@
 import type { NarrativeEvent } from "@/types/narrative";
 
 /**
- * MOCK DATA — editorial callouts. Kept separate from the theater dataset so
- * either can be replaced independently. `theaterId` links a callout to a
- * theater's map dot for the connector line; `coordinates` is a fallback for
- * citywide moments not tied to a single address.
+ * Editorial callouts, kept separate from the theater dataset so either can
+ * be replaced independently. `theaterId` links a callout to a real theater
+ * record (by Cinema Treasures id) for the connector line; where the source
+ * record's dates don't cleanly support a specific callout's claim (or no
+ * matching record survived import — e.g. missing an opening year), the
+ * callout uses an explicit `coordinates` anchor instead rather than link to
+ * a theater whose logged history would contradict the callout text.
  */
 export const narrativeEvents: NarrativeEvent[] = [
   {
@@ -13,7 +16,8 @@ export const narrativeEvents: NarrativeEvent[] = [
     title: "Cinema Arrives in New York",
     text: "On April 23, 1896, Edison's Vitascope projected moving pictures for a paying New York audience for the first time, at Koster & Bial's Music Hall on Herald Square.",
     image: null,
-    theaterId: "koster-bials",
+    theaterId: null,
+    coordinates: [-73.9878, 40.7502],
     placement: "right",
   },
   {
@@ -22,16 +26,17 @@ export const narrativeEvents: NarrativeEvent[] = [
     title: "The Nickelodeon Boom",
     text: "Storefront theaters charging a nickel admission spread rapidly through immigrant neighborhoods — by 1908 the city had several hundred, more per capita than almost anywhere in the country.",
     image: null,
-    theaterId: "union-square-nickelodeon",
+    theaterId: null,
+    coordinates: [-73.9911, 40.7359],
     placement: "right",
   },
   {
     id: "birth-of-the-palace",
     year: 1914,
     title: "The Movie Palace Is Born",
-    text: "The Strand's opening on Broadway established a new scale for exhibition — orchestras, uniformed ushers, thousands of seats — and set off a building race up and down Times Square.",
+    text: "The Strand's opening on Broadway established a new scale for exhibition — orchestras, uniformed ushers, thousands of seats — and set off a building race up and down Times Square. It would go on to operate for decades under a string of later names: Warner, Cinerama, Penthouse.",
     image: null,
-    theaterId: "strand-theatre",
+    theaterId: "2975",
     placement: "left",
   },
   {
@@ -40,7 +45,7 @@ export const narrativeEvents: NarrativeEvent[] = [
     title: "Loew's 'Wonder Theatres'",
     text: "In a single push, Loew's opened five monumental atmospheric theaters across four boroughs — Paradise, Kings, Valencia and 175th Street among them — each seating well over three thousand.",
     image: null,
-    theaterId: "loews-paradise",
+    theaterId: "900",
     placement: "top",
   },
   {
@@ -49,7 +54,7 @@ export const narrativeEvents: NarrativeEvent[] = [
     title: "Radio City Music Hall Opens",
     text: "At the depth of the Depression, Rockefeller Center bet on spectacle: the largest indoor theater ever built, and still the largest today.",
     image: null,
-    theaterId: "radio-city",
+    theaterId: "55",
     placement: "right",
   },
   {
@@ -58,7 +63,8 @@ export const narrativeEvents: NarrativeEvent[] = [
     title: "42nd Street Turns Grindhouse",
     text: "As downtown exhibition declined, many of Times Square's grand houses were reprogrammed for exploitation, horror and kung-fu triple features running around the clock.",
     image: null,
-    theaterId: "liberty-theatre",
+    theaterId: null,
+    coordinates: [-73.989, 40.7563],
     placement: "left",
   },
   {
@@ -67,25 +73,26 @@ export const narrativeEvents: NarrativeEvent[] = [
     title: "Repertory Cinema's Counterculture",
     text: "Film Forum opened as a folding-chair screening room the same era, part of a wave of nonprofit and repertory houses built around film as art rather than spectacle.",
     image: null,
-    theaterId: "film-forum",
+    theaterId: null,
+    coordinates: [-74.0033, 40.7278],
     placement: "bottom",
   },
   {
     id: "wonder-theatres-go-dark",
     year: 1977,
     title: "The Wonder Theatres Go Dark",
-    text: "Within months of each other, Kings, Valencia and St. George all closed as single-screen cinemas — a citywide reckoning as multiplexes and suburban flight hollowed out the grand houses.",
+    text: "Within months of each other, Kings, Valencia and St. George all closed as single-screen cinemas — a citywide reckoning as multiplexes and suburban flight hollowed out the grand houses. Kings sat dark for decades before reopening as a performance venue in 2015.",
     image: null,
-    theaterId: "loews-kings",
+    theaterId: "1360",
     placement: "left",
   },
   {
     id: "times-square-cleanup",
     year: 1995,
     title: "Times Square Redevelopment",
-    text: "A city- and state-led redevelopment push closed most of 42nd Street's remaining grindhouses, the Liberty among the last, clearing the way for chain retail and Broadway restoration.",
+    text: "A city- and state-led redevelopment push closed most of 42nd Street's remaining grindhouses, clearing the way for chain retail and Broadway restoration.",
     image: null,
-    theaterId: "liberty-theatre",
+    theaterId: null,
     coordinates: [-73.9857, 40.7566],
     placement: "top",
   },
@@ -95,7 +102,7 @@ export const narrativeEvents: NarrativeEvent[] = [
     title: "Multiplexes Return Uptown",
     text: "AMC's nine-screen Harlem multiplex opened as part of a broader investment push into neighborhoods that had gone without a commercial movie theater for two decades or more.",
     image: null,
-    theaterId: "amc-magic-johnson-harlem",
+    theaterId: "24816",
     placement: "right",
   },
   {
