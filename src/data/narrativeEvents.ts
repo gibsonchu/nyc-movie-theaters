@@ -71,10 +71,9 @@ export const narrativeEvents: NarrativeEvent[] = [
     id: "repertory-counterculture",
     year: 1970,
     title: "Repertory Cinema's Counterculture",
-    text: "Film Forum opened as a folding-chair screening room the same era, part of a wave of nonprofit and repertory houses built around film as art rather than spectacle.",
+    text: "Film Forum opened as a folding-chair screening room the same era, part of a wave of nonprofit and repertory houses built around film as art rather than spectacle. It's still running today, after a 2018 renovation.",
     image: null,
-    theaterId: null,
-    coordinates: [-74.0033, 40.7278],
+    theaterId: "5957",
     placement: "bottom",
   },
   {

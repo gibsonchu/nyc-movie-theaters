@@ -1,0 +1,6 @@
+.story {
+  position: relative;
+  z-index: 60;
+  background: var(--paper);
+  box-shadow: 0 -2px 0 var(--ink);
+}

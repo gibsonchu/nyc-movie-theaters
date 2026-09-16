@@ -12,6 +12,7 @@ const CSV_PATH = path.join(ROOT, "data-source/nyc_cinema_treasures_theaters.csv"
 const OUT_PATH = path.join(ROOT, "src/data/theaters.ts");
 
 const MIN_YEAR = 1896; // when film exhibition began in NYC — the timeline's floor
+const MAX_YEAR = 2026; // the timeline's present
 
 // A small set of well-known theaters to emphasize editorially (bigger mark,
 // eligible to anchor narrative callouts). Matched by Cinema Treasures id.
@@ -26,6 +27,7 @@ const FEATURED_IDS = new Set([
   "55", // Radio City Music Hall
   "24816", // AMC Magic Johnson Harlem 9
   "6156", // Kew Gardens Cinemas
+  "5957", // Film Forum
 ]);
 
 function parseCsv(text) {
@@ -84,7 +86,38 @@ function deriveTheaterType(screens) {
   return "unknown";
 }
 
-function buildDescription({ borough, openingYear, closingYear, reopeningYear, status, notes }) {
+// OSM categories that name an actual present-day occupant worth citing.
+// Excludes "building" (name is usually just a building id, e.g. "794"),
+// "highway"/"place"/"railway" (geocoder snapped to the nearest street or
+// transit feature, not a real occupant).
+const USEFUL_PLACE_CATEGORIES = new Set([
+  "amenity",
+  "shop",
+  "office",
+  "leisure",
+  "club",
+  "healthcare",
+  "tourism",
+]);
+
+function buildCurrentPlace(raw) {
+  const category = raw.current_place_category || null;
+  const name = raw.current_place_name || null;
+  if (!category || !USEFUL_PLACE_CATEGORIES.has(category)) return null;
+  if (!name || /^\d+$/.test(name)) return null; // bare building numbers aren't a real occupant name
+  return { name, category, type: raw.current_place_type || null };
+}
+
+function buildClosureAudit(raw) {
+  if (!raw.closure_audit_result) return null;
+  return {
+    result: raw.closure_audit_result,
+    confidence: raw.closure_audit_confidence || null,
+    note: raw.closure_audit_note || null,
+  };
+}
+
+function buildDescription({ borough, openingYear, closingYear, reopeningYear, status, notes, currentPlace }) {
   const parts = [];
   if (status === "open") {
     parts.push(`Operating in ${borough} since ${openingYear}.`);
@@ -97,6 +130,9 @@ function buildDescription({ borough, openingYear, closingYear, reopeningYear, st
     parts.push(`Reopened in ${reopeningYear} after an earlier closure.`);
   }
   if (notes) parts.push(notes.trim());
+  if (currentPlace) {
+    parts.push(`The site is now occupied by ${currentPlace.name}.`);
+  }
   return parts.join(" ");
 }
 
@@ -110,6 +146,10 @@ function main() {
   let closedUnknownYear = 0;
   let hadReopening = 0;
   let badOrder = 0;
+  let badFuture = 0;
+  let withImage = 0;
+  let withCurrentPlace = 0;
+  let withClosureAudit = 0;
 
   const theaters = [];
 
@@ -136,6 +176,14 @@ function main() {
       badOrder++;
     }
 
+    if (closingYear != null && closingYear > MAX_YEAR) {
+      // At least one source row has an obviously bogus future closing year
+      // (e.g. 2086) — a transcription error upstream, not a real planned
+      // closing. Treat it the same as an unrecorded closing year.
+      closingYear = null;
+      badFuture++;
+    }
+
     if (closingYear != null && closingYear < MIN_YEAR) {
       // Closed before film exhibition began in NYC — it never operated
       // during the period this timeline covers, so it has no honest place
@@ -154,6 +202,11 @@ function main() {
     const openingYear = openingYearRaw;
     const screens = toIntOrNull(raw.screen_count);
     const borough = raw.borough;
+    const currentPlace = buildCurrentPlace(raw);
+    const closureAudit = buildClosureAudit(raw);
+    if (raw.image_url) withImage++;
+    if (currentPlace) withCurrentPlace++;
+    if (closureAudit) withClosureAudit++;
 
     const description = buildDescription({
       borough,
@@ -162,7 +215,13 @@ function main() {
       reopeningYear,
       status,
       notes: raw.notes,
+      currentPlace,
     });
+
+    const sources = [{ label: "Cinema Treasures", url: raw.source_url || undefined }];
+    if (raw.date_source && raw.date_source_url) {
+      sources.push({ label: raw.date_source, url: raw.date_source_url });
+    }
 
     theaters.push({
       id: raw.theater_id,
@@ -181,10 +240,12 @@ function main() {
       seats: null,
       operator: null,
       featured: FEATURED_IDS.has(raw.theater_id),
-      image: null,
+      image: raw.image_url || null,
       description,
       confidence: raw.confidence || "low",
-      sources: [{ label: "Cinema Treasures", url: raw.source_url || undefined }],
+      sources,
+      closureAudit,
+      currentPlace,
     });
   }
 
@@ -196,9 +257,13 @@ function main() {
 // Excluded: ${skippedNoYear} with no opening year, ${skippedNoGeo} with no
 // coordinates, ${skippedPreCinema} that closed before 1896 (predate film
 // exhibition in NYC). Of the included rows, ${closedUnknownYear} are known
-// closed but the exact closing year wasn't recorded (they're shown as
-// present on the map through the end of the timeline, flagged as such in
-// the UI); ${hadReopening} record a reopening after an earlier closure.
+// closed but the exact closing year wasn't recorded — a geocoding + address
+// audit confirmed ${withClosureAudit} of those really are gone (see
+// closureAudit), even though the exact year is still unrecoverable; they're
+// shown as present on the map through the end of the timeline, flagged as
+// such in the UI. ${hadReopening} record a reopening after an earlier
+// closure. ${withImage} have a source photo; ${withCurrentPlace} have a
+// present-day occupant worth citing at their old address.
 `;
 
   const out = `${banner}
@@ -216,6 +281,10 @@ export const theaters: Theater[] = ${JSON.stringify(theaters, null, 2)} satisfie
   console.log(`  closed with unknown closing year: ${closedUnknownYear}`);
   console.log(`  had a reopening_year: ${hadReopening}`);
   console.log(`  bad close<open order (dropped closing year): ${badOrder}`);
+  console.log(`  bogus future closing year (dropped): ${badFuture}`);
+  console.log(`  with a closure audit: ${withClosureAudit}`);
+  console.log(`  with a photo: ${withImage}`);
+  console.log(`  with a citeable present-day occupant: ${withCurrentPlace}`);
 }
 
 main();

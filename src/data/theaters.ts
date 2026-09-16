@@ -2,13 +2,17 @@
 // data-source/nyc_cinema_treasures_theaters.csv — do not hand-edit.
 // Re-run: node scripts/import-theaters.mjs
 //
-// 896 of 1232 source rows are included here.
-// Excluded: 317 with no opening year, 18 with no
+// 910 of 1232 source rows are included here.
+// Excluded: 303 with no opening year, 18 with no
 // coordinates, 1 that closed before 1896 (predate film
-// exhibition in NYC). Of the included rows, 260 are known
-// closed but the exact closing year wasn't recorded (they're shown as
-// present on the map through the end of the timeline, flagged as such in
-// the UI); 106 record a reopening after an earlier closure.
+// exhibition in NYC). Of the included rows, 261 are known
+// closed but the exact closing year wasn't recorded — a geocoding + address
+// audit confirmed 254 of those really are gone (see
+// closureAudit), even though the exact year is still unrecoverable; they're
+// shown as present on the map through the end of the timeline, flagged as
+// such in the UI. 108 record a reopening after an earlier
+// closure. 854 have a source photo; 67 have a
+// present-day occupant worth citing at their old address.
 
 import type { Theater } from "@/types/theater";
 
@@ -32,15 +36,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1926; the closing year wasn't recorded. Opening year is an upper bound ('prior to/before 1926'). Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/37347/1330703229/large.jpeg?1330703229",
+    "description": "Opened in Manhattan in 1926; the closing year wasn't recorded. Opening year is an upper bound ('prior to/before 1926'). Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "low",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/1297"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "8732",
@@ -61,7 +71,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/146121/1448497107/large.jpg?1448497107",
     "description": "Operated in Brooklyn from 1914 to 1956. Closing year is approximate (1956).",
     "confidence": "low",
     "sources": [
@@ -69,7 +79,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8732"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "22028",
@@ -91,15 +103,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1911; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/110529/1413256016/large.jpg?1413256016",
+    "description": "Opened in Manhattan in 1911; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/22028"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "10459",
@@ -118,7 +136,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/45406/1338049665/large.jpg?1338049665",
     "description": "Operated in Manhattan from 1963 to 1997.",
     "confidence": "high",
     "sources": [
@@ -126,7 +144,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/10459"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "17385",
@@ -145,7 +165,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/120211/1426787301/large.jpg?1426787301",
     "description": "Operated in Manhattan from 1967 to 1972.",
     "confidence": "high",
     "sources": [
@@ -153,7 +173,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/17385"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6201",
@@ -172,15 +194,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Queens in 1938; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/50750/1343827646/large.jpg?1343827646",
+    "description": "Opened in Queens in 1938; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by El Molino Carniceria.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6201"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": {
+      "name": "El Molino Carniceria",
+      "category": "shop",
+      "type": "convenience"
+    }
   },
   {
     "id": "56992",
@@ -201,15 +233,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1912; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/265129/1549842889/large.jpg?1549842889",
+    "description": "Opened in Manhattan in 1912; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/56992"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "6376",
@@ -231,15 +269,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1927; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/45120/1337748603/large.jpg?1337748603",
+    "description": "Opened in Manhattan in 1927; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by PL.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6376"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": {
+      "name": "PL",
+      "category": "amenity",
+      "type": "money_transfer"
+    }
   },
   {
     "id": "6379",
@@ -262,7 +310,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/45190/1337810142/large.JPG?1337810142",
     "description": "Operated in Manhattan from 1925 to 1974.",
     "confidence": "high",
     "sources": [
@@ -270,7 +318,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6379"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "1201",
@@ -289,7 +339,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/70/1306000537/large.JPG?1306000537",
     "description": "Operated in Manhattan from 1914 to 2023. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -297,7 +347,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/1201"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7310",
@@ -320,7 +372,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/24242/1314833202/large.jpg?1314833202",
     "description": "Operated in Manhattan from 1914 to 1984.",
     "confidence": "high",
     "sources": [
@@ -328,7 +380,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7310"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "4697",
@@ -350,7 +404,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/90301/1387416207/large.JPG?1387416207",
     "description": "Operated in Manhattan from 1971 to 2022. Reopened in 2013 after an earlier closure. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -358,7 +412,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4697"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "4699",
@@ -379,7 +435,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/137894/1443626880/large.jpg?1443626880",
     "description": "Operated in Manhattan from 1929 to 1992.",
     "confidence": "high",
     "sources": [
@@ -387,7 +443,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4699"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "22754",
@@ -410,7 +468,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/263040/1546383271/large.jpg?1546383271",
     "description": "Operated in Manhattan from 1946 to 1949. Closing year is approximate (1949). Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -418,7 +476,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/22754"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "1301",
@@ -439,15 +499,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1926; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/27041/1316717408/large.jpg?1316717408",
+    "description": "Opened in Manhattan in 1926; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by Farook's Halal Cart.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/1301"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": {
+      "name": "Farook's Halal Cart",
+      "category": "amenity",
+      "type": "restaurant"
+    }
   },
   {
     "id": "21962",
@@ -466,15 +536,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1854; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/190127/1478298302/large.jpg?1478298302",
+    "description": "Opened in Manhattan in 1854; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by Chipotle.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/21962"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": {
+      "name": "Chipotle",
+      "category": "amenity",
+      "type": "fast_food"
+    }
   },
   {
     "id": "10081",
@@ -493,7 +573,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/120107/1426599221/large.jpg?1426599221",
     "description": "Operated in Manhattan from 1910 to 1935.",
     "confidence": "high",
     "sources": [
@@ -501,7 +581,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/10081"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6091",
@@ -522,15 +604,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Bronx in 1926; the closing year wasn't recorded. Opening year is an upper bound ('prior to/before 1926'). Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/156830/1454197866/large.jpg?1454197866",
+    "description": "Opened in Bronx in 1926; the closing year wasn't recorded. Opening year is an upper bound ('prior to/before 1926'). Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "low",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6091"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "50195",
@@ -549,7 +637,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/140075/1445444924/large.JPG?1445444924",
     "description": "Operated in Brooklyn from 1910 to 1913. Opening year represents an approximate decade reference (1910). Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -557,7 +645,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/50195"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "44407",
@@ -584,7 +674,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/44407"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "4693",
@@ -605,7 +697,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/251787/1533941859/large.jpg?1533941859",
     "description": "Operated in Manhattan from 1921 to 1989.",
     "confidence": "high",
     "sources": [
@@ -613,7 +705,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4693"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "53864",
@@ -632,15 +726,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1911; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/185306/1475937603/large.jpg?1475937603",
+    "description": "Opened in Manhattan in 1911; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/53864"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "54106",
@@ -659,7 +759,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/188825/1477528876/large.jpg?1477528876",
     "description": "Operating in Brooklyn since 2016.",
     "confidence": "high",
     "sources": [
@@ -667,7 +767,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/54106"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "61222",
@@ -677,7 +779,7 @@ export const theaters: Theater[] = [
     ],
     "address": "28 Liberty Street, New York, NY 10005",
     "latitude": 40.7077585,
-    "longitude": -74.00885029999999,
+    "longitude": -74.0088503,
     "borough": "Manhattan",
     "openingYear": 2019,
     "closingYear": null,
@@ -688,7 +790,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/356454/1633485777/large.jpg?1633485777",
     "description": "Operating in Manhattan since 2019.",
     "confidence": "high",
     "sources": [
@@ -696,7 +798,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/61222"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "4079",
@@ -718,7 +822,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/24296/1314896864/large.jpg?1314896864",
     "description": "Operated in Brooklyn from 1929 to 1970.",
     "confidence": "high",
     "sources": [
@@ -726,7 +830,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4079"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "50115",
@@ -745,7 +851,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/138551/1444057213/large.JPG?1444057213",
     "description": "Operated in Brooklyn from 1909 to 1919.",
     "confidence": "high",
     "sources": [
@@ -753,7 +859,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/50115"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "2553",
@@ -772,15 +880,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Brooklyn in 1921; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/27030/1316716326/large.jpg?1316716326",
+    "description": "Opened in Brooklyn in 1921; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/2553"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "7742",
@@ -801,15 +915,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Brooklyn in 1914; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/1218/1306859561/large.jpg?1306859561",
+    "description": "Opened in Brooklyn in 1914; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7742"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "37356",
@@ -832,7 +952,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/32748/1325519088/large.jpg?1325519088",
     "description": "Operated in Brooklyn from 1897 to 1934. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -840,7 +960,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/37356"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "12443",
@@ -859,15 +981,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Bronx in 1927; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/141618/1446379699/large.png?1446379699",
+    "description": "Opened in Bronx in 1927; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/12443"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "5827",
@@ -888,7 +1016,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/95564/1393412175/large.jpg?1393412175",
     "description": "Operating in Brooklyn since 1921.",
     "confidence": "high",
     "sources": [
@@ -896,7 +1024,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/5827"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7627",
@@ -915,15 +1045,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1935; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/34787/1328105035/large.jpg?1328105035",
+    "description": "Opened in Manhattan in 1935; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7627"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "A nearby mapped venue matched part of the name, but review did not confirm it as the same historical theater; the theater is closed and its closing year remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "50190",
@@ -942,7 +1078,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/139948/1445352055/large.JPG?1445352055",
     "description": "Operated in Brooklyn from 1909 to 1919.",
     "confidence": "high",
     "sources": [
@@ -950,7 +1086,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/50190"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6844",
@@ -969,15 +1107,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Brooklyn in 1926; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/42237/1334568245/large.jpg?1334568245",
+    "description": "Opened in Brooklyn in 1926; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6844"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "16414",
@@ -998,7 +1142,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/39901/1332629099/large.jpg?1332629099",
     "description": "Operating in Manhattan since 1921.",
     "confidence": "high",
     "sources": [
@@ -1006,7 +1150,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/16414"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "15000",
@@ -1025,7 +1171,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/358965/1636675903/large.png?1636675903",
     "description": "Operated in Staten Island from 1977 to 1994.",
     "confidence": "high",
     "sources": [
@@ -1033,7 +1179,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/15000"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "14482",
@@ -1055,7 +1203,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/289605/1572390539/large.JPG?1572390539",
     "description": "Operating in Manhattan since 1989.",
     "confidence": "high",
     "sources": [
@@ -1063,7 +1211,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/14482"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "11262",
@@ -1085,7 +1235,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/261992/1544493129/large.JPG?1544493129",
     "description": "Operating in Manhattan since 2001.",
     "confidence": "high",
     "sources": [
@@ -1093,7 +1243,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/11262"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "10715",
@@ -1114,7 +1266,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/74829/1371569669/large.jpg?1371569669",
     "description": "Operating in Manhattan since 1985.",
     "confidence": "high",
     "sources": [
@@ -1122,7 +1274,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/10715"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "28863",
@@ -1143,7 +1297,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/160239/1456669980/large.jpg?1456669980",
     "description": "Operating in Bronx since 1989.",
     "confidence": "high",
     "sources": [
@@ -1151,7 +1305,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/28863"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "16824",
@@ -1173,7 +1329,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/10929/1310263167/large.JPG?1310263167",
     "description": "Operating in Queens since 1993.",
     "confidence": "high",
     "sources": [
@@ -1181,7 +1337,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/16824"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "255",
@@ -1205,7 +1363,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/15650/1311125150/large.JPG?1311125150",
     "description": "Operating in Manhattan since 1912.",
     "confidence": "high",
     "sources": [
@@ -1213,7 +1371,47 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/255"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
+  },
+  {
+    "id": "3252",
+    "name": "AMC Fresh Meadows 7",
+    "alternateNames": [
+      "Meadows Theatre",
+      "RKO Meadows Twin",
+      "Loews Cineplex Fresh Meadows",
+      "AMC Loews Fresh Meadows 7"
+    ],
+    "address": "190-02 Horace Harding Boulevard, Fresh Meadows, NY 11365",
+    "latitude": 40.7421929,
+    "longitude": -73.7807224,
+    "borough": "Queens",
+    "openingYear": 1949,
+    "closingYear": null,
+    "reopeningYear": null,
+    "status": "open",
+    "theaterType": "multiplex",
+    "screens": 7,
+    "seats": null,
+    "operator": null,
+    "featured": false,
+    "image": "https://photos.cinematreasures.org/production/photos/5/1305870401/large.JPG?1305870401",
+    "description": "Operating in Queens since 1949. Opening year verified from Cinema Treasures narrative.",
+    "confidence": "high",
+    "sources": [
+      {
+        "label": "Cinema Treasures",
+        "url": "https://cinematreasures.org/theaters/3252"
+      },
+      {
+        "label": "Cinema Treasures narrative",
+        "url": "https://cinematreasures.org/theaters/3252"
+      }
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "10462",
@@ -1235,7 +1433,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/274654/1559269923/large.jpg?1559269923",
     "description": "Operating in Manhattan since 1999.",
     "confidence": "high",
     "sources": [
@@ -1243,7 +1441,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/10462"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7222",
@@ -1266,7 +1466,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/40/1305945928/large.jpg?1305945928",
     "description": "Operating in Manhattan since 1994.",
     "confidence": "high",
     "sources": [
@@ -1274,7 +1474,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7222"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "24816",
@@ -1293,7 +1495,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": true,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/24038/1314647667/large.jpg?1314647667",
     "description": "Operating in Manhattan since 2000.",
     "confidence": "high",
     "sources": [
@@ -1301,7 +1503,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/24816"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "26646",
@@ -1323,7 +1527,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/57014/1348869672/large.jpg?1348869672",
     "description": "Operating in Manhattan since 1991. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -1331,7 +1535,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/26646"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "17846",
@@ -1355,7 +1561,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/56699/1348613485/large.jpg?1348613485",
     "description": "Operating in Manhattan since 1991.",
     "confidence": "high",
     "sources": [
@@ -1363,7 +1569,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/17846"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "700",
@@ -1384,7 +1592,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/24082/1314717167/large.jpg?1314717167",
     "description": "Operated in Bronx from 1940 to 2013.",
     "confidence": "high",
     "sources": [
@@ -1392,7 +1600,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/700"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "11335",
@@ -1414,15 +1624,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1922; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/61468/1353813040/large.jpg?1353813040",
+    "description": "Opened in Manhattan in 1922; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by Nuyorican Poets Cafe.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/11335"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": {
+      "name": "Nuyorican Poets Cafe",
+      "category": "amenity",
+      "type": "bar"
+    }
   },
   {
     "id": "13689",
@@ -1443,7 +1663,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/261886/1544324532/large.JPG?1544324532",
     "description": "Operated in Brooklyn from 1931 to 1932.",
     "confidence": "high",
     "sources": [
@@ -1451,7 +1671,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/13689"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "2960",
@@ -1476,7 +1698,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/6818/1308845924/large.jpg?1308845924",
     "description": "Operated in Manhattan from 1904 to 1904.",
     "confidence": "high",
     "sources": [
@@ -1484,7 +1706,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/2960"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "31581",
@@ -1507,15 +1731,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1926; the closing year wasn't recorded. Reopened in 1957 after an earlier closure. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/265046/1549671395/large.jpg?1549671395",
+    "description": "Opened in Manhattan in 1926; the closing year wasn't recorded. Reopened in 1957 after an earlier closure. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by NYC Velo.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/31581"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": {
+      "name": "NYC Velo",
+      "category": "shop",
+      "type": "bicycle"
+    }
   },
   {
     "id": "6573",
@@ -1539,15 +1773,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1964; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/55140/1347393104/large.jpg?1347393104",
+    "description": "Opened in Manhattan in 1964; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6573"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "A nearby mapped venue matched part of the name, but review did not confirm it as the same historical theater; the theater is closed and its closing year remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "1068",
@@ -1566,7 +1806,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/14/1305913150/large.jpg?1305913150",
     "description": "Operating in Manhattan since 1989.",
     "confidence": "high",
     "sources": [
@@ -1574,7 +1814,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/1068"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "12436",
@@ -1593,7 +1835,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/118298/1424305451/large.jpg?1424305451",
     "description": "Operating in Manhattan since 1970.",
     "confidence": "high",
     "sources": [
@@ -1601,7 +1843,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/12436"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "1306",
@@ -1623,7 +1867,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/3961/1307916029/large.jpg?1307916029",
     "description": "Operating in Manhattan since 1934.",
     "confidence": "high",
     "sources": [
@@ -1631,7 +1875,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/1306"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "1079",
@@ -1654,15 +1900,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1910; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/10527/1310142931/large.jpg?1310142931",
+    "description": "Opened in Manhattan in 1910; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/1079"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "A nearby mapped venue matched part of the name, but review did not confirm it as the same historical theater; the theater is closed and its closing year remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "3984",
@@ -1683,7 +1935,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/266225/1551380617/large.jpg?1551380617",
     "description": "Operated in Brooklyn from 1914 to 1965. Reopened in 1925 after an earlier closure.",
     "confidence": "high",
     "sources": [
@@ -1691,7 +1943,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3984"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6093",
@@ -1718,7 +1972,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6093"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "12307",
@@ -1741,15 +1997,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1900; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/40382/1333154409/large.jpg?1333154409",
+    "description": "Opened in Manhattan in 1900; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by Mona Studio.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/12307"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": {
+      "name": "Mona Studio",
+      "category": "shop",
+      "type": "beauty"
+    }
   },
   {
     "id": "66036",
@@ -1776,7 +2042,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/66036"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "11301",
@@ -1797,7 +2065,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/362956/1642546207/large.png?1642546207",
     "description": "Operated in Manhattan from 1918 to 1954. Closing year is approximate (1954).",
     "confidence": "low",
     "sources": [
@@ -1805,7 +2073,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/11301"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "42964",
@@ -1824,15 +2094,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Queens in 1920; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/239874/1523661662/large.jpg?1523661662",
+    "description": "Opened in Queens in 1920; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/42964"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "23611",
@@ -1854,14 +2130,24 @@ export const theaters: Theater[] = [
     "operator": null,
     "featured": false,
     "image": null,
-    "description": "Opened in Manhattan in 1913; the closing year wasn't recorded. Opening year is an upper bound ('prior to/before 1913'). Not stated on source page: closing year, image.",
+    "description": "Opened in Manhattan in 1913; the closing year wasn't recorded. Opening year is an upper bound ('prior to/before 1913'). Not stated on source page: closing year, image. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by Chipotle.",
     "confidence": "low",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/23611"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": {
+      "name": "Chipotle",
+      "category": "amenity",
+      "type": "fast_food"
+    }
   },
   {
     "id": "9502",
@@ -1885,7 +2171,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/29422/1319296350/large.jpg?1319296350",
     "description": "Operated in Manhattan from 1973 to 1994.",
     "confidence": "high",
     "sources": [
@@ -1893,7 +2179,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/9502"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "4098",
@@ -1915,7 +2203,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/360572/1638850791/large.JPG?1638850791",
     "description": "Operated in Manhattan from 1932 to 2000.",
     "confidence": "high",
     "sources": [
@@ -1923,7 +2211,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4098"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "8485",
@@ -1945,15 +2235,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Bronx in 1926; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/121323/1427933419/large.jpg?1427933419",
+    "description": "Opened in Bronx in 1926; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8485"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "6095",
@@ -1974,7 +2270,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/123696/1430096330/large.jpg?1430096330",
     "description": "Operated in Bronx from 1921 to 1957. Reopened in 1973 after an earlier closure. Opening year is an upper bound ('prior to/before 1921'). Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -1982,7 +2278,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6095"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "26882",
@@ -2004,7 +2302,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/138634/1444143227/large.JPG?1444143227",
     "description": "Operated in Brooklyn from 1913 to 1945. Reopened in 1931 after an earlier closure. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -2012,7 +2310,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/26882"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "44531",
@@ -2031,7 +2331,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/285090/1567465253/large.jpg?1567465253",
     "description": "Operated in Queens from 1951 to 1952. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -2039,7 +2339,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/44531"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7989",
@@ -2058,15 +2360,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Bronx in 1935; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/55846/1348089585/large.jpg?1348089585",
+    "description": "Opened in Bronx in 1935; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7989"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "8850",
@@ -2090,7 +2398,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/56643/1348590470/large.JPG?1348590470",
     "description": "Operated in Brooklyn from 1913 to 1950.",
     "confidence": "high",
     "sources": [
@@ -2098,7 +2406,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8850"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "518",
@@ -2117,7 +2427,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/12928/1310754118/large.jpg?1310754118",
     "description": "Operated in Manhattan from 1906 to 1972.",
     "confidence": "high",
     "sources": [
@@ -2125,7 +2435,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/518"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "3906",
@@ -2146,7 +2458,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/260476/1542485351/large.gif?1542485351",
     "description": "Operated in Brooklyn from 1933 to 1977. Reopened in 1977 after an earlier closure.",
     "confidence": "high",
     "sources": [
@@ -2154,7 +2466,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3906"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6233",
@@ -2176,7 +2490,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/315583/1598312763/large.jpg?1598312763",
     "description": "Operated in Manhattan from 1913 to 1986. Closing year is approximate (1986).",
     "confidence": "low",
     "sources": [
@@ -2184,7 +2498,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6233"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6177",
@@ -2205,7 +2521,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/224332/1510830203/large.jpg?1510830203",
     "description": "Operated in Brooklyn from 1915 to 1961.",
     "confidence": "high",
     "sources": [
@@ -2213,7 +2529,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6177"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "50192",
@@ -2232,15 +2550,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Brooklyn in 1910; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/139961/1445360709/large.JPG?1445360709",
+    "description": "Opened in Brooklyn in 1910; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/50192"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "8484",
@@ -2261,7 +2585,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/151122/1451414674/large.jpg?1451414674",
     "description": "Operating in Staten Island since 1994.",
     "confidence": "high",
     "sources": [
@@ -2269,7 +2593,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8484"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "588",
@@ -2290,7 +2616,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/140439/1445664449/large.jpg?1445664449",
     "description": "Operated in Brooklyn from 1928 to 1982.",
     "confidence": "high",
     "sources": [
@@ -2298,7 +2624,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/588"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6096",
@@ -2317,7 +2645,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/170606/1465656453/large.png?1465656453",
     "description": "Operated in Bronx from 1928 to 1950.",
     "confidence": "high",
     "sources": [
@@ -2325,7 +2653,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6096"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "3874",
@@ -2344,7 +2674,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/263824/1547656917/large.jpg?1547656917",
     "description": "Operated in Brooklyn from 1936 to 1962. Opening year is approximate (1936).",
     "confidence": "low",
     "sources": [
@@ -2352,7 +2682,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3874"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6407",
@@ -2376,15 +2708,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1914; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/363016/1642676840/large.png?1642676840",
+    "description": "Opened in Manhattan in 1914; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by Consulate General of Brazil.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6407"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": {
+      "name": "Consulate General of Brazil",
+      "category": "office",
+      "type": "diplomatic"
+    }
   },
   {
     "id": "3867",
@@ -2403,7 +2745,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/208891/1495050111/large.JPG?1495050111",
     "description": "Operated in Brooklyn from 1927 to 1987.",
     "confidence": "high",
     "sources": [
@@ -2411,7 +2753,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3867"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "17845",
@@ -2430,15 +2774,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1970; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/217667/1504538352/large.jpg?1504538352",
+    "description": "Opened in Manhattan in 1970; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/17845"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "4033",
@@ -2457,7 +2807,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/55861/1348099259/large.jpg?1348099259",
     "description": "Operated in Brooklyn from 1914 to 1975.",
     "confidence": "high",
     "sources": [
@@ -2465,7 +2815,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4033"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "9929",
@@ -2486,15 +2838,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1969; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/264501/1548790967/large.jpg?1548790967",
+    "description": "Opened in Manhattan in 1969; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/9929"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "67677",
@@ -2523,7 +2881,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/67677"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "4426",
@@ -2544,7 +2904,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/92518/1389901330/large.PNG?1389901330",
     "description": "Operated in Manhattan from 1837 to 1929.",
     "confidence": "high",
     "sources": [
@@ -2552,7 +2912,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4426"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7930",
@@ -2573,7 +2935,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/43629/1336077511/large.jpg?1336077511",
     "description": "Operated in Bronx from 1926 to 2000. Reopened in 1995 after an earlier closure. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -2581,7 +2943,45 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7930"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
+  },
+  {
+    "id": "7104",
+    "name": "BAM Harvey Theater",
+    "alternateNames": [
+      "Majestic Theatre",
+      "BAM Majestic Theater"
+    ],
+    "address": "651 Fulton Street, Brooklyn, NY 11217",
+    "latitude": 40.6882796,
+    "longitude": -73.9790012,
+    "borough": "Brooklyn",
+    "openingYear": 1904,
+    "closingYear": null,
+    "reopeningYear": null,
+    "status": "open",
+    "theaterType": "unknown",
+    "screens": 1,
+    "seats": null,
+    "operator": null,
+    "featured": false,
+    "image": "https://photos.cinematreasures.org/production/photos/45614/1338237220/large.jpg?1338237220",
+    "description": "Operating in Brooklyn since 1904. Closing year is approximate (1968). Opening year verified from BAM.",
+    "confidence": "high",
+    "sources": [
+      {
+        "label": "Cinema Treasures",
+        "url": "https://cinematreasures.org/theaters/7104"
+      },
+      {
+        "label": "BAM",
+        "url": "https://www.bam.org/about/history/bam-hamm-archives/bam-buildings"
+      }
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7208",
@@ -2604,7 +3004,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/244120/1527462910/large.JPG?1527462910",
     "description": "Operating in Brooklyn since 1998.",
     "confidence": "high",
     "sources": [
@@ -2612,7 +3012,42 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7208"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
+  },
+  {
+    "id": "73161",
+    "name": "BAM Rose Cinemas at BAM KBH",
+    "alternateNames": [],
+    "address": "10 Lafayette Avenue, Brooklyn, NY 11217",
+    "latitude": 40.686535,
+    "longitude": -73.9784877,
+    "borough": "Brooklyn",
+    "openingYear": 2025,
+    "closingYear": null,
+    "reopeningYear": null,
+    "status": "open",
+    "theaterType": "multiplex",
+    "screens": 2,
+    "seats": null,
+    "operator": null,
+    "featured": false,
+    "image": "https://photos.cinematreasures.org/production/photos/501326/1763233304/large.png?1763233304",
+    "description": "Operating in Brooklyn since 2025. Opening year verified from BroadwayWorld reporting BAM announcement.",
+    "confidence": "high",
+    "sources": [
+      {
+        "label": "Cinema Treasures",
+        "url": "https://cinematreasures.org/theaters/73161"
+      },
+      {
+        "label": "BroadwayWorld reporting BAM announcement",
+        "url": "https://www.broadwayworld.com/brooklyn/article/New-Cinema-Screens-Open-At-BAM-KBH-On-November-7-20251030"
+      }
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "35763",
@@ -2633,7 +3068,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/138637/1444143556/large.JPG?1444143556",
     "description": "Operated in Brooklyn from 1908 to 1976.",
     "confidence": "high",
     "sources": [
@@ -2641,7 +3076,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/35763"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6098",
@@ -2660,7 +3097,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/264496/1548784989/large.gif?1548784989",
     "description": "Operated in Bronx from 1933 to 1940. Closing year is approximate (1940).",
     "confidence": "low",
     "sources": [
@@ -2668,7 +3105,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6098"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "818",
@@ -2692,7 +3131,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/47/1305987846/large.jpg?1305987846",
     "description": "Operated in Manhattan from 1914 to 2001. Opening year is an upper bound ('prior to/before 1914').",
     "confidence": "low",
     "sources": [
@@ -2700,7 +3139,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/818"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "5998",
@@ -2721,7 +3162,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/45410/1338050597/large.jpg?1338050597",
     "description": "Operated in Manhattan from 1962 to 1994.",
     "confidence": "high",
     "sources": [
@@ -2729,7 +3170,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/5998"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "1270",
@@ -2751,7 +3194,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/22274/1313624121/large.jpg?1313624121",
     "description": "Operated in Brooklyn from 1915 to 1959.",
     "confidence": "high",
     "sources": [
@@ -2759,7 +3202,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/1270"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "17549",
@@ -2778,7 +3223,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/262108/1544644154/large.jpg?1544644154",
     "description": "Operated in Bronx from 1938 to 1969. Opening year is an upper bound ('prior to/before 1938').",
     "confidence": "low",
     "sources": [
@@ -2786,7 +3231,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/17549"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "4031",
@@ -2805,15 +3252,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Queens in 1940; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/259351/1541159041/large.png?1541159041",
+    "description": "Opened in Queens in 1940; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by 10-03 Gourmet Deli.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4031"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": {
+      "name": "10-03 Gourmet Deli",
+      "category": "shop",
+      "type": "deli"
+    }
   },
   {
     "id": "42",
@@ -2834,7 +3291,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/61248/1353554037/large.jpg?1353554037",
     "description": "Operating in Manhattan since 1929. Reopened in 2009 after an earlier closure.",
     "confidence": "high",
     "sources": [
@@ -2842,7 +3299,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/42"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6099",
@@ -2861,7 +3320,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/157320/1454458157/large.jpg?1454458157",
     "description": "Operated in Bronx from 1923 to 1955. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -2869,7 +3328,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6099"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "306",
@@ -2888,7 +3349,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/13/1305912854/large.jpg?1305912854",
     "description": "Operated in Manhattan from 1952 to 2005.",
     "confidence": "high",
     "sources": [
@@ -2896,7 +3357,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/306"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "8730",
@@ -2920,7 +3383,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/61063/1353108179/large.jpg?1353108179",
     "description": "Operated in Manhattan from 1979 to 2019. Reopened in 2008 after an earlier closure. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -2928,7 +3391,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8730"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "10171",
@@ -2949,7 +3414,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/6381/1308661801/large.jpg?1308661801",
     "description": "Operated in Brooklyn from 1914 to 1953. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -2957,7 +3422,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/10171"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7436",
@@ -2976,7 +3443,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/194183/1480981875/large.JPG?1480981875",
     "description": "Operated in Queens from 1926 to 2018.",
     "confidence": "high",
     "sources": [
@@ -2984,7 +3451,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7436"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "36844",
@@ -3003,7 +3472,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/285214/1567539991/large.gif?1567539991",
     "description": "Operated in Bronx from 1926 to 1927. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -3011,7 +3480,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/36844"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "2986",
@@ -3034,7 +3505,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/142989/1447180856/large.jpg?1447180856",
     "description": "Operated in Manhattan from 1918 to 1951. Reopened in 1937 after an earlier closure.",
     "confidence": "high",
     "sources": [
@@ -3042,7 +3513,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/2986"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "12051",
@@ -3063,15 +3536,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Bronx in 1921; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/153294/1452266813/large.jpg?1452266813",
+    "description": "Opened in Bronx in 1921; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/12051"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "3886",
@@ -3092,7 +3571,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/34616/1327785448/large.png?1327785448",
     "description": "Operated in Brooklyn from 1922 to 1988.",
     "confidence": "high",
     "sources": [
@@ -3100,7 +3579,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3886"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "8836",
@@ -3119,7 +3600,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/122572/1428784898/large.jpg?1428784898",
     "description": "Operated in Brooklyn from 1926 to 1955.",
     "confidence": "high",
     "sources": [
@@ -3127,7 +3608,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8836"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "56994",
@@ -3149,7 +3632,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/230423/1515352670/large.gif?1515352670",
     "description": "Operating in Manhattan since 1927.",
     "confidence": "high",
     "sources": [
@@ -3157,7 +3640,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/56994"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "3865",
@@ -3176,7 +3661,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/52843/1345347692/large.jpg?1345347692",
     "description": "Operated in Brooklyn from 1920 to 1981.",
     "confidence": "high",
     "sources": [
@@ -3184,7 +3669,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3865"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6630",
@@ -3206,15 +3693,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1923; the closing year wasn't recorded. Opening year is an upper bound ('prior to/before 1923'). Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/204754/1490287267/large.jpg?1490287267",
+    "description": "Opened in Manhattan in 1923; the closing year wasn't recorded. Opening year is an upper bound ('prior to/before 1923'). Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by Naya.",
     "confidence": "low",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6630"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": {
+      "name": "Naya",
+      "category": "amenity",
+      "type": "fast_food"
+    }
   },
   {
     "id": "305",
@@ -3238,7 +3735,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/270/1306435763/large.jpg?1306435763",
     "description": "Operated in Manhattan from 1969 to 2014. Reopened in 2004 after an earlier closure. Most recent stated closing year retained. Most recent stated reopening year retained.",
     "confidence": "low",
     "sources": [
@@ -3246,7 +3743,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/305"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "16899",
@@ -3267,7 +3766,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/204805/1490303029/large.jpg?1490303029",
     "description": "Operated in Manhattan from 2006 to 2019. Reopened in 1992 after an earlier closure. Most recent stated closing year retained. Reopening year is approximate (1992).",
     "confidence": "low",
     "sources": [
@@ -3275,7 +3774,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/16899"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "2932",
@@ -3298,7 +3799,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/160457/1456863848/large.jpg?1456863848",
     "description": "Operated in Manhattan from 1917 to 1981. Reopened in 1963 after an earlier closure. Most recent stated closing year retained. Most recent stated reopening year retained.",
     "confidence": "low",
     "sources": [
@@ -3306,7 +3807,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/2932"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "44085",
@@ -3329,7 +3832,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/318189/1600824038/large.jpeg?1600824038",
     "description": "Operated in Manhattan from 1873 to 1914.",
     "confidence": "high",
     "sources": [
@@ -3337,7 +3840,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/44085"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "4044",
@@ -3358,7 +3863,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/42236/1334567780/large.jpg?1334567780",
     "description": "Operated in Brooklyn from 1927 to 1971. Opening year is approximate (1927).",
     "confidence": "low",
     "sources": [
@@ -3366,7 +3871,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4044"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "53004",
@@ -3387,7 +3894,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/178662/1472732586/large.jpg?1472732586",
     "description": "Operated in Manhattan from 1926 to 1931. Opening year is an upper bound ('prior to/before 1926').",
     "confidence": "low",
     "sources": [
@@ -3395,7 +3902,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/53004"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6104",
@@ -3414,15 +3923,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Bronx in 1926; the closing year wasn't recorded. Opening year is an upper bound ('prior to/before 1926'). Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/263413/1546990228/large.jpg?1546990228",
+    "description": "Opened in Bronx in 1926; the closing year wasn't recorded. Opening year is an upper bound ('prior to/before 1926'). Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "low",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6104"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "6175",
@@ -3441,15 +3956,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Queens in 1930; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/154689/1452834891/large.jpg?1452834891",
+    "description": "Opened in Queens in 1930; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6175"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "40992",
@@ -3468,7 +3989,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/71575/1366399344/large.jpg?1366399344",
     "description": "Operated in Manhattan from 2013 to 2015.",
     "confidence": "high",
     "sources": [
@@ -3476,7 +3997,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/40992"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "8287",
@@ -3497,7 +4020,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/94394/1391784540/large.jpg?1391784540",
     "description": "Operated in Queens from 1951 to 1952.",
     "confidence": "high",
     "sources": [
@@ -3505,7 +4028,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8287"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "4029",
@@ -3526,7 +4051,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/40260/1332985871/large.jpg?1332985871",
     "description": "Operated in Queens from 1940 to 2024.",
     "confidence": "high",
     "sources": [
@@ -3534,7 +4059,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4029"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "64820",
@@ -3553,7 +4080,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/343321/1619061033/large.PNG?1619061033",
     "description": "Operating in Manhattan since 1913.",
     "confidence": "high",
     "sources": [
@@ -3561,7 +4088,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/64820"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6107",
@@ -3582,15 +4111,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Bronx in 1913; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/27067/1316736974/large.jpg?1316736974",
+    "description": "Opened in Bronx in 1913; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6107"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "6262",
@@ -3611,7 +4146,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/120724/1427415448/large.jpg?1427415448",
     "description": "Operated in Queens from 1926 to 2020.",
     "confidence": "high",
     "sources": [
@@ -3619,7 +4154,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6262"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "3274",
@@ -3642,7 +4179,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/116/1306166281/large.jpg?1306166281",
     "description": "Operated in Queens from 1963 to 2014. Reopened in 1999 after an earlier closure.",
     "confidence": "high",
     "sources": [
@@ -3650,7 +4187,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3274"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6495",
@@ -3673,15 +4212,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1940; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/217254/1503982700/large.jpg?1503982700",
+    "description": "Opened in Manhattan in 1940; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6495"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "7527",
@@ -3703,7 +4248,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/159566/1456160996/large.gif?1456160996",
     "description": "Operated in Bronx from 1910 to 1954.",
     "confidence": "high",
     "sources": [
@@ -3711,7 +4256,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7527"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "1407",
@@ -3733,7 +4280,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/94704/1391989764/large.PNG?1391989764",
     "description": "Operating in Brooklyn since 1919.",
     "confidence": "high",
     "sources": [
@@ -3741,7 +4288,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/1407"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "5872",
@@ -3762,7 +4311,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/125479/1431913275/large.jpg?1431913275",
     "description": "Operated in Brooklyn from 1909 to 1954.",
     "confidence": "high",
     "sources": [
@@ -3770,7 +4319,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/5872"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "2250",
@@ -3793,7 +4344,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/19863/1312310639/large.jpg?1312310639",
     "description": "Operating in Manhattan since 1940. Reopened in 1986 after an earlier closure.",
     "confidence": "high",
     "sources": [
@@ -3801,7 +4352,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/2250"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6987",
@@ -3820,7 +4373,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/9962/1309920523/large.JPG?1309920523",
     "description": "Operated in Queens from 1926 to 1962. Opening year is an upper bound ('prior to/before 1926').",
     "confidence": "low",
     "sources": [
@@ -3828,7 +4381,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6987"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7917",
@@ -3849,15 +4404,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Bronx in 1913; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/45241/1337879483/large.jpg?1337879483",
+    "description": "Opened in Bronx in 1913; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7917"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "3861",
@@ -3878,7 +4439,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/122610/1428800023/large.jpg?1428800023",
     "description": "Operated in Brooklyn from 1950 to 1980.",
     "confidence": "high",
     "sources": [
@@ -3886,7 +4447,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3861"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "618",
@@ -3908,7 +4471,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/8566/1309498056/large.jpg?1309498056",
     "description": "Operating in Brooklyn since 1928. Reopened in 2024 after an earlier closure. Most recent stated closing year retained. Most recent stated reopening year retained.",
     "confidence": "low",
     "sources": [
@@ -3916,7 +4479,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/618"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6499",
@@ -3939,15 +4504,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1921; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/111464/1414421219/large.JPG?1414421219",
+    "description": "Opened in Manhattan in 1921; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6499"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "14446",
@@ -3968,7 +4539,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/55836/1348087463/large.jpg?1348087463",
     "description": "Operated in Bronx from 1927 to 1943.",
     "confidence": "high",
     "sources": [
@@ -3976,7 +4547,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/14446"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7513",
@@ -3997,7 +4570,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/56409/1348418114/large.JPG?1348418114",
     "description": "Operated in Bronx from 1913 to 1971.",
     "confidence": "high",
     "sources": [
@@ -4005,7 +4578,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7513"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "1321",
@@ -4026,15 +4601,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Bronx in 1934; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/158818/1455581422/large.jpg?1455581422",
+    "description": "Opened in Bronx in 1934; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/1321"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "6633",
@@ -4055,15 +4636,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Queens in 1941; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/264981/1549558807/large.jpg?1549558807",
+    "description": "Opened in Queens in 1941; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by Tanjawi Market.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6633"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": {
+      "name": "Tanjawi Market",
+      "category": "shop",
+      "type": "deli"
+    }
   },
   {
     "id": "6111",
@@ -4084,7 +4675,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/173955/1469037330/large.gif?1469037330",
     "description": "Operated in Brooklyn from 1927 to 2004.",
     "confidence": "high",
     "sources": [
@@ -4092,7 +4683,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6111"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7093",
@@ -4113,7 +4706,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/70021/1363968659/large.jpg?1363968659",
     "description": "Operated in Manhattan from 1934 to 1958. Closing year is approximate (1958).",
     "confidence": "low",
     "sources": [
@@ -4121,7 +4714,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7093"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "4512",
@@ -4143,7 +4738,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/243802/1527176753/large.gif?1527176753",
     "description": "Opened in Brooklyn in 1926; the closing year wasn't recorded.",
     "confidence": "high",
     "sources": [
@@ -4151,7 +4746,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4512"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6444",
@@ -4175,7 +4772,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/12241/1310616953/large.jpg?1310616953",
     "description": "Operated in Queens from 1927 to 1929.",
     "confidence": "high",
     "sources": [
@@ -4183,7 +4780,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6444"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "11779",
@@ -4205,15 +4804,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1912; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/135597/1441914108/large.jpg?1441914108",
+    "description": "Opened in Manhattan in 1912; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/11779"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "6011",
@@ -4232,7 +4837,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/217452/1504196133/large.gif?1504196133",
     "description": "Operating in Manhattan since 1961. Reopened in 1997 after an earlier closure.",
     "confidence": "high",
     "sources": [
@@ -4240,7 +4845,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6011"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6729",
@@ -4261,7 +4868,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/216740/1503325108/large.gif?1503325108",
     "description": "Operated in Brooklyn from 1927 to 1974.",
     "confidence": "high",
     "sources": [
@@ -4269,7 +4876,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6729"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "8048",
@@ -4291,15 +4900,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Bronx in 1914; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/146120/1448497064/large.jpg?1448497064",
+    "description": "Opened in Bronx in 1914; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8048"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "8854",
@@ -4321,7 +4936,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/1232/1306863670/large.jpg?1306863670",
     "description": "Operated in Brooklyn from 1919 to 1958. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -4329,7 +4944,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8854"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "4687",
@@ -4351,7 +4968,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/43903/1336339289/large.jpg?1336339289",
     "description": "Operated in Queens from 1922 to 1979.",
     "confidence": "high",
     "sources": [
@@ -4359,7 +4976,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4687"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6900",
@@ -4381,7 +5000,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/1227/1306861518/large.jpg?1306861518",
     "description": "Operated in Brooklyn from 1911 to 1947. Reopened in 1936 after an earlier closure. Most recent stated closing year retained. Most recent stated reopening year retained.",
     "confidence": "low",
     "sources": [
@@ -4389,7 +5008,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6900"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "8281",
@@ -4410,15 +5031,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Bronx in 1923; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/156204/1453751153/large.gif?1453751153",
+    "description": "Opened in Bronx in 1923; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8281"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "55800",
@@ -4437,15 +5064,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1914; the closing year wasn't recorded. Opening year is approximate (1914). Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/208728/1494804977/large.jpg?1494804977",
+    "description": "Opened in Manhattan in 1914; the closing year wasn't recorded. Opening year is approximate (1914). Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by Пластова станиця.",
     "confidence": "low",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/55800"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": {
+      "name": "Пластова станиця",
+      "category": "club",
+      "type": "scout"
+    }
   },
   {
     "id": "73758",
@@ -4453,7 +5090,7 @@ export const theaters: Theater[] = [
     "alternateNames": [],
     "address": "98 Flatbush Avenue, Brooklyn, NY 11217",
     "latitude": 40.6857519,
-    "longitude": -73.97891589999999,
+    "longitude": -73.9789159,
     "borough": "Brooklyn",
     "openingYear": 1909,
     "closingYear": null,
@@ -4464,15 +5101,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Brooklyn in 1909; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/512461/1776350043/large.jpeg?1776350043",
+    "description": "Opened in Brooklyn in 1909; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/73758"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "6114",
@@ -4493,7 +5136,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/4950/1308346612/large.JPG?1308346612",
     "description": "Operated in Queens from 1940 to 2015.",
     "confidence": "high",
     "sources": [
@@ -4501,7 +5144,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6114"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "4001",
@@ -4522,7 +5167,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/263806/1547618699/large.jpg?1547618699",
     "description": "Operated in Brooklyn from 1914 to 1952.",
     "confidence": "high",
     "sources": [
@@ -4530,7 +5175,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4001"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "564",
@@ -4552,7 +5199,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/13732/1310867547/large.jpg?1310867547",
     "description": "Operated in Manhattan from 1932 to 1950.",
     "confidence": "high",
     "sources": [
@@ -4560,7 +5207,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/564"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "44319",
@@ -4586,15 +5235,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1921; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/142970/1447176240/large.jpg?1447176240",
+    "description": "Opened in Manhattan in 1921; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/44319"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "7009",
@@ -4616,7 +5271,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/207437/1492992367/large.jpg?1492992367",
     "description": "Operated in Bronx from 1909 to 1947.",
     "confidence": "high",
     "sources": [
@@ -4624,7 +5279,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7009"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "31846",
@@ -4643,15 +5300,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1921; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/75238/1372080844/large.JPG?1372080844",
+    "description": "Opened in Manhattan in 1921; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/31846"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "3871",
@@ -4670,7 +5333,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/6995/1308922895/large.jpg?1308922895",
     "description": "Operated in Brooklyn from 1938 to 1984.",
     "confidence": "high",
     "sources": [
@@ -4678,7 +5341,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3871"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "4657",
@@ -4700,7 +5365,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/123548/1429973850/large.jpg?1429973850",
     "description": "Operated in Queens from 1928 to 1986.",
     "confidence": "high",
     "sources": [
@@ -4708,7 +5373,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4657"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6017",
@@ -4729,15 +5396,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1926; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/36029/1329340497/large.jpg?1329340497",
+    "description": "Opened in Manhattan in 1926; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6017"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "10760",
@@ -4759,15 +5432,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1903; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/147922/1449441835/large.jpg?1449441835",
+    "description": "Opened in Manhattan in 1903; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/10760"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "8362",
@@ -4789,15 +5468,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1914; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/48953/1342135969/large.jpg?1342135969",
+    "description": "Opened in Manhattan in 1914; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by The Bowery Beer Garden.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8362"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": {
+      "name": "The Bowery Beer Garden",
+      "category": "amenity",
+      "type": "bar"
+    }
   },
   {
     "id": "12594",
@@ -4819,7 +5508,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/125585/1432000803/large.jpg?1432000803",
     "description": "Operated in Brooklyn from 1924 to 1989.",
     "confidence": "high",
     "sources": [
@@ -4827,7 +5516,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/12594"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "8428",
@@ -4849,7 +5540,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/146003/1448407289/large.jpg?1448407289",
     "description": "Operated in Manhattan from 1974 to 1992.",
     "confidence": "high",
     "sources": [
@@ -4857,7 +5548,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8428"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "17159",
@@ -4881,7 +5574,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/33136/1325907287/large.jpg?1325907287",
     "description": "Operated in Manhattan from 1942 to 1975.",
     "confidence": "high",
     "sources": [
@@ -4889,7 +5582,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/17159"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "1075",
@@ -4915,7 +5610,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/3613/1307734008/large.jpg?1307734008",
     "description": "Operating in Manhattan since 1962.",
     "confidence": "high",
     "sources": [
@@ -4923,7 +5618,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/1075"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6461",
@@ -4942,7 +5639,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/120136/1426630982/large.jpg?1426630982",
     "description": "Operated in Manhattan from 1977 to 1997.",
     "confidence": "high",
     "sources": [
@@ -4950,7 +5647,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6461"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "37638",
@@ -4971,7 +5670,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/170997/1465908730/large.gif?1465908730",
     "description": "Operated in Manhattan from 1921 to 1940.",
     "confidence": "high",
     "sources": [
@@ -4979,7 +5678,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/37638"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "3866",
@@ -5000,7 +5701,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/171058/1466004772/large.JPG?1466004772",
     "description": "Operated in Brooklyn from 1936 to 2021. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -5008,7 +5709,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3866"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "71746",
@@ -5027,7 +5730,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/471801/1735622372/large.jpg?1735622372",
     "description": "Operating in Bronx since 2022.",
     "confidence": "high",
     "sources": [
@@ -5035,7 +5738,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/71746"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6498",
@@ -5059,7 +5764,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/97563/1396472242/large.jpg?1396472242",
     "description": "Operated in Manhattan from 1919 to 1990.",
     "confidence": "high",
     "sources": [
@@ -5067,7 +5772,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6498"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "2079",
@@ -5089,7 +5796,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/203/1306346849/large.jpg?1306346849",
     "description": "Operating in Manhattan since 1964.",
     "confidence": "high",
     "sources": [
@@ -5097,7 +5804,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/2079"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6117",
@@ -5116,7 +5825,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/7973/1309287535/large.jpg?1309287535",
     "description": "Operating in Brooklyn since 1914. Opening year is approximate (1914).",
     "confidence": "low",
     "sources": [
@@ -5124,7 +5833,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6117"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "4615",
@@ -5147,7 +5858,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/495495/1757980151/large.jpg?1757980151",
     "description": "Operating in Queens since 1927.",
     "confidence": "high",
     "sources": [
@@ -5155,7 +5866,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4615"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "2935",
@@ -5177,7 +5890,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/233873/1518792216/large.gif?1518792216",
     "description": "Operated in Manhattan from 1901 to 1931. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -5185,7 +5898,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/2935"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7124",
@@ -5204,7 +5919,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/157928/1454880710/large.jpg?1454880710",
     "description": "Operated in Bronx from 1941 to 1985. Opening year is approximate (1941).",
     "confidence": "low",
     "sources": [
@@ -5212,7 +5927,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7124"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "12546",
@@ -5231,7 +5948,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/19531/1312234039/large.jpg?1312234039",
     "description": "Operated in Manhattan from 1971 to 1996.",
     "confidence": "high",
     "sources": [
@@ -5239,7 +5956,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/12546"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "10957",
@@ -5258,7 +5977,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/419730/1694392233/large.JPG?1694392233",
     "description": "Operated in Bronx from 1972 to 2022. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -5266,7 +5985,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/10957"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "11878",
@@ -5288,15 +6009,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Bronx in 1926; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/123685/1430095360/large.jpg?1430095360",
+    "description": "Opened in Bronx in 1926; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by C-Town.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/11878"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": {
+      "name": "C-Town",
+      "category": "shop",
+      "type": "supermarket"
+    }
   },
   {
     "id": "8834",
@@ -5318,7 +6049,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/288437/1570953799/large.jpg?1570953799",
     "description": "Operated in Brooklyn from 1921 to 1979. Closing year is approximate (1979).",
     "confidence": "low",
     "sources": [
@@ -5326,7 +6057,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8834"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "14665",
@@ -5345,15 +6078,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1914; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/92507/1389888899/large.jpg?1389888899",
+    "description": "Opened in Manhattan in 1914; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/14665"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "42278",
@@ -5372,7 +6111,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/77576/1375275614/large.JPG?1375275614",
     "description": "Operated in Brooklyn from 1914 to 1917.",
     "confidence": "high",
     "sources": [
@@ -5380,7 +6119,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/42278"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6367",
@@ -5399,15 +6140,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Brooklyn in 1933; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/265676/1550595760/large.jpg?1550595760",
+    "description": "Opened in Brooklyn in 1933; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6367"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "8843",
@@ -5426,7 +6173,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/1888/1307035513/large.jpg?1307035513",
     "description": "Operated in Brooklyn from 1916 to 1942.",
     "confidence": "high",
     "sources": [
@@ -5434,7 +6181,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8843"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "42556",
@@ -5453,7 +6202,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/140065/1445441713/large.JPG?1445441713",
     "description": "Operated in Brooklyn from 1914 to 1926.",
     "confidence": "high",
     "sources": [
@@ -5461,7 +6210,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/42556"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "13560",
@@ -5482,15 +6233,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1919; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/172554/1467388635/large.jpg?1467388635",
+    "description": "Opened in Manhattan in 1919; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by Black Crescent.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/13560"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": {
+      "name": "Black Crescent",
+      "category": "amenity",
+      "type": "bar"
+    }
   },
   {
     "id": "15139",
@@ -5512,7 +6273,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/57019/1348870434/large.jpg?1348870434",
     "description": "Operated in Manhattan from 1991 to 2013. Reopened in 2018 after an earlier closure.",
     "confidence": "high",
     "sources": [
@@ -5520,7 +6281,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/15139"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "4039",
@@ -5542,7 +6305,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/9735/1309836460/large.JPG?1309836460",
     "description": "Operating in Brooklyn since 1926. Opening year is an upper bound ('prior to/before 1926').",
     "confidence": "low",
     "sources": [
@@ -5550,7 +6313,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4039"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "526",
@@ -5573,7 +6338,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/4812/1308277825/large.JPG?1308277825",
     "description": "Operated in Manhattan from 1920 to 2011. Reopened in 2004 after an earlier closure. Most recent stated closing year retained. Most recent stated reopening year retained.",
     "confidence": "low",
     "sources": [
@@ -5581,7 +6346,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/526"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "4036",
@@ -5600,7 +6367,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/89546/1386488897/large.jpg?1386488897",
     "description": "Operated in Brooklyn from 1922 to 1990.",
     "confidence": "high",
     "sources": [
@@ -5608,7 +6375,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4036"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "10635",
@@ -5627,7 +6396,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/10968/1310264803/large.JPG?1310264803",
     "description": "Operated in Queens from 1999 to 2024.",
     "confidence": "high",
     "sources": [
@@ -5635,7 +6404,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/10635"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6449",
@@ -5654,15 +6425,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Queens in 1926; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/280660/1564414803/large.gif?1564414803",
+    "description": "Opened in Queens in 1926; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by Supreme Foods.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6449"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": {
+      "name": "Supreme Foods",
+      "category": "shop",
+      "type": "deli"
+    }
   },
   {
     "id": "7680",
@@ -5683,15 +6464,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1937; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/218192/1504975895/large.JPG?1504975895",
+    "description": "Opened in Manhattan in 1937; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7680"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "2943",
@@ -5717,15 +6504,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1905; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/46696/1339532367/large.jpg?1339532367",
+    "description": "Opened in Manhattan in 1905; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/2943"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "7927",
@@ -5746,7 +6539,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/3487/1307664650/large.jpg?1307664650",
     "description": "Operated in Brooklyn from 1921 to 1963.",
     "confidence": "high",
     "sources": [
@@ -5754,7 +6547,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7927"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "44405",
@@ -5776,14 +6571,20 @@ export const theaters: Theater[] = [
     "operator": null,
     "featured": false,
     "image": null,
-    "description": "Opened in Bronx in 1910; the closing year wasn't recorded. Not stated on source page: closing year, image.",
+    "description": "Opened in Bronx in 1910; the closing year wasn't recorded. Not stated on source page: closing year, image. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/44405"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "72763",
@@ -5810,7 +6611,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/72763"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "50122",
@@ -5829,7 +6632,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/138644/1444145767/large.JPG?1444145767",
     "description": "Operated in Brooklyn from 1913 to 1920.",
     "confidence": "high",
     "sources": [
@@ -5837,7 +6640,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/50122"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "3976",
@@ -5858,7 +6663,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/263807/1547619606/large.jpg?1547619606",
     "description": "Operated in Brooklyn from 1917 to 1952.",
     "confidence": "high",
     "sources": [
@@ -5866,7 +6671,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3976"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "1402",
@@ -5888,15 +6695,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1914; the closing year wasn't recorded. Opening year is an upper bound ('prior to/before 1914'). Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/186581/1476344276/large.jpg?1476344276",
+    "description": "Opened in Manhattan in 1914; the closing year wasn't recorded. Opening year is an upper bound ('prior to/before 1914'). Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "low",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/1402"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "4025",
@@ -5915,15 +6728,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Queens in 1935; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/113963/1418458092/large.jpg?1418458092",
+    "description": "Opened in Queens in 1935; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by Chase.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4025"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": {
+      "name": "Chase",
+      "category": "amenity",
+      "type": "bank"
+    }
   },
   {
     "id": "7747",
@@ -5945,7 +6768,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/238417/1522540313/large.jpg?1522540313",
     "description": "Operated in Brooklyn from 1892 to 1914. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -5953,7 +6776,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7747"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "8700",
@@ -5972,15 +6797,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Bronx in 1910; the closing year wasn't recorded. Opening year is approximate (1910). Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/191459/1478823907/large.jpg?1478823907",
+    "description": "Opened in Bronx in 1910; the closing year wasn't recorded. Opening year is approximate (1910). Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "low",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8700"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "8738",
@@ -6004,7 +6835,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/219606/1506545354/large.gif?1506545354",
     "description": "Operated in Brooklyn from 1910 to 1955. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -6012,7 +6843,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8738"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "268",
@@ -6033,7 +6866,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/309550/1593265842/large.jpg?1593265842",
     "description": "Operated in Brooklyn from 1922 to 2002.",
     "confidence": "high",
     "sources": [
@@ -6041,7 +6874,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/268"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7921",
@@ -6060,15 +6895,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Bronx in 1916; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/55838/1348088009/large.jpg?1348088009",
+    "description": "Opened in Bronx in 1916; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by Chick-fil-A.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7921"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": {
+      "name": "Chick-fil-A",
+      "category": "amenity",
+      "type": "fast_food"
+    }
   },
   {
     "id": "50172",
@@ -6092,7 +6937,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/139397/1444928153/large.JPG?1444928153",
     "description": "Operating in Brooklyn since 1901. Reopened in 1912 after an earlier closure. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -6100,7 +6945,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/50172"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "3986",
@@ -6121,7 +6968,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/7906/1309273149/large.jpg?1309273149",
     "description": "Operated in Brooklyn from 1927 to 2006.",
     "confidence": "high",
     "sources": [
@@ -6129,7 +6976,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3986"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "1330",
@@ -6148,15 +6997,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Queens in 1926; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/164134/1459889721/large.gif?1459889721",
+    "description": "Opened in Queens in 1926; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by Dunkin'.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/1330"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": {
+      "name": "Dunkin'",
+      "category": "amenity",
+      "type": "fast_food"
+    }
   },
   {
     "id": "42234",
@@ -6183,7 +7042,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/42234"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "8364",
@@ -6204,7 +7065,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/48080/1341086471/large.jpg?1341086471",
     "description": "Operated in Manhattan from 1922 to 1983. Closing year is approximate (1983).",
     "confidence": "low",
     "sources": [
@@ -6212,7 +7073,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8364"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6937",
@@ -6231,7 +7094,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/241594/1525269775/large.png?1525269775",
     "description": "Operated in Manhattan from 1914 to 1952. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -6239,7 +7102,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6937"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "22021",
@@ -6260,7 +7125,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/5709/1308507288/large.jpg?1308507288",
     "description": "Operated in Brooklyn from 1913 to 2019. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -6268,7 +7133,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/22021"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "41513",
@@ -6287,7 +7154,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/77354/1375028190/large.JPG?1375028190",
     "description": "Operated in Brooklyn from 1913 to 1918. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -6295,7 +7162,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/41513"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "42262",
@@ -6316,7 +7185,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/79005/1376746079/large.JPG?1376746079",
     "description": "Operated in Brooklyn from 1908 to 1916. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -6324,7 +7193,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/42262"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "21488",
@@ -6343,15 +7214,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Bronx in 1937; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/55840/1348088539/large.jpg?1348088539",
+    "description": "Opened in Bronx in 1937; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/21488"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "50188",
@@ -6370,7 +7247,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/512923/1776797979/large.jpg?1776797979",
     "description": "Operated in Brooklyn from 1910 to 1916. Closing year is approximate (1916).",
     "confidence": "low",
     "sources": [
@@ -6378,7 +7255,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/50188"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "8106",
@@ -6397,15 +7276,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Bronx in 1936; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/222819/1509553828/large.gif?1509553828",
+    "description": "Opened in Bronx in 1936; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8106"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "528",
@@ -6428,7 +7313,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/22491/1313721239/large.jpg?1313721239",
     "description": "Operated in Manhattan from 1936 to 2015. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -6436,7 +7321,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/528"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "16481",
@@ -6458,15 +7345,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1895; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/239122/1523122988/large.jpg?1523122988",
+    "description": "Opened in Manhattan in 1895; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/16481"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "low",
+      "note": "A nearby mapped venue matched part of the name, but review did not confirm it as the same historical theater; the theater is closed and its closing year remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "40124",
@@ -6494,7 +7387,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/173097/1468018517/large.jpg?1468018517",
     "description": "Operated in Brooklyn from 1885 to 1929. Reopened in 1929 after an earlier closure. Most recent stated closing year retained. Most recent stated reopening year retained.",
     "confidence": "low",
     "sources": [
@@ -6502,7 +7395,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/40124"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "5866",
@@ -6521,15 +7416,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Queens in 1979; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/8535/1309491436/large.JPG?1309491436",
+    "description": "Opened in Queens in 1979; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/5866"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "6714",
@@ -6550,7 +7451,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/43811/1336258788/large.jpg?1336258788",
     "description": "Operated in Bronx from 1912 to 1959.",
     "confidence": "high",
     "sources": [
@@ -6558,7 +7459,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6714"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "2792",
@@ -6581,7 +7484,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/45407/1338050278/large.jpg?1338050278",
     "description": "Operated in Manhattan from 1963 to 2001.",
     "confidence": "high",
     "sources": [
@@ -6589,7 +7492,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/2792"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "3965",
@@ -6610,15 +7515,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Brooklyn in 1928; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/86540/1383850617/large.jpg?1383850617",
+    "description": "Opened in Brooklyn in 1928; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3965"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "17576",
@@ -6637,15 +7548,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1903; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/98394/1397672283/large.jpg?1397672283",
+    "description": "Opened in Manhattan in 1903; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/17576"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "A nearby mapped venue matched part of the name, but review did not confirm it as the same historical theater; the theater is closed and its closing year remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "36316",
@@ -6664,7 +7581,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/7961/1309285434/large.jpg?1309285434",
     "description": "Operated in Brooklyn from 1910 to 2013. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -6672,7 +7589,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/36316"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "50054",
@@ -6693,7 +7612,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/138646/1444146613/large.JPG?1444146613",
     "description": "Operated in Brooklyn from 1909 to 1913.",
     "confidence": "high",
     "sources": [
@@ -6701,7 +7620,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/50054"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "5875",
@@ -6722,7 +7643,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/261936/1544442185/large.jpg?1544442185",
     "description": "Operated in Brooklyn from 1925 to 1965.",
     "confidence": "high",
     "sources": [
@@ -6730,7 +7651,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/5875"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "56988",
@@ -6757,15 +7680,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1914; the closing year wasn't recorded. Reopened in 1941 after an earlier closure. Most recent stated reopening year retained. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/230456/1515372548/large.jpg?1515372548",
+    "description": "Opened in Manhattan in 1914; the closing year wasn't recorded. Reopened in 1941 after an earlier closure. Most recent stated reopening year retained. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "low",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/56988"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "9812",
@@ -6786,7 +7715,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/56645/1348591108/large.JPG?1348591108",
     "description": "Operated in Manhattan from 1978 to 1995. Opening year is approximate (1978).",
     "confidence": "low",
     "sources": [
@@ -6794,7 +7723,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/9812"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "12446",
@@ -6815,15 +7746,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1971; the closing year wasn't recorded. Opening year represents an approximate decade reference (1971). Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/306225/1590028626/large.PNG?1590028626",
+    "description": "Opened in Manhattan in 1971; the closing year wasn't recorded. Opening year represents an approximate decade reference (1971). Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "low",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/12446"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "6101",
@@ -6844,15 +7781,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Bronx in 1920; the closing year wasn't recorded. Opening year is approximate (1920). Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/263754/1547595019/large.jpg?1547595019",
+    "description": "Opened in Bronx in 1920; the closing year wasn't recorded. Opening year is approximate (1920). Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "low",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6101"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "4049",
@@ -6874,15 +7817,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Brooklyn in 1914; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/187856/1476920566/large.JPG?1476920566",
+    "description": "Opened in Brooklyn in 1914; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4049"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "7929",
@@ -6901,7 +7850,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/77359/1375029047/large.JPG?1375029047",
     "description": "Operated in Brooklyn from 1908 to 1951.",
     "confidence": "high",
     "sources": [
@@ -6909,7 +7858,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7929"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "11114",
@@ -6931,7 +7882,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/159167/1455841753/large.jpg?1455841753",
     "description": "Operated in Bronx from 1916 to 1950. Reopened in 1938 after an earlier closure. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -6939,7 +7890,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/11114"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7825",
@@ -6961,7 +7914,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/6470/1308688807/large.jpg?1308688807",
     "description": "Operated in Manhattan from 1921 to 1961.",
     "confidence": "high",
     "sources": [
@@ -6969,7 +7922,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7825"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "4656",
@@ -6988,7 +7943,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/8531/1309490759/large.JPG?1309490759",
     "description": "Operated in Queens from 1933 to 1986.",
     "confidence": "high",
     "sources": [
@@ -6996,7 +7951,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4656"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7990",
@@ -7017,15 +7974,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Bronx in 1930; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/113599/1417638385/large.jpg?1417638385",
+    "description": "Opened in Bronx in 1930; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7990"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "4531",
@@ -7047,7 +8010,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/261879/1544315279/large.jpg?1544315279",
     "description": "Operated in Brooklyn from 1915 to 1954. Reopened in 1924 after an earlier closure.",
     "confidence": "high",
     "sources": [
@@ -7055,7 +8018,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4531"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "21704",
@@ -7074,15 +8039,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1898; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/173207/1468170941/large.jpg?1468170941",
+    "description": "Opened in Manhattan in 1898; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by Farook's Halal Cart.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/21704"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": {
+      "name": "Farook's Halal Cart",
+      "category": "amenity",
+      "type": "restaurant"
+    }
   },
   {
     "id": "7049",
@@ -7107,7 +8082,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/21675/1313355659/large.JPG?1313355659",
     "description": "Operating in Manhattan since 1951. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -7115,7 +8090,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7049"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "10961",
@@ -7134,15 +8111,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Queens in 1936; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/298707/1583084038/large.jpeg?1583084038",
+    "description": "Opened in Queens in 1936; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/10961"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "36223",
@@ -7163,7 +8146,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/6095/1308592335/large.jpg?1308592335",
     "description": "Operated in Brooklyn from 1910 to 1920. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -7171,7 +8154,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/36223"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7983",
@@ -7190,15 +8175,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Bronx in 1930; the closing year wasn't recorded. Opening year is approximate (1930). Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/66836/1360964043/large.jpg?1360964043",
+    "description": "Opened in Bronx in 1930; the closing year wasn't recorded. Opening year is approximate (1930). Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "low",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7983"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "4614",
@@ -7217,7 +8208,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/495499/1757981052/large.jpg?1757981052",
     "description": "Operated in Queens from 1935 to 2014. Reopened in 1988 after an earlier closure. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -7225,7 +8216,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4614"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "14740",
@@ -7245,14 +8238,20 @@ export const theaters: Theater[] = [
     "operator": null,
     "featured": false,
     "image": null,
-    "description": "Opened in Manhattan in 1901; the closing year wasn't recorded. Not stated on source page: closing year, image.",
+    "description": "Opened in Manhattan in 1901; the closing year wasn't recorded. Not stated on source page: closing year, image. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/14740"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "A nearby mapped venue matched part of the name, but review did not confirm it as the same historical theater; the theater is closed and its closing year remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "27049",
@@ -7274,15 +8273,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1913; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/34792/1328105841/large.jpg?1328105841",
+    "description": "Opened in Manhattan in 1913; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/27049"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "4020",
@@ -7303,7 +8308,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/33124/1325893327/large.jpg?1325893327",
     "description": "Operated in Queens from 1938 to 2009.",
     "confidence": "high",
     "sources": [
@@ -7311,7 +8316,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4020"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "8021",
@@ -7333,7 +8340,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/80601/1378410671/large.jpg?1378410671",
     "description": "Operated in Brooklyn from 1916 to 1936.",
     "confidence": "high",
     "sources": [
@@ -7341,7 +8348,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8021"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "56980",
@@ -7365,7 +8374,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/231816/1516820708/large.gif?1516820708",
     "description": "Operated in Manhattan from 1922 to 1990. Reopened in 1938 after an earlier closure. Most recent stated closing year retained. Most recent stated reopening year retained.",
     "confidence": "low",
     "sources": [
@@ -7373,7 +8382,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/56980"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "5968",
@@ -7392,15 +8403,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Bronx in 1936; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/198378/1484589893/large.jpg?1484589893",
+    "description": "Opened in Bronx in 1936; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by CityMD Urgent Care.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/5968"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": {
+      "name": "CityMD Urgent Care",
+      "category": "amenity",
+      "type": "clinic"
+    }
   },
   {
     "id": "6231",
@@ -7421,7 +8442,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/23/1305941562/large.jpg?1305941562",
     "description": "Operated in Manhattan from 1973 to 2003. Reopened in 1993 after an earlier closure. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -7429,7 +8450,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6231"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "8167",
@@ -7448,7 +8471,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/284994/1567397732/large.JPG?1567397732",
     "description": "Operated in Brooklyn from 1921 to 1941.",
     "confidence": "high",
     "sources": [
@@ -7456,7 +8479,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8167"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "16933",
@@ -7475,7 +8500,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/21541/1313255673/large.JPG?1313255673",
     "description": "Operated in Brooklyn from 1910 to 1937.",
     "confidence": "high",
     "sources": [
@@ -7483,7 +8508,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/16933"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "20650",
@@ -7503,14 +8530,20 @@ export const theaters: Theater[] = [
     "operator": null,
     "featured": false,
     "image": null,
-    "description": "Opened in Manhattan in 1903; the closing year wasn't recorded. Not stated on source page: closing year, image.",
+    "description": "Opened in Manhattan in 1903; the closing year wasn't recorded. Not stated on source page: closing year, image. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/20650"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "3969",
@@ -7529,7 +8562,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/137418/1443197575/large.jpg?1443197575",
     "description": "Operated in Brooklyn from 1913 to 1953. Opening year is approximate (1913).",
     "confidence": "low",
     "sources": [
@@ -7537,7 +8570,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3969"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "3857",
@@ -7556,7 +8591,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/6065/1308585634/large.jpg?1308585634",
     "description": "Operated in Brooklyn from 1937 to 1973.",
     "confidence": "high",
     "sources": [
@@ -7564,7 +8599,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3857"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "1942",
@@ -7586,7 +8623,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/6/1305870829/large.jpg?1305870829",
     "description": "Operated in Queens from 1928 to 2002.",
     "confidence": "high",
     "sources": [
@@ -7594,7 +8631,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/1942"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "501",
@@ -7621,7 +8660,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/4742/1308268658/large.jpg?1308268658",
     "description": "Operated in Manhattan from 1910 to 2013. Reopened in 1930 after an earlier closure. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -7629,7 +8668,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/501"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "2664",
@@ -7653,7 +8694,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/46689/1339531526/large.jpg?1339531526",
     "description": "Operated in Manhattan from 1914 to 1987. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -7661,7 +8702,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/2664"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7826",
@@ -7683,7 +8726,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/42429/1334710751/large.jpg?1334710751",
     "description": "Operated in Manhattan from 1938 to 1988.",
     "confidence": "high",
     "sources": [
@@ -7691,7 +8734,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7826"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "5796",
@@ -7712,7 +8757,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/261947/1544449681/large.jpg?1544449681",
     "description": "Operated in Brooklyn from 1914 to 1968.",
     "confidence": "high",
     "sources": [
@@ -7720,7 +8765,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/5796"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7294",
@@ -7739,7 +8786,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/114309/1419291146/large.jpg?1419291146",
     "description": "Operated in Brooklyn from 1908 to 1953.",
     "confidence": "high",
     "sources": [
@@ -7747,7 +8794,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7294"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "8222",
@@ -7768,15 +8817,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Bronx in 1894; the closing year wasn't recorded. Opening year is approximate (1894). Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/67645/1361815207/large.jpg?1361815207",
+    "description": "Opened in Bronx in 1894; the closing year wasn't recorded. Opening year is approximate (1894). Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "low",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8222"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "41501",
@@ -7795,15 +8850,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Brooklyn in 1907; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/77319/1375019017/large.JPG?1375019017",
+    "description": "Opened in Brooklyn in 1907; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by Dobbin St. Vintage Co-op.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/41501"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": {
+      "name": "Dobbin St. Vintage Co-op",
+      "category": "shop",
+      "type": "antiques"
+    }
   },
   {
     "id": "11751",
@@ -7824,7 +8889,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/80657/1378460012/large.JPG?1378460012",
     "description": "Operated in Brooklyn from 1911 to 2005. Reopened in 1916 after an earlier closure. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -7832,7 +8897,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/11751"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "8357",
@@ -7851,7 +8918,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/283639/1566256922/large.jpg?1566256922",
     "description": "Operated in Brooklyn from 1927 to 1954.",
     "confidence": "high",
     "sources": [
@@ -7859,7 +8926,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8357"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "9811",
@@ -7880,7 +8949,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/117520/1423346459/large.jpg?1423346459",
     "description": "Operated in Manhattan from 1969 to 1997.",
     "confidence": "high",
     "sources": [
@@ -7888,7 +8957,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/9811"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7881",
@@ -7907,15 +8978,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1962; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/158124/1455020801/large.png?1455020801",
+    "description": "Opened in Manhattan in 1962; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7881"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "A nearby mapped venue matched part of the name, but review did not confirm it as the same historical theater; the theater is closed and its closing year remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "42131",
@@ -7944,7 +9021,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/42131"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "8026",
@@ -7965,15 +9044,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Queens in 1913; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/242630/1526162938/large.jpg?1526162938",
+    "description": "Opened in Queens in 1913; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by Goddess Unisex Salon.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8026"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": {
+      "name": "Goddess Unisex Salon",
+      "category": "shop",
+      "type": "beauty"
+    }
   },
   {
     "id": "11780",
@@ -7996,7 +9085,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/48562/1341762140/large.jpg?1341762140",
     "description": "Operating in Manhattan since 1964.",
     "confidence": "high",
     "sources": [
@@ -8004,7 +9093,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/11780"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "4030",
@@ -8023,7 +9114,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/365333/1646023749/large.jpg?1646023749",
     "description": "Operating in Queens since 1939.",
     "confidence": "high",
     "sources": [
@@ -8031,7 +9122,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4030"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "16958",
@@ -8054,15 +9147,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Brooklyn in 1917; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/6057/1308584599/large.jpg?1308584599",
+    "description": "Opened in Brooklyn in 1917; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/16958"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "50189",
@@ -8083,7 +9182,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/139935/1445350108/large.JPG?1445350108",
     "description": "Operated in Brooklyn from 1909 to 1915. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -8091,7 +9190,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/50189"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6266",
@@ -8110,7 +9211,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/2154/1307140380/large.jpg?1307140380",
     "description": "Operated in Brooklyn from 1920 to 1959. Reopened in 1963 after an earlier closure. Closing year is approximate (1959). Most recent stated reopening year retained.",
     "confidence": "low",
     "sources": [
@@ -8118,7 +9219,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6266"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "42237",
@@ -8139,7 +9242,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/77432/1375118517/large.JPG?1375118517",
     "description": "Operated in Brooklyn from 1910 to 1917. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -8147,7 +9250,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/42237"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "8863",
@@ -8174,7 +9279,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8863"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "3415",
@@ -8197,15 +9304,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1865; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/87593/1384617688/large.JPG?1384617688",
+    "description": "Opened in Manhattan in 1865; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3415"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "36174",
@@ -8226,7 +9339,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/42225/1334539134/large.JPG?1334539134",
     "description": "Operating in Manhattan since 2011.",
     "confidence": "high",
     "sources": [
@@ -8234,7 +9347,42 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/36174"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
+  },
+  {
+    "id": "5957",
+    "name": "Film Forum",
+    "alternateNames": [],
+    "address": "209 W. Houston Street, New York, NY 10014",
+    "latitude": 40.7284283,
+    "longitude": -74.0043534,
+    "borough": "Manhattan",
+    "openingYear": 1970,
+    "closingYear": null,
+    "reopeningYear": 2018,
+    "status": "open",
+    "theaterType": "multiplex",
+    "screens": 4,
+    "seats": null,
+    "operator": null,
+    "featured": true,
+    "image": "https://photos.cinematreasures.org/production/photos/18/1305940519/large.jpg?1305940519",
+    "description": "Operating in Manhattan since 1970. Reopened in 2018 after an earlier closure. Opening year verified from Art House New York.",
+    "confidence": "high",
+    "sources": [
+      {
+        "label": "Cinema Treasures",
+        "url": "https://cinematreasures.org/theaters/5957"
+      },
+      {
+        "label": "Art House New York",
+        "url": "https://arthouseny.org/film-forum"
+      }
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "64711",
@@ -8253,7 +9401,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/341504/1617365141/large.jpg?1617365141",
     "description": "Operating in Brooklyn since 2017.",
     "confidence": "high",
     "sources": [
@@ -8261,7 +9409,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/64711"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6371",
@@ -8280,7 +9430,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/150250/1450819713/large.gif?1450819713",
     "description": "Operated in Manhattan from 1951 to 1978.",
     "confidence": "high",
     "sources": [
@@ -8288,7 +9438,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6371"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "68947",
@@ -8296,7 +9448,7 @@ export const theaters: Theater[] = [
     "alternateNames": [],
     "address": "87 Lafayette Street, New York, NY 10013",
     "latitude": 40.7173462,
-    "longitude": -74.00123599999999,
+    "longitude": -74.001236,
     "borough": "Manhattan",
     "openingYear": 2022,
     "closingYear": null,
@@ -8315,7 +9467,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/68947"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7470",
@@ -8337,15 +9491,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Queens in 1914; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/241010/1524678971/large.gif?1524678971",
+    "description": "Opened in Queens in 1914; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7470"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "4713",
@@ -8364,7 +9524,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/10434/1310069770/large.JPG?1310069770",
     "description": "Operated in Queens from 1970 to 1982.",
     "confidence": "high",
     "sources": [
@@ -8372,7 +9532,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4713"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7879",
@@ -8391,7 +9553,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/102490/1402614873/large.jpg?1402614873",
     "description": "Operated in Bronx from 1927 to 1958.",
     "confidence": "high",
     "sources": [
@@ -8399,7 +9561,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7879"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7026",
@@ -8420,7 +9584,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/122627/1428856099/large.jpg?1428856099",
     "description": "Operated in Brooklyn from 1901 to 1939.",
     "confidence": "high",
     "sources": [
@@ -8428,7 +9592,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7026"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "55798",
@@ -8455,7 +9621,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/55798"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "29185",
@@ -8482,7 +9650,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/29185"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7786",
@@ -8504,7 +9674,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/224114/1510595152/large.jpg?1510595152",
     "description": "Operated in Bronx from 1923 to 1994.",
     "confidence": "high",
     "sources": [
@@ -8512,7 +9682,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7786"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "36288",
@@ -8533,7 +9705,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/6996/1308924636/large.jpg?1308924636",
     "description": "Operated in Brooklyn from 1914 to 1929. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -8541,7 +9713,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/36288"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6058",
@@ -8560,15 +9734,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Queens in 1929; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/495498/1757980828/large.jpg?1757980828",
+    "description": "Opened in Queens in 1929; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6058"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "602",
@@ -8589,7 +9769,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/23944/1314627089/large.jpg?1314627089",
     "description": "Operated in Brooklyn from 1928 to 1966.",
     "confidence": "high",
     "sources": [
@@ -8597,7 +9777,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/602"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7920",
@@ -8616,7 +9798,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/123680/1430093936/large.jpg?1430093936",
     "description": "Operated in Bronx from 1922 to 2015. Opening year is approximate (1922).",
     "confidence": "low",
     "sources": [
@@ -8624,7 +9806,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7920"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "17449",
@@ -8645,15 +9829,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1969; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/162011/1458040415/large.jpg?1458040415",
+    "description": "Opened in Manhattan in 1969; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/17449"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "14687",
@@ -8672,7 +9862,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/84436/1382124035/large.jpg?1382124035",
     "description": "Operated in Manhattan from 1923 to 1929.",
     "confidence": "high",
     "sources": [
@@ -8680,7 +9870,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/14687"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "20223",
@@ -8701,15 +9893,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1909; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/94280/1391632281/large.PNG?1391632281",
+    "description": "Opened in Manhattan in 1909; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by Saher USA Inc..",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/20223"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": {
+      "name": "Saher USA Inc.",
+      "category": "shop",
+      "type": "clothes"
+    }
   },
   {
     "id": "16397",
@@ -8732,15 +9934,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1875; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/165946/1461799525/large.jpg?1461799525",
+    "description": "Opened in Manhattan in 1875; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/16397"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "11234",
@@ -8759,7 +9967,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/327028/1607720008/large.jpg?1607720008",
     "description": "Operated in Brooklyn from 1906 to 1929. Opening year is approximate (1906).",
     "confidence": "low",
     "sources": [
@@ -8767,7 +9975,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/11234"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "8000",
@@ -8786,7 +9996,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/291091/1573860092/large.jpg?1573860092",
     "description": "Operated in Bronx from 1914 to 1926.",
     "confidence": "high",
     "sources": [
@@ -8794,7 +10004,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8000"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "8442",
@@ -8813,15 +10025,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Queens in 1925; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/224032/1510553748/large.jpg?1510553748",
+    "description": "Opened in Queens in 1925; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8442"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "4078",
@@ -8840,7 +10058,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/22216/1313621963/large.jpg?1313621963",
     "description": "Operated in Brooklyn from 1925 to 1958. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -8848,7 +10066,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4078"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "11737",
@@ -8872,15 +10092,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1964; the closing year wasn't recorded. Opening year is an upper bound ('prior to/before 1964'). Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/263051/1546435078/large.jpg?1546435078",
+    "description": "Opened in Manhattan in 1964; the closing year wasn't recorded. Opening year is an upper bound ('prior to/before 1964'). Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "low",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/11737"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "36366",
@@ -8899,15 +10125,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Brooklyn in 1892; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/45840/1338403465/large.jpg?1338403465",
+    "description": "Opened in Brooklyn in 1892; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/36366"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "10653",
@@ -8928,7 +10160,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/264731/1549089799/large.jpg?1549089799",
     "description": "Operated in Brooklyn from 1914 to 1954. Reopened in 1939 after an earlier closure. Most recent stated reopening year retained.",
     "confidence": "low",
     "sources": [
@@ -8936,7 +10168,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/10653"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "14730",
@@ -8967,7 +10201,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/14730"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "4330",
@@ -8988,15 +10224,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1911; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/94150/1391475859/large.jpg?1391475859",
+    "description": "Opened in Manhattan in 1911; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4330"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "22465",
@@ -9016,14 +10258,20 @@ export const theaters: Theater[] = [
     "operator": null,
     "featured": false,
     "image": null,
-    "description": "Opened in Queens in 1915; the closing year wasn't recorded. Not stated on source page: closing year, image.",
+    "description": "Opened in Queens in 1915; the closing year wasn't recorded. Not stated on source page: closing year, image. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/22465"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "10952",
@@ -9044,7 +10292,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/6994/1308922515/large.jpg?1308922515",
     "description": "Operated in Brooklyn from 1914 to 1939. Closing year is approximate (1939).",
     "confidence": "low",
     "sources": [
@@ -9052,7 +10300,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/10952"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "4623",
@@ -9071,15 +10321,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Queens in 1921; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/242634/1526165433/large.jpg?1526165433",
+    "description": "Opened in Queens in 1921; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4623"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "9021",
@@ -9098,15 +10354,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Bronx in 1946; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/55841/1348088790/large.jpg?1348088790",
+    "description": "Opened in Bronx in 1946; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/9021"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "3882",
@@ -9128,7 +10390,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/5686/1308503012/large.jpg?1308503012",
     "description": "Operated in Brooklyn from 1913 to 1957.",
     "confidence": "high",
     "sources": [
@@ -9136,7 +10398,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3882"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "5359",
@@ -9155,7 +10419,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/5694/1308504854/large.jpg?1308504854",
     "description": "Operated in Brooklyn from 1925 to 1952.",
     "confidence": "high",
     "sources": [
@@ -9163,7 +10427,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/5359"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "55796",
@@ -9183,14 +10449,20 @@ export const theaters: Theater[] = [
     "operator": null,
     "featured": false,
     "image": null,
-    "description": "Opened in Bronx in 1926; the closing year wasn't recorded. Opening year is an upper bound ('prior to/before 1926'). Not stated on source page: closing year, image.",
+    "description": "Opened in Bronx in 1926; the closing year wasn't recorded. Opening year is an upper bound ('prior to/before 1926'). Not stated on source page: closing year, image. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "low",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/55796"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "29546",
@@ -9212,7 +10484,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/45123/1337749586/large.jpg?1337749586",
     "description": "Operating in Manhattan since 1927.",
     "confidence": "high",
     "sources": [
@@ -9220,7 +10492,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/29546"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6523",
@@ -9246,15 +10520,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1903; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/213544/1499734848/large.png?1499734848",
+    "description": "Opened in Manhattan in 1903; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6523"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "3864",
@@ -9275,7 +10555,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/1229/1306863338/large.jpg?1306863338",
     "description": "Operated in Brooklyn from 1922 to 1937.",
     "confidence": "high",
     "sources": [
@@ -9283,7 +10563,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3864"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6189",
@@ -9304,7 +10586,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/187724/1476821848/large.gif?1476821848",
     "description": "Operated in Manhattan from 1927 to 1955. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -9312,7 +10594,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6189"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6113",
@@ -9334,7 +10618,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/215685/1502206568/large.gif?1502206568",
     "description": "Operating in Manhattan since 1937.",
     "confidence": "high",
     "sources": [
@@ -9342,7 +10626,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6113"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "21781",
@@ -9361,7 +10647,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/264025/1547942109/large.jpg?1547942109",
     "description": "Operated in Manhattan from 1943 to 1947. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -9369,7 +10655,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/21781"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "3924",
@@ -9392,7 +10680,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/186694/1476411717/large.jpg?1476411717",
     "description": "Operated in Brooklyn from 1921 to 2020. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -9400,7 +10688,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3924"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "8794",
@@ -9419,15 +10709,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Queens in 1927; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/262006/1544542770/large.gif?1544542770",
+    "description": "Opened in Queens in 1927; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by Laundromat.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8794"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": {
+      "name": "Laundromat",
+      "category": "shop",
+      "type": "laundry"
+    }
   },
   {
     "id": "3766",
@@ -9446,15 +10746,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1937; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/127479/1434020971/large.png?1434020971",
+    "description": "Opened in Manhattan in 1937; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3766"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "61844",
@@ -9476,15 +10782,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Brooklyn in 1910; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/298922/1583608251/large.jpg?1583608251",
+    "description": "Opened in Brooklyn in 1910; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/61844"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "6611",
@@ -9509,7 +10821,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/363010/1642654106/large.jpg?1642654106",
     "description": "Operated in Manhattan from 1936 to 1981. Reopened in 1967 after an earlier closure.",
     "confidence": "high",
     "sources": [
@@ -9517,7 +10829,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6611"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "630",
@@ -9536,7 +10850,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/9156/1309741263/large.JPG?1309741263",
     "description": "Operated in Queens from 1924 to 1960. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -9544,7 +10858,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/630"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6491",
@@ -9563,15 +10879,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Brooklyn in 1913; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/29826/1320003585/large.jpg?1320003585",
+    "description": "Opened in Brooklyn in 1913; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by Indian Kitchen.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6491"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": {
+      "name": "Indian Kitchen",
+      "category": "amenity",
+      "type": "restaurant"
+    }
   },
   {
     "id": "41214",
@@ -9590,15 +10916,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1903; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/209903/1496354993/large.jpg?1496354993",
+    "description": "Opened in Manhattan in 1903; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by CT Seafood Marts.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/41214"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": {
+      "name": "CT Seafood Marts",
+      "category": "shop",
+      "type": "seafood"
+    }
   },
   {
     "id": "9160",
@@ -9625,7 +10961,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/9160"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "11987",
@@ -9646,7 +10984,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/175948/1470837846/large.gif?1470837846",
     "description": "Operated in Manhattan from 1911 to 1950. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -9654,7 +10992,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/11987"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "23985",
@@ -9675,15 +11015,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1917; the closing year wasn't recorded. Opening year is approximate (1917). Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/269854/1555655642/large.jpg?1555655642",
+    "description": "Opened in Manhattan in 1917; the closing year wasn't recorded. Opening year is approximate (1917). Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by Citi Bike - 8 Ave & W 16 St.",
     "confidence": "low",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/23985"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": {
+      "name": "Citi Bike - 8 Ave & W 16 St",
+      "category": "amenity",
+      "type": "bicycle_rental"
+    }
   },
   {
     "id": "23974",
@@ -9702,15 +11052,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1917; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/145926/1448381594/large.jpg?1448381594",
+    "description": "Opened in Manhattan in 1917; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by Citi Bike - W 4 St & 7 Ave S.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/23974"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "A nearby mapped venue matched part of the name, but review did not confirm it as the same historical theater; the theater is closed and its closing year remains unknown."
+    },
+    "currentPlace": {
+      "name": "Citi Bike - W 4 St & 7 Ave S",
+      "category": "amenity",
+      "type": "bicycle_rental"
+    }
   },
   {
     "id": "8034",
@@ -9733,7 +11093,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/262687/1545866865/large.jpg?1545866865",
     "description": "Operated in Brooklyn from 1912 to 1951. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -9741,7 +11101,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8034"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "1077",
@@ -9763,7 +11125,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/206/1306347429/large.jpg?1306347429",
     "description": "Operated in Manhattan from 1938 to 1999.",
     "confidence": "high",
     "sources": [
@@ -9771,7 +11133,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/1077"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7027",
@@ -9790,7 +11154,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/260638/1542720572/large.jpg?1542720572",
     "description": "Operated in Brooklyn from 1912 to 1943.",
     "confidence": "high",
     "sources": [
@@ -9798,7 +11162,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7027"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "50181",
@@ -9819,7 +11185,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/139724/1445183047/large.JPG?1445183047",
     "description": "Operated in Brooklyn from 1911 to 1911.",
     "confidence": "high",
     "sources": [
@@ -9827,7 +11193,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/50181"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "1182",
@@ -9846,15 +11214,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1899; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/160760/1457137737/large.jpg?1457137737",
+    "description": "Opened in Manhattan in 1899; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/1182"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "low",
+      "note": "A nearby mapped venue matched part of the name, but review did not confirm it as the same historical theater; the theater is closed and its closing year remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "50068",
@@ -9876,7 +11250,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/136959/1442852697/large.JPG?1442852697",
     "description": "Operated in Brooklyn from 1906 to 1920.",
     "confidence": "high",
     "sources": [
@@ -9884,7 +11258,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/50068"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "27032",
@@ -9903,7 +11279,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/356512/1633544909/large.png?1633544909",
     "description": "Operated in Staten Island from 1906 to 1935.",
     "confidence": "high",
     "sources": [
@@ -9911,7 +11287,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/27032"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "3890",
@@ -9930,7 +11308,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/167151/1462798007/large.JPG?1462798007",
     "description": "Operated in Brooklyn from 1935 to 1979.",
     "confidence": "high",
     "sources": [
@@ -9938,7 +11316,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3890"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "66032",
@@ -9946,7 +11326,7 @@ export const theaters: Theater[] = [
     "alternateNames": [],
     "address": "3005 Richmond Terrace, Staten Island, NY 10303",
     "latitude": 40.637193,
-    "longitude": -74.16004439999999,
+    "longitude": -74.1600444,
     "borough": "Staten Island",
     "openingYear": 1914,
     "closingYear": 1925,
@@ -9957,7 +11337,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/356577/1633628604/large.png?1633628604",
     "description": "Operated in Staten Island from 1914 to 1925.",
     "confidence": "high",
     "sources": [
@@ -9965,7 +11345,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/66032"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "17459",
@@ -9984,7 +11366,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/26934/1316653298/large.jpg?1316653298",
     "description": "Operated in Manhattan from 1970 to 1995.",
     "confidence": "high",
     "sources": [
@@ -9992,7 +11374,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/17459"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "533",
@@ -10013,15 +11397,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1889; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/138751/1444247554/large.jpg?1444247554",
+    "description": "Opened in Manhattan in 1889; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/533"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "2657",
@@ -10045,7 +11435,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/26932/1316653098/large.jpg?1316653098",
     "description": "Operated in Manhattan from 1914 to 2026.",
     "confidence": "high",
     "sources": [
@@ -10053,7 +11443,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/2657"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "4613",
@@ -10074,7 +11466,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/6336/1308637218/large.jpg?1308637218",
     "description": "Operated in Queens from 1914 to 1936.",
     "confidence": "high",
     "sources": [
@@ -10082,7 +11474,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4613"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "11135",
@@ -10101,15 +11495,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1913; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/112477/1415723116/large.jpg?1415723116",
+    "description": "Opened in Manhattan in 1913; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/11135"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "29360",
@@ -10131,15 +11531,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1911; the closing year wasn't recorded. Reopened in 1911 after an earlier closure. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/25393/1315787032/large.jpg?1315787032",
+    "description": "Opened in Manhattan in 1911; the closing year wasn't recorded. Reopened in 1911 after an earlier closure. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by T-Mobile.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/29360"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "low",
+      "note": "A nearby mapped venue matched part of the name, but review did not confirm it as the same historical theater; the theater is closed and its closing year remains unknown."
+    },
+    "currentPlace": {
+      "name": "T-Mobile",
+      "category": "shop",
+      "type": "mobile_phone"
+    }
   },
   {
     "id": "56061",
@@ -10163,7 +11573,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/213624/1499807085/large.gif?1499807085",
     "description": "Operating in Manhattan since 1912. Reopened in 1964 after an earlier closure.",
     "confidence": "high",
     "sources": [
@@ -10171,7 +11581,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/56061"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "2969",
@@ -10196,7 +11608,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/108747/1411064912/large.JPG?1411064912",
     "description": "Operated in Manhattan from 1918 to 2004. Reopened in 2001 after an earlier closure. Most recent stated closing year retained. Most recent stated reopening year retained.",
     "confidence": "low",
     "sources": [
@@ -10204,7 +11616,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/2969"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "4895",
@@ -10226,7 +11640,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/209906/1496355112/large.jpg?1496355112",
     "description": "Operated in Manhattan from 1894 to 1914.",
     "confidence": "high",
     "sources": [
@@ -10234,7 +11648,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4895"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "3868",
@@ -10255,7 +11671,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/207652/1493309449/large.jpg?1493309449",
     "description": "Operated in Brooklyn from 1925 to 1988.",
     "confidence": "high",
     "sources": [
@@ -10263,7 +11679,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3868"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "3975",
@@ -10284,7 +11702,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/21299/1313110009/large.jpg?1313110009",
     "description": "Operated in Queens from 1927 to 1972. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -10292,7 +11710,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3975"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "534",
@@ -10314,7 +11734,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/46661/1339503319/large.jpg?1339503319",
     "description": "Operated in Manhattan from 1905 to 1939. Reopened in 1935 after an earlier closure.",
     "confidence": "high",
     "sources": [
@@ -10322,7 +11742,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/534"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6431",
@@ -10341,7 +11763,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/140173/1445550432/large.jpg?1445550432",
     "description": "Operated in Queens from 1936 to 1963.",
     "confidence": "high",
     "sources": [
@@ -10349,7 +11771,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6431"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "4286",
@@ -10372,15 +11796,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Queens in 1927; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/122414/1428677311/large.jpg?1428677311",
+    "description": "Opened in Queens in 1927; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4286"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "312",
@@ -10403,7 +11833,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/30253/1320864707/large.jpg?1320864707",
     "description": "Operated in Manhattan from 1930 to 1989. Reopened in 1949 after an earlier closure. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -10411,7 +11841,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/312"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "520",
@@ -10432,7 +11864,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/64161/1357533849/large.jpg?1357533849",
     "description": "Operated in Manhattan from 1926 to 1959.",
     "confidence": "high",
     "sources": [
@@ -10440,7 +11872,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/520"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "3963",
@@ -10459,7 +11893,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/263865/1547702060/large.jpg?1547702060",
     "description": "Operated in Brooklyn from 1922 to 1951.",
     "confidence": "high",
     "sources": [
@@ -10467,7 +11901,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3963"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "23977",
@@ -10487,14 +11923,20 @@ export const theaters: Theater[] = [
     "operator": null,
     "featured": false,
     "image": null,
-    "description": "Opened in Manhattan in 1976; the closing year wasn't recorded. Opening year represents an approximate decade reference (1976). Not stated on source page: closing year, image.",
+    "description": "Opened in Manhattan in 1976; the closing year wasn't recorded. Opening year represents an approximate decade reference (1976). Not stated on source page: closing year, image. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "low",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/23977"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "69428",
@@ -10505,7 +11947,7 @@ export const theaters: Theater[] = [
       "Rose Silbert Theatre"
     ],
     "address": "482 Thomas S. Boyland Street, Brooklyn, NY 11212",
-    "latitude": 40.66884049999999,
+    "latitude": 40.6688405,
     "longitude": -73.9137205,
     "borough": "Brooklyn",
     "openingYear": 1911,
@@ -10517,7 +11959,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/419555/1694117017/large.gif?1694117017",
     "description": "Operated in Brooklyn from 1911 to 1953. Reopened in 1947 after an earlier closure. Most recent stated reopening year retained.",
     "confidence": "low",
     "sources": [
@@ -10525,7 +11967,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/69428"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "55833",
@@ -10544,7 +11988,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/209047/1495261600/large.jpg?1495261600",
     "description": "Operated in Manhattan from 1909 to 1916. Closing year is approximate (1916).",
     "confidence": "low",
     "sources": [
@@ -10552,7 +11996,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/55833"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "23922",
@@ -10574,14 +12020,56 @@ export const theaters: Theater[] = [
     "operator": null,
     "featured": false,
     "image": null,
-    "description": "Opened in Manhattan in 1930; the closing year wasn't recorded. Not stated on source page: closing year, image.",
+    "description": "Opened in Manhattan in 1930; the closing year wasn't recorded. Not stated on source page: closing year, image. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/23922"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
+  },
+  {
+    "id": "2971",
+    "name": "Hudson Theatre",
+    "alternateNames": [
+      "Avon-at-the-Hudson",
+      "Savoy"
+    ],
+    "address": "141 W. 44th Street, New York, NY 10036",
+    "latitude": 40.7567814,
+    "longitude": -73.9846334,
+    "borough": "Manhattan",
+    "openingYear": 1903,
+    "closingYear": null,
+    "reopeningYear": 2017,
+    "status": "open",
+    "theaterType": "unknown",
+    "screens": 1,
+    "seats": null,
+    "operator": null,
+    "featured": false,
+    "image": "https://photos.cinematreasures.org/production/photos/136464/1442425121/large.JPG?1442425121",
+    "description": "Operating in Manhattan since 1903. Reopened in 2017 after an earlier closure. Most recent stated reopening year retained. Opening year verified from NYC Landmarks Preservation Commission.",
+    "confidence": "high",
+    "sources": [
+      {
+        "label": "Cinema Treasures",
+        "url": "https://cinematreasures.org/theaters/2971"
+      },
+      {
+        "label": "NYC Landmarks Preservation Commission",
+        "url": "https://s-media.nyc.gov/agencies/lpc/lp/1340.pdf"
+      }
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "31880",
@@ -10600,7 +12088,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/59240/1351044681/large.jpg?1351044681",
     "description": "Operated in Manhattan from 1912 to 1941.",
     "confidence": "high",
     "sources": [
@@ -10608,7 +12096,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/31880"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "50168",
@@ -10629,7 +12119,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/139255/1444830652/large.JPG?1444830652",
     "description": "Operated in Brooklyn from 1912 to 1928.",
     "confidence": "high",
     "sources": [
@@ -10637,7 +12127,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/50168"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "3761",
@@ -10656,7 +12148,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/287925/1570262236/large.jpg?1570262236",
     "description": "Operated in Staten Island from 1971 to 1994.",
     "confidence": "high",
     "sources": [
@@ -10664,7 +12156,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3761"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "3762",
@@ -10686,7 +12180,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/221947/1508950897/large.jpg?1508950897",
     "description": "Operated in Staten Island from 1966 to 2017. Reopened in 1993 after an earlier closure. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -10694,7 +12188,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3762"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "13995",
@@ -10713,15 +12209,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Queens in 1910; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/173376/1468442661/large.jpg?1468442661",
+    "description": "Opened in Queens in 1910; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by R Stop 1 Supermarket.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/13995"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": {
+      "name": "R Stop 1 Supermarket",
+      "category": "shop",
+      "type": "convenience"
+    }
   },
   {
     "id": "1200",
@@ -10743,7 +12249,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/43833/1336267689/large.jpg?1336267689",
     "description": "Operating in Manhattan since 1938. Reopened in 2005 after an earlier closure. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -10751,7 +12257,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/1200"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "8166",
@@ -10770,7 +12278,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/1238/1306863899/large.jpg?1306863899",
     "description": "Operated in Brooklyn from 1914 to 1940.",
     "confidence": "high",
     "sources": [
@@ -10778,7 +12286,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8166"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "8168",
@@ -10797,7 +12307,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/1237/1306863805/large.jpg?1306863805",
     "description": "Operated in Brooklyn from 1909 to 1940.",
     "confidence": "high",
     "sources": [
@@ -10805,7 +12315,42 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8168"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
+  },
+  {
+    "id": "33333",
+    "name": "IndieHouse Cinema at the Producers Club",
+    "alternateNames": [],
+    "address": "358 W. 44th Street, New York, NY 10036",
+    "latitude": 40.7593889,
+    "longitude": -73.991319,
+    "borough": "Manhattan",
+    "openingYear": 2010,
+    "closingYear": null,
+    "reopeningYear": null,
+    "status": "open",
+    "theaterType": "multiplex",
+    "screens": 5,
+    "seats": null,
+    "operator": null,
+    "featured": false,
+    "image": "https://photos.cinematreasures.org/production/photos/87253/1384374396/large.JPG?1384374396",
+    "description": "Operating in Manhattan since 2010. Opening year verified from The Hollywood Reporter.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "label": "Cinema Treasures",
+        "url": "https://cinematreasures.org/theaters/33333"
+      },
+      {
+        "label": "The Hollywood Reporter",
+        "url": "https://www.imdb.com/news/ni1298095/"
+      }
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "2936",
@@ -10831,7 +12376,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/6426/1308684253/large.jpg?1308684253",
     "description": "Operated in Manhattan from 1903 to 1929. Reopened in 1931 after an earlier closure.",
     "confidence": "high",
     "sources": [
@@ -10839,7 +12384,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/2936"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6622",
@@ -10861,7 +12408,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/54344/1346683768/large.jpg?1346683768",
     "description": "Operating in Manhattan since 1940. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -10869,7 +12416,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6622"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7528",
@@ -10890,7 +12439,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/1869/1307033277/large.jpg?1307033277",
     "description": "Operated in Brooklyn from 1914 to 1942.",
     "confidence": "high",
     "sources": [
@@ -10898,7 +12447,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7528"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7891",
@@ -10919,15 +12470,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Bronx in 1913; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/56033/1348160976/large.JPG?1348160976",
+    "description": "Opened in Bronx in 1913; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7891"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "6272",
@@ -10946,7 +12503,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/80020/1377727885/large.jpg?1377727885",
     "description": "Operated in Staten Island from 1966 to 1987.",
     "confidence": "high",
     "sources": [
@@ -10954,7 +12511,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6272"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "8329",
@@ -10973,15 +12532,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Queens in 1934; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/262528/1545583680/large.gif?1545583680",
+    "description": "Opened in Queens in 1934; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by Top Tier Restaurant & Lounge.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8329"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": {
+      "name": "Top Tier Restaurant & Lounge",
+      "category": "amenity",
+      "type": "restaurant"
+    }
   },
   {
     "id": "16769",
@@ -11001,14 +12570,20 @@ export const theaters: Theater[] = [
     "operator": null,
     "featured": false,
     "image": null,
-    "description": "Opened in Queens in 1919; the closing year wasn't recorded. Not stated on source page: closing year, image.",
+    "description": "Opened in Queens in 1919; the closing year wasn't recorded. Not stated on source page: closing year, image. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/16769"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "4022",
@@ -11030,7 +12605,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/33112/1325892108/large.jpg?1325892108",
     "description": "Operated in Queens from 1924 to 2013. Reopened in 2010 after an earlier closure. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -11038,7 +12613,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4022"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "8347",
@@ -11061,15 +12638,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Bronx in 1919; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/211019/1497570669/large.jpg?1497570669",
+    "description": "Opened in Bronx in 1919; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8347"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "6155",
@@ -11088,7 +12671,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/109399/1411788559/large.jpg?1411788559",
     "description": "Operated in Queens from 2002 to 2024.",
     "confidence": "high",
     "sources": [
@@ -11096,7 +12679,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6155"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6528",
@@ -11117,15 +12702,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Queens in 1913; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/125051/1431459536/large.jpg?1431459536",
+    "description": "Opened in Queens in 1913; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6528"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "A nearby mapped venue matched part of the name, but review did not confirm it as the same historical theater; the theater is closed and its closing year remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "14170",
@@ -11144,7 +12735,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/113587/1417568046/large.jpg?1417568046",
     "description": "Operated in Queens from 1914 to 1914.",
     "confidence": "high",
     "sources": [
@@ -11152,7 +12743,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/14170"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "68759",
@@ -11179,7 +12772,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/68759"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "1356",
@@ -11198,15 +12793,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1913; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/1643/1306959587/large.jpg?1306959587",
+    "description": "Opened in Manhattan in 1913; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/1356"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "11141",
@@ -11229,15 +12830,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1977; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/209470/1495730627/large.JPG?1495730627",
+    "description": "Opened in Manhattan in 1977; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by Urban Outfitters.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/11141"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": {
+      "name": "Urban Outfitters",
+      "category": "shop",
+      "type": "clothes"
+    }
   },
   {
     "id": "8156",
@@ -11256,7 +12867,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/52085/1344875784/large.jpg?1344875784",
     "description": "Operated in Brooklyn from 1914 to 1946.",
     "confidence": "high",
     "sources": [
@@ -11264,7 +12875,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8156"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "3760",
@@ -11283,7 +12896,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/281673/1565010799/large.jpg?1565010799",
     "description": "Operated in Staten Island from 1973 to 2018. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -11291,7 +12904,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3760"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "20085",
@@ -11312,15 +12927,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1910; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/36865/1330290221/large.jpg?1330290221",
+    "description": "Opened in Manhattan in 1910; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/20085"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "6353",
@@ -11342,7 +12963,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/139/1306183933/large.JPG?1306183933",
     "description": "Operating in Manhattan since 1942.",
     "confidence": "high",
     "sources": [
@@ -11350,7 +12971,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6353"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "36324",
@@ -11371,7 +12994,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/8173/1309383391/large.jpg?1309383391",
     "description": "Operated in Brooklyn from 1914 to 1921. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -11379,7 +13002,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/36324"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7824",
@@ -11398,7 +13023,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/196735/1483366690/large.png?1483366690",
     "description": "Operated in Manhattan from 1970 to 1978.",
     "confidence": "high",
     "sources": [
@@ -11406,7 +13031,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7824"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "17439",
@@ -11427,7 +13054,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/301872/1586487019/large.jpg?1586487019",
     "description": "Operated in Bronx from 1923 to 1930.",
     "confidence": "high",
     "sources": [
@@ -11435,7 +13062,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/17439"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "1749",
@@ -11458,15 +13087,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Brooklyn in 1928; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/22276/1313624270/large.jpg?1313624270",
+    "description": "Opened in Brooklyn in 1928; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by Target.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/1749"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": {
+      "name": "Target",
+      "category": "shop",
+      "type": "department_store"
+    }
   },
   {
     "id": "4667",
@@ -11485,7 +13124,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/263768/1547600312/large.JPG?1547600312",
     "description": "Operating in Brooklyn since 1939. Reopened in 1991 after an earlier closure. Most recent stated reopening year retained.",
     "confidence": "low",
     "sources": [
@@ -11493,7 +13132,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4667"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "4671",
@@ -11512,7 +13153,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/142053/1446597197/large.jpg?1446597197",
     "description": "Operated in Bronx from 1936 to 1992.",
     "confidence": "high",
     "sources": [
@@ -11520,7 +13161,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4671"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "41562",
@@ -11541,7 +13184,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/78918/1376666883/large.JPG?1376666883",
     "description": "Operated in Brooklyn from 1910 to 1920.",
     "confidence": "high",
     "sources": [
@@ -11549,7 +13192,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/41562"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6156",
@@ -11570,7 +13215,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": true,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/114832/1419971900/large.jpg?1419971900",
     "description": "Operating in Queens since 1935. Reopened in 1999 after an earlier closure.",
     "confidence": "high",
     "sources": [
@@ -11578,7 +13223,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6156"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "5795",
@@ -11597,7 +13244,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/42234/1334567171/large.jpg?1334567171",
     "description": "Operated in Brooklyn from 1925 to 1969.",
     "confidence": "high",
     "sources": [
@@ -11605,7 +13252,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/5795"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7919",
@@ -11627,7 +13276,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/146258/1448637564/large.jpg?1448637564",
     "description": "Operated in Bronx from 1916 to 2002.",
     "confidence": "high",
     "sources": [
@@ -11635,7 +13284,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7919"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "9813",
@@ -11657,15 +13308,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1967; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/306227/1590029174/large.PNG?1590029174",
+    "description": "Opened in Manhattan in 1967; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by citizenM.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/9813"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": {
+      "name": "citizenM",
+      "category": "tourism",
+      "type": "hotel"
+    }
   },
   {
     "id": "1360",
@@ -11686,7 +13347,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": true,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/166022/1461874622/large.jpg?1461874622",
     "description": "Operating in Brooklyn since 1929. Reopened in 2015 after an earlier closure. Most recent stated reopening year retained.",
     "confidence": "low",
     "sources": [
@@ -11694,7 +13355,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/1360"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7884",
@@ -11713,15 +13376,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Bronx in 1922; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/56524/1348496208/large.JPG?1348496208",
+    "description": "Opened in Bronx in 1922; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by Morton Williams.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7884"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": {
+      "name": "Morton Williams",
+      "category": "shop",
+      "type": "supermarket"
+    }
   },
   {
     "id": "50116",
@@ -11740,7 +13413,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/138558/1444057683/large.JPG?1444057683",
     "description": "Operated in Brooklyn from 1912 to 1921.",
     "confidence": "high",
     "sources": [
@@ -11748,7 +13421,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/50116"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "1361",
@@ -11769,7 +13444,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/37561/1330902013/large.jpg?1330902013",
     "description": "Operated in Brooklyn from 1921 to 2023. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -11777,7 +13452,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/1361"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7822",
@@ -11798,7 +13475,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/21524/1313245471/large.JPG?1313245471",
     "description": "Operated in Brooklyn from 1922 to 1962.",
     "confidence": "high",
     "sources": [
@@ -11806,7 +13483,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7822"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "39953",
@@ -11828,15 +13507,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1893; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/59748/1351577420/large.jpg?1351577420",
+    "description": "Opened in Manhattan in 1893; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/39953"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "16811",
@@ -11855,15 +13540,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Queens in 1913; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/12161/1310610983/large.JPG?1310610983",
+    "description": "Opened in Queens in 1913; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/16811"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "17194",
@@ -11882,7 +13573,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/196221/1483052152/large.jpg?1483052152",
     "description": "Operated in Queens from 1916 to 1926. Opening year is approximate (1916). Closing year is approximate (1926). Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -11890,7 +13581,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/17194"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "8091",
@@ -11910,14 +13603,20 @@ export const theaters: Theater[] = [
     "operator": null,
     "featured": false,
     "image": null,
-    "description": "Opened in Bronx in 1926; the closing year wasn't recorded. Not stated on source page: closing year, image.",
+    "description": "Opened in Bronx in 1926; the closing year wasn't recorded. Not stated on source page: closing year, image. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8091"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "12596",
@@ -11936,15 +13635,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1912; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/6781/1308837251/large.jpg?1308837251",
+    "description": "Opened in Manhattan in 1912; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/12596"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "10150",
@@ -11965,7 +13670,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/21551/1313258178/large.JPG?1313258178",
     "description": "Operated in Brooklyn from 1925 to 1951.",
     "confidence": "high",
     "sources": [
@@ -11973,7 +13678,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/10150"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "3414",
@@ -11992,7 +13699,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/45703/1338304622/large.jpg?1338304622",
     "description": "Operated in Staten Island from 1938 to 2011. Reopened in 2009 after an earlier closure. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -12000,7 +13707,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3414"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7864",
@@ -12019,7 +13728,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/278170/1562697517/large.jpg?1562697517",
     "description": "Operated in Manhattan from 1937 to 1959. Opening year is an upper bound ('prior to/before 1937').",
     "confidence": "low",
     "sources": [
@@ -12027,7 +13736,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7864"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "8077",
@@ -12046,15 +13757,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Queens in 1941; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/105735/1408065698/large.jpg?1408065698",
+    "description": "Opened in Queens in 1941; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by Evangel Temple.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8077"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": {
+      "name": "Evangel Temple",
+      "category": "amenity",
+      "type": "place_of_worship"
+    }
   },
   {
     "id": "3885",
@@ -12073,7 +13794,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/6081/1308586536/large.jpg?1308586536",
     "description": "Operated in Brooklyn from 1927 to 1960.",
     "confidence": "high",
     "sources": [
@@ -12081,7 +13802,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3885"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "4686",
@@ -12100,15 +13823,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Queens in 1926; the closing year wasn't recorded. Opening year is an upper bound ('prior to/before 1926'). Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/43901/1336339175/large.jpg?1336339175",
+    "description": "Opened in Queens in 1926; the closing year wasn't recorded. Opening year is an upper bound ('prior to/before 1926'). Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "low",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4686"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "11020",
@@ -12129,7 +13858,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/168929/1464202424/large.gif?1464202424",
     "description": "Operating in Manhattan since 1900.",
     "confidence": "high",
     "sources": [
@@ -12137,7 +13866,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/11020"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "41503",
@@ -12156,7 +13887,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/77323/1375020582/large.JPG?1375020582",
     "description": "Operated in Brooklyn from 1913 to 1915. Closing year is approximate (1915). Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -12164,7 +13895,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/41503"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "36266",
@@ -12183,7 +13916,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/6636/1308744007/large.jpg?1308744007",
     "description": "Operated in Brooklyn from 1912 to 1926. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -12191,7 +13924,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/36266"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "2465",
@@ -12210,7 +13945,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/125630/1432037668/large.jpg?1432037668",
     "description": "Operated in Staten Island from 1918 to 1953.",
     "confidence": "high",
     "sources": [
@@ -12218,7 +13953,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/2465"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "2661",
@@ -12237,7 +13974,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/26990/1316656876/large.jpg?1316656876",
     "description": "Operated in Manhattan from 1904 to 1933.",
     "confidence": "high",
     "sources": [
@@ -12245,7 +13982,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/2661"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "27260",
@@ -12267,7 +14006,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/477279/1741939277/large.jpeg?1741939277",
     "description": "Operated in Brooklyn from 1910 to 1919.",
     "confidence": "high",
     "sources": [
@@ -12275,7 +14014,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/27260"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "16692",
@@ -12294,15 +14035,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1970; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/261734/1544070788/large.jpg?1544070788",
+    "description": "Opened in Manhattan in 1970; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/16692"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "14691",
@@ -12325,15 +14072,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1921; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/146109/1448463723/large.jpg?1448463723",
+    "description": "Opened in Manhattan in 1921; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/14691"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "25215",
@@ -12352,7 +14105,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/120159/1426685605/large.jpg?1426685605",
     "description": "Operated in Manhattan from 1996 to 1997. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -12360,7 +14113,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/25215"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7838",
@@ -12379,7 +14134,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/2649/1307294535/large.JPG?1307294535",
     "description": "Operated in Manhattan from 1981 to 2018.",
     "confidence": "high",
     "sources": [
@@ -12387,7 +14142,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7838"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "10172",
@@ -12406,7 +14163,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/243245/1526670617/large.gif?1526670617",
     "description": "Operated in Brooklyn from 1914 to 1953.",
     "confidence": "high",
     "sources": [
@@ -12414,7 +14171,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/10172"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "11537",
@@ -12433,15 +14192,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1915; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/6780/1308835628/large.jpg?1308835628",
+    "description": "Opened in Manhattan in 1915; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by A.M.E. Metropolitan Church.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/11537"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": {
+      "name": "A.M.E. Metropolitan Church",
+      "category": "amenity",
+      "type": "place_of_worship"
+    }
   },
   {
     "id": "18361",
@@ -12460,7 +14229,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/109474/1411919097/large.jpg?1411919097",
     "description": "Operated in Brooklyn from 1998 to 2024.",
     "confidence": "high",
     "sources": [
@@ -12468,7 +14237,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/18361"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6322",
@@ -12491,7 +14262,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/124256/1430606413/large.jpg?1430606413",
     "description": "Operated in Brooklyn from 1915 to 1961. Reopened in 1927 after an earlier closure. Reopening year is approximate (1927).",
     "confidence": "low",
     "sources": [
@@ -12499,7 +14270,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6322"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7702",
@@ -12518,7 +14291,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/269882/1555714655/large.jpg?1555714655",
     "description": "Operated in Brooklyn from 1911 to 1931. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -12526,7 +14299,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7702"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7883",
@@ -12548,7 +14323,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/259727/1541527577/large.gif?1541527577",
     "description": "Operated in Brooklyn from 1909 to 1954.",
     "confidence": "high",
     "sources": [
@@ -12556,7 +14331,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7883"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "51543",
@@ -12579,14 +14356,20 @@ export const theaters: Theater[] = [
     "operator": null,
     "featured": false,
     "image": null,
-    "description": "Opened in Manhattan in 1914; the closing year wasn't recorded. Opening year is an upper bound ('prior to/before 1914'). Not stated on source page: closing year, image.",
+    "description": "Opened in Manhattan in 1914; the closing year wasn't recorded. Opening year is an upper bound ('prior to/before 1914'). Not stated on source page: closing year, image. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "low",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/51543"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "6451",
@@ -12607,7 +14390,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/68380/1362264462/large.PNG?1362264462",
     "description": "Operated in Manhattan from 1928 to 1982.",
     "confidence": "high",
     "sources": [
@@ -12615,7 +14398,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6451"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "5848",
@@ -12634,15 +14419,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Queens in 1929; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/119931/1426290320/large.jpg?1426290320",
+    "description": "Opened in Queens in 1929; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/5848"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "8493",
@@ -12661,7 +14452,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/184833/1475697620/large.gif?1475697620",
     "description": "Operated in Manhattan from 1929 to 1934.",
     "confidence": "high",
     "sources": [
@@ -12669,7 +14460,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8493"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "11180",
@@ -12688,7 +14481,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/78928/1376668687/large.JPG?1376668687",
     "description": "Operated in Brooklyn from 1922 to 1951. Opening year is approximate (1922).",
     "confidence": "low",
     "sources": [
@@ -12696,7 +14489,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/11180"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "1299",
@@ -12715,15 +14510,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Bronx in 1928; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/113595/1417637265/large.jpg?1417637265",
+    "description": "Opened in Bronx in 1928; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by Dunkin'.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/1299"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": {
+      "name": "Dunkin'",
+      "category": "amenity",
+      "type": "fast_food"
+    }
   },
   {
     "id": "6230",
@@ -12742,15 +14547,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1996; the closing year wasn't recorded. Opening year is approximate (1996). Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/51979/1344720900/large.jpg?1344720900",
+    "description": "Opened in Manhattan in 1996; the closing year wasn't recorded. Opening year is approximate (1996). Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by House of Wine and Liquor.",
     "confidence": "low",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6230"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": {
+      "name": "House of Wine and Liquor",
+      "category": "shop",
+      "type": "alcohol"
+    }
   },
   {
     "id": "6850",
@@ -12771,15 +14586,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1896; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/119268/1425576748/large.JPG?1425576748",
+    "description": "Opened in Manhattan in 1896; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6850"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "902",
@@ -12802,7 +14623,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/44802/1337392964/large.jpg?1337392964",
     "description": "Operated in Brooklyn from 1927 to 1973. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -12810,7 +14631,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/902"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7766",
@@ -12831,7 +14654,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/182/1306312275/large.jpg?1306312275",
     "description": "Operated in Manhattan from 1962 to 2010.",
     "confidence": "high",
     "sources": [
@@ -12839,7 +14662,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7766"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "1263",
@@ -12858,7 +14683,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/35337/1328473685/large.jpg?1328473685",
     "description": "Operated in Manhattan from 1932 to 1960.",
     "confidence": "high",
     "sources": [
@@ -12866,7 +14691,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/1263"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "1336",
@@ -12887,7 +14714,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/173880/1468939584/large.gif?1468939584",
     "description": "Operated in Manhattan from 1921 to 1984.",
     "confidence": "high",
     "sources": [
@@ -12895,7 +14722,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/1336"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "31541",
@@ -12916,15 +14745,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1911; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/263498/1547076625/large.jpg?1547076625",
+    "description": "Opened in Manhattan in 1911; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/31541"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "3386",
@@ -12946,7 +14781,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/155669/1453485453/large.jpg?1453485453",
     "description": "Operated in Manhattan from 1893 to 1929.",
     "confidence": "high",
     "sources": [
@@ -12954,7 +14789,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3386"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6338",
@@ -12973,7 +14810,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/157774/1454803813/large.jpg?1454803813",
     "description": "Operated in Manhattan from 1913 to 1957. Closing year is approximate (1957).",
     "confidence": "low",
     "sources": [
@@ -12981,7 +14818,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6338"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "4732",
@@ -13000,7 +14839,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/123537/1429972136/large.jpg?1429972136",
     "description": "Operated in Queens from 1964 to 1993.",
     "confidence": "high",
     "sources": [
@@ -13008,7 +14847,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4732"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "15323",
@@ -13029,15 +14870,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Brooklyn in 1893; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/125605/1432004551/large.jpg?1432004551",
+    "description": "Opened in Brooklyn in 1893; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/15323"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "6105",
@@ -13058,7 +14905,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/262588/1545678584/large.jpg?1545678584",
     "description": "Operated in Bronx from 1925 to 2025. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -13066,7 +14913,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6105"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "3949",
@@ -13087,7 +14936,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/138729/1444225853/large.jpg?1444225853",
     "description": "Operated in Brooklyn from 1918 to 1961.",
     "confidence": "high",
     "sources": [
@@ -13095,7 +14944,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3949"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "521",
@@ -13116,15 +14967,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1927; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/114829/1419955381/large.jpg?1419955381",
+    "description": "Opened in Manhattan in 1927; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/521"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "522",
@@ -13146,7 +15003,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/992/1306803095/large.jpg?1306803095",
     "description": "Opened in Manhattan in 1959; the closing year wasn't recorded.",
     "confidence": "high",
     "sources": [
@@ -13154,7 +15011,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/522"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "527",
@@ -13180,7 +15039,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/39289/1332186908/large.jpg?1332186908",
     "description": "Operated in Manhattan from 1926 to 1988. Reopened in 1968 after an earlier closure. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -13188,7 +15047,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/527"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "529",
@@ -13209,7 +15070,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/122969/1429208942/large.png?1429208942",
     "description": "Operated in Manhattan from 1911 to 2018. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -13217,7 +15078,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/529"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7571",
@@ -13236,15 +15099,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Bronx in 1914; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/39459/1332274325/large.jpg?1332274325",
+    "description": "Opened in Bronx in 1914; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7571"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "6634",
@@ -13266,7 +15135,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/27069/1316737261/large.jpg?1316737261",
     "description": "Operated in Bronx from 1928 to 1991.",
     "confidence": "high",
     "sources": [
@@ -13274,7 +15143,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6634"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6845",
@@ -13295,7 +15166,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/213191/1499440550/large.gif?1499440550",
     "description": "Operated in Brooklyn from 1908 to 1930.",
     "confidence": "high",
     "sources": [
@@ -13303,7 +15174,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6845"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "3883",
@@ -13322,7 +15195,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/203282/1489031073/large.JPG?1489031073",
     "description": "Operated in Brooklyn from 1921 to 1977.",
     "confidence": "high",
     "sources": [
@@ -13330,7 +15203,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3883"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "3921",
@@ -13349,7 +15224,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/145728/1448321965/large.jpg?1448321965",
     "description": "Operated in Brooklyn from 1970 to 1993.",
     "confidence": "high",
     "sources": [
@@ -13357,7 +15232,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3921"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6088",
@@ -13376,7 +15253,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/173370/1468435930/large.gif?1468435930",
     "description": "Operated in Bronx from 1927 to 1957.",
     "confidence": "high",
     "sources": [
@@ -13384,7 +15261,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6088"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "8950",
@@ -13405,7 +15284,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/34789/1328105268/large.jpg?1328105268",
     "description": "Operated in Manhattan from 1925 to 1964. Opening year is approximate (1925).",
     "confidence": "low",
     "sources": [
@@ -13413,7 +15292,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8950"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "3863",
@@ -13435,7 +15316,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/3936/1307909641/large.jpg?1307909641",
     "description": "Operated in Brooklyn from 1924 to 1974.",
     "confidence": "high",
     "sources": [
@@ -13443,7 +15324,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3863"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "1362",
@@ -13465,7 +15348,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/143947/1447608778/large.png?1447608778",
     "description": "Operated in Manhattan from 1910 to 1960.",
     "confidence": "high",
     "sources": [
@@ -13473,7 +15356,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/1362"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "3368",
@@ -13494,7 +15379,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/35359/1328476651/large.jpg?1328476651",
     "description": "Opened in Manhattan in 1969; the closing year wasn't recorded. Reopened in 1931 after an earlier closure. Opening year represents an approximate decade reference (1969).",
     "confidence": "low",
     "sources": [
@@ -13502,7 +15387,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3368"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "4149",
@@ -13524,7 +15411,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/22333/1313654871/large.jpg?1313654871",
     "description": "Operated in Brooklyn from 1915 to 1954.",
     "confidence": "high",
     "sources": [
@@ -13532,7 +15419,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4149"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "12447",
@@ -13553,7 +15442,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/174288/1469371719/large.gif?1469371719",
     "description": "Operated in Bronx from 1913 to 1926.",
     "confidence": "high",
     "sources": [
@@ -13561,7 +15450,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/12447"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "1373",
@@ -13580,7 +15471,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/24078/1314672573/large.jpg?1314672573",
     "description": "Operated in Brooklyn from 1918 to 1996. Reopened in 2002 after an earlier closure. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -13588,7 +15479,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/1373"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6672",
@@ -13609,7 +15502,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/28675/1318499540/large.jpg?1318499540",
     "description": "Operated in Bronx from 1910 to 1974.",
     "confidence": "high",
     "sources": [
@@ -13617,7 +15510,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6672"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "15178",
@@ -13639,15 +15534,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1895; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/87516/1384601505/large.jpg?1384601505",
+    "description": "Opened in Manhattan in 1895; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/15178"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "low",
+      "note": "A nearby mapped venue matched part of the name, but review did not confirm it as the same historical theater; the theater is closed and its closing year remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "1380",
@@ -13666,7 +15567,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/22302/1313625583/large.jpg?1313625583",
     "description": "Operated in Brooklyn from 1927 to 1995.",
     "confidence": "high",
     "sources": [
@@ -13674,7 +15575,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/1380"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "547",
@@ -13697,7 +15600,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/26996/1316657418/large.jpg?1316657418",
     "description": "Operated in Manhattan from 1913 to 1989. Reopened in 1968 after an earlier closure.",
     "confidence": "high",
     "sources": [
@@ -13705,7 +15608,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/547"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "900",
@@ -13726,7 +15631,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": true,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/2143/1307137692/large.jpg?1307137692",
     "description": "Operated in Bronx from 1929 to 1994.",
     "confidence": "high",
     "sources": [
@@ -13734,7 +15639,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/900"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "3887",
@@ -13753,7 +15660,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/245/1306405764/large.jpg?1306405764",
     "description": "Operated in Brooklyn from 1929 to 1971.",
     "confidence": "high",
     "sources": [
@@ -13761,7 +15668,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3887"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6713",
@@ -13782,7 +15691,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/67181/1361305967/large.jpg?1361305967",
     "description": "Operated in Manhattan from 1920 to 1957.",
     "confidence": "high",
     "sources": [
@@ -13790,7 +15699,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6713"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "8067",
@@ -13812,15 +15723,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Brooklyn in 1907; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/316598/1599197685/large.JPG?1599197685",
+    "description": "Opened in Brooklyn in 1907; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8067"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "1180",
@@ -13841,7 +15758,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/114888/1420123595/large.jpg?1420123595",
     "description": "Operated in Manhattan from 1921 to 1969.",
     "confidence": "high",
     "sources": [
@@ -13849,7 +15766,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/1180"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7468",
@@ -13870,15 +15789,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Bronx in 1910; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/223378/1510061675/large.jpg?1510061675",
+    "description": "Opened in Bronx in 1910; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7468"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "557",
@@ -13897,7 +15822,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/124812/1431095055/large.jpg?1431095055",
     "description": "Operated in Manhattan from 1921 to 2006. Reopened in 1968 after an earlier closure. Most recent stated closing year retained. Most recent stated reopening year retained.",
     "confidence": "low",
     "sources": [
@@ -13905,7 +15830,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/557"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "1542",
@@ -13924,7 +15851,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/77102/1374720713/large.JPG?1374720713",
     "description": "Operated in Queens from 1931 to 1974.",
     "confidence": "high",
     "sources": [
@@ -13932,7 +15859,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/1542"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "903",
@@ -13951,7 +15880,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": true,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/43765/1336238767/large.jpg?1336238767",
     "description": "Operated in Queens from 1929 to 1977.",
     "confidence": "high",
     "sources": [
@@ -13959,7 +15888,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/903"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "560",
@@ -13981,7 +15912,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/26987/1316656654/large.jpg?1316656654",
     "description": "Operated in Manhattan from 1990 to 1990. Reopened in 1986 after an earlier closure. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -13989,7 +15920,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/560"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "3978",
@@ -14010,7 +15943,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/42235/1334567528/large.jpg?1334567528",
     "description": "Operated in Brooklyn from 1913 to 1954. Reopened in 1937 after an earlier closure.",
     "confidence": "high",
     "sources": [
@@ -14018,7 +15951,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3978"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "4040",
@@ -14037,7 +15972,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/164829/1460736876/large.gif?1460736876",
     "description": "Operated in Queens from 1924 to 2007.",
     "confidence": "high",
     "sources": [
@@ -14045,7 +15980,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4040"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6406",
@@ -14064,15 +16001,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Queens in 1926; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/35362/1328482830/large.jpg?1328482830",
+    "description": "Opened in Queens in 1926; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6406"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "6154",
@@ -14093,7 +16036,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/32825/1325558192/large.JPG?1325558192",
     "description": "Operated in Queens from 1982 to 2004.",
     "confidence": "high",
     "sources": [
@@ -14101,7 +16044,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6154"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "5876",
@@ -14123,7 +16068,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/68237/1362228908/large.PNG?1362228908",
     "description": "Operated in Brooklyn from 1927 to 2005.",
     "confidence": "high",
     "sources": [
@@ -14131,7 +16076,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/5876"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6110",
@@ -14152,7 +16099,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/82233/1380028161/large.jpg?1380028161",
     "description": "Operated in Manhattan from 1963 to 1994.",
     "confidence": "high",
     "sources": [
@@ -14160,7 +16107,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6110"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "4047",
@@ -14183,7 +16132,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/220885/1507899478/large.jpg?1507899478",
     "description": "Operated in Queens from 1965 to 1987.",
     "confidence": "high",
     "sources": [
@@ -14191,7 +16140,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4047"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "4099",
@@ -14212,7 +16163,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/1624/1306954044/large.jpg?1306954044",
     "description": "Operated in Manhattan from 1996 to 2006.",
     "confidence": "high",
     "sources": [
@@ -14220,7 +16171,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4099"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "56388",
@@ -14241,7 +16194,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/218896/1505678355/large.gif?1505678355",
     "description": "Operated in Manhattan from 2017 to 2026. Reopened in 2023 after an earlier closure. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -14249,7 +16202,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/56388"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "17787",
@@ -14270,7 +16225,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/88228/1385126998/large.jpeg?1385126998",
     "description": "Operated in Manhattan from 1969 to 1982.",
     "confidence": "high",
     "sources": [
@@ -14278,7 +16233,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/17787"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "72741",
@@ -14297,7 +16254,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/489591/1753135717/large.png?1753135717",
     "description": "Operating in Queens since 1927.",
     "confidence": "high",
     "sources": [
@@ -14305,7 +16262,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/72741"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "17345",
@@ -14326,7 +16285,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/72294/1367337516/large.jpg?1367337516",
     "description": "Operated in Manhattan from 1913 to 1941. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -14334,7 +16293,48 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/17345"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
+  },
+  {
+    "id": "23972",
+    "name": "Lucille Lortel Theatre",
+    "alternateNames": [
+      "Greenwich Theatre",
+      "Hudson Cinema",
+      "New Hudson Theatre",
+      "Hudson Playhouse",
+      "Theatre de Lys"
+    ],
+    "address": "121 Christopher Street, New York, NY 10014",
+    "latitude": 40.7333549,
+    "longitude": -74.0053447,
+    "borough": "Manhattan",
+    "openingYear": 1955,
+    "closingYear": null,
+    "reopeningYear": null,
+    "status": "open",
+    "theaterType": "unknown",
+    "screens": 1,
+    "seats": null,
+    "operator": null,
+    "featured": false,
+    "image": "https://photos.cinematreasures.org/production/photos/166034/1461877384/large.jpg?1461877384",
+    "description": "Operating in Manhattan since 1955. Opening year verified from Lucille Lortel Theatre.",
+    "confidence": "high",
+    "sources": [
+      {
+        "label": "Cinema Treasures",
+        "url": "https://cinematreasures.org/theaters/23972"
+      },
+      {
+        "label": "Lucille Lortel Theatre",
+        "url": "https://lortel.org/history/"
+      }
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "11139",
@@ -14355,7 +16355,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/6830/1308847702/large.jpg?1308847702",
     "description": "Operated in Brooklyn from 1914 to 1952.",
     "confidence": "high",
     "sources": [
@@ -14363,7 +16363,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/11139"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "2924",
@@ -14384,7 +16386,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/97411/1396150868/large.jpg?1396150868",
     "description": "Operating in Manhattan since 1910. Reopened in 1997 after an earlier closure.",
     "confidence": "high",
     "sources": [
@@ -14392,7 +16394,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/2924"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7907",
@@ -14411,15 +16415,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Bronx in 1923; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/113231/1416717216/large.jpg?1416717216",
+    "description": "Opened in Bronx in 1923; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by Unisex Barber Shop.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7907"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": {
+      "name": "Unisex Barber Shop",
+      "category": "shop",
+      "type": "hairdresser"
+    }
   },
   {
     "id": "55090",
@@ -14440,7 +16454,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/199876/1486042828/large.JPG?1486042828",
     "description": "Operating in Manhattan since 1903.",
     "confidence": "high",
     "sources": [
@@ -14448,7 +16462,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/55090"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "8070",
@@ -14469,7 +16485,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/42239/1334569375/large.jpg?1334569375",
     "description": "Operated in Brooklyn from 1915 to 1952. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -14477,7 +16493,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8070"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "23556",
@@ -14496,15 +16514,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Brooklyn in 1914; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/6628/1308742086/large.jpg?1308742086",
+    "description": "Opened in Brooklyn in 1914; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/23556"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "9930",
@@ -14523,7 +16547,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/26989/1316656796/large.jpg?1316656796",
     "description": "Operated in Manhattan from 1903 to 1992. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -14531,7 +16555,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/9930"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "35674",
@@ -14550,15 +16576,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Brooklyn in 1908; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/166016/1461865537/large.jpg?1461865537",
+    "description": "Opened in Brooklyn in 1908; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/35674"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "41992",
@@ -14579,15 +16611,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Queens in 1914; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/240479/1524089654/large.jpg?1524089654",
+    "description": "Opened in Queens in 1914; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/41992"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "11232",
@@ -14606,7 +16644,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/52366/1345087202/large.jpg?1345087202",
     "description": "Operated in Brooklyn from 1914 to 1924.",
     "confidence": "high",
     "sources": [
@@ -14614,7 +16652,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/11232"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "8356",
@@ -14633,15 +16673,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Queens in 1928; the closing year wasn't recorded. Opening year is approximate (1928). Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/260001/1541781945/large.gif?1541781945",
+    "description": "Opened in Queens in 1928; the closing year wasn't recorded. Opening year is approximate (1928). Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "low",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8356"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "2793",
@@ -14664,7 +16710,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/54857/1347117235/large.jpg?1347117235",
     "description": "Operated in Manhattan from 1969 to 1998.",
     "confidence": "high",
     "sources": [
@@ -14672,7 +16718,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/2793"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "8031",
@@ -14694,15 +16742,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1914; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/161694/1457817868/large.gif?1457817868",
+    "description": "Opened in Manhattan in 1914; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by Arca de Refugio, Iglesia de Dios Pentecostal.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8031"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": {
+      "name": "Arca de Refugio, Iglesia de Dios Pentecostal",
+      "category": "amenity",
+      "type": "place_of_worship"
+    }
   },
   {
     "id": "42395",
@@ -14729,7 +16787,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/42395"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "20166",
@@ -14748,15 +16808,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Queens in 1912; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/115250/1420609104/large.jpg?1420609104",
+    "description": "Opened in Queens in 1912; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/20166"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "21858",
@@ -14783,7 +16849,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/21858"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "3308",
@@ -14802,7 +16870,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/51371/1344268041/large.jpg?1344268041",
     "description": "Operated in Brooklyn from 1927 to 2002.",
     "confidence": "high",
     "sources": [
@@ -14810,7 +16878,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3308"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "1366",
@@ -14831,7 +16901,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/8019/1309301926/large.jpg?1309301926",
     "description": "Operated in Brooklyn from 1916 to 1972.",
     "confidence": "high",
     "sources": [
@@ -14839,7 +16909,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/1366"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "17108",
@@ -14858,7 +16930,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/3933/1307909140/large.jpg?1307909140",
     "description": "Operated in Brooklyn from 1908 to 1915. Closing year is approximate (1915). Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -14866,7 +16938,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/17108"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7839",
@@ -14886,14 +16960,20 @@ export const theaters: Theater[] = [
     "operator": null,
     "featured": false,
     "image": null,
-    "description": "Opened in Brooklyn in 1914; the closing year wasn't recorded. Not stated on source page: closing year, image.",
+    "description": "Opened in Brooklyn in 1914; the closing year wasn't recorded. Not stated on source page: closing year, image. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7839"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "7430",
@@ -14912,7 +16992,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/204272/1489899989/large.jpg?1489899989",
     "description": "Operated in Brooklyn from 1950 to 1972.",
     "confidence": "high",
     "sources": [
@@ -14920,7 +17000,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7430"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "8811",
@@ -14942,7 +17024,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/261429/1543707054/large.jpg?1543707054",
     "description": "Operated in Brooklyn from 1910 to 2005.",
     "confidence": "high",
     "sources": [
@@ -14950,7 +17032,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8811"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "4659",
@@ -14969,15 +17053,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Queens in 1924; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/137109/1442960977/large.jpg?1442960977",
+    "description": "Opened in Queens in 1924; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4659"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "63524",
@@ -14996,15 +17086,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1960; the closing year wasn't recorded. Opening year is approximate (1960). Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/320218/1602367270/large.jpg?1602367270",
+    "description": "Opened in Manhattan in 1960; the closing year wasn't recorded. Opening year is approximate (1960). Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "low",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/63524"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "3860",
@@ -15023,7 +17119,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/262674/1545847774/large.jpg?1545847774",
     "description": "Operated in Brooklyn from 1926 to 1926.",
     "confidence": "high",
     "sources": [
@@ -15031,7 +17127,42 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3860"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
+  },
+  {
+    "id": "32799",
+    "name": "Maysles Cinema at The Maysles Institute",
+    "alternateNames": [],
+    "address": "343 Lenox Avenue, New York, NY 10027",
+    "latitude": 40.809426,
+    "longitude": -73.944795,
+    "borough": "Manhattan",
+    "openingYear": 2008,
+    "closingYear": null,
+    "reopeningYear": null,
+    "status": "open",
+    "theaterType": "unknown",
+    "screens": 1,
+    "seats": null,
+    "operator": null,
+    "featured": false,
+    "image": "https://photos.cinematreasures.org/production/photos/69815/1363639566/large.JPG?1363639566",
+    "description": "Operating in Manhattan since 2008. Opening year verified from The Criterion Collection.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "label": "Cinema Treasures",
+        "url": "https://cinematreasures.org/theaters/32799"
+      },
+      {
+        "label": "The Criterion Collection",
+        "url": "https://www.criterion.com/current/posts/7559-a-screen-of-one-s-own-celebrating-artist-run-cinemas-around-the-world"
+      }
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "20043",
@@ -15051,14 +17182,20 @@ export const theaters: Theater[] = [
     "operator": null,
     "featured": false,
     "image": null,
-    "description": "Opened in Bronx in 1905; the closing year wasn't recorded. Not stated on source page: closing year, image.",
+    "description": "Opened in Bronx in 1905; the closing year wasn't recorded. Not stated on source page: closing year, image. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/20043"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "1369",
@@ -15077,7 +17214,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/68082/1362154808/large.PNG?1362154808",
     "description": "Operated in Manhattan from 1927 to 1943. Closing year is approximate (1943).",
     "confidence": "low",
     "sources": [
@@ -15085,7 +17222,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/1369"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7933",
@@ -15104,15 +17243,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Bronx in 1916; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/173722/1468736335/large.jpg?1468736335",
+    "description": "Opened in Bronx in 1916; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7933"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "3962",
@@ -15131,15 +17276,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Brooklyn in 1950; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/21545/1313257010/large.JPG?1313257010",
+    "description": "Opened in Brooklyn in 1950; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3962"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "63523",
@@ -15158,15 +17309,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1960; the closing year wasn't recorded. Opening year is approximate (1960). Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/355164/1631752171/large.jpg?1631752171",
+    "description": "Opened in Manhattan in 1960; the closing year wasn't recorded. Opening year is approximate (1960). Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by Playwrights Horizons.",
     "confidence": "low",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/63523"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "A nearby mapped venue matched part of the name, but review did not confirm it as the same historical theater; the theater is closed and its closing year remains unknown."
+    },
+    "currentPlace": {
+      "name": "Playwrights Horizons",
+      "category": "amenity",
+      "type": "theatre"
+    }
   },
   {
     "id": "4245",
@@ -15185,15 +17346,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Queens in 1920; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/175078/1470067268/large.gif?1470067268",
+    "description": "Opened in Queens in 1920; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by XIOS.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4245"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": {
+      "name": "XIOS",
+      "category": "shop",
+      "type": "clothes"
+    }
   },
   {
     "id": "4670",
@@ -15214,7 +17385,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/113571/1417488495/large.JPG?1417488495",
     "description": "Operated in Brooklyn from 1921 to 2020. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -15222,7 +17393,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4670"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "72691",
@@ -15241,7 +17414,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/488709/1752615498/large.jpeg?1752615498",
     "description": "Operating in Manhattan since 2025.",
     "confidence": "high",
     "sources": [
@@ -15249,7 +17422,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/72691"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "4147",
@@ -15270,7 +17445,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/264523/1548805491/large.jpg?1548805491",
     "description": "Operated in Brooklyn from 1922 to 1953.",
     "confidence": "high",
     "sources": [
@@ -15278,7 +17453,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4147"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "8293",
@@ -15303,7 +17480,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/75460/1372349350/large.JPG?1372349350",
     "description": "Operated in Brooklyn from 1885 to 1947. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -15311,7 +17488,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8293"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "287",
@@ -15333,7 +17512,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/11/1305912608/large.jpg?1305912608",
     "description": "Opened in Manhattan in 2023; the closing year wasn't recorded. Reopened in 2013 after an earlier closure. Most recent stated closing year retained. Most recent stated reopening year retained.",
     "confidence": "low",
     "sources": [
@@ -15341,7 +17520,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/287"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "51828",
@@ -15360,7 +17541,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/160874/1457229604/large.png?1457229604",
     "description": "Operating in Manhattan since 2016.",
     "confidence": "high",
     "sources": [
@@ -15368,7 +17549,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/51828"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "35675",
@@ -15387,15 +17570,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1980; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/204861/1490313334/large.jpg?1490313334",
+    "description": "Opened in Manhattan in 1980; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/35675"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "7628",
@@ -15417,7 +17606,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/27045/1316718787/large.jpg?1316718787",
     "description": "Operated in Manhattan from 1914 to 1988.",
     "confidence": "high",
     "sources": [
@@ -15425,7 +17614,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7628"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "8418",
@@ -15447,7 +17638,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/261506/1543777317/large.gif?1543777317",
     "description": "Operated in Brooklyn from 1910 to 1953. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -15455,7 +17646,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8418"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "3859",
@@ -15474,7 +17667,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/6073/1308586055/large.jpg?1308586055",
     "description": "Operated in Brooklyn from 1913 to 1985.",
     "confidence": "high",
     "sources": [
@@ -15482,7 +17675,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3859"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7723",
@@ -15505,15 +17700,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Brooklyn in 1914; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/77575/1375274696/large.JPG?1375274696",
+    "description": "Opened in Brooklyn in 1914; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7723"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "21467",
@@ -15532,15 +17733,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Brooklyn in 1916; the closing year wasn't recorded. Opening year is approximate (1916). Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/78588/1376314960/large.JPG?1376314960",
+    "description": "Opened in Brooklyn in 1916; the closing year wasn't recorded. Opening year is approximate (1916). Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "low",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/21467"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "8172",
@@ -15559,7 +17766,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/352875/1629460441/large.jpg?1629460441",
     "description": "Operated in Brooklyn from 1916 to 1956.",
     "confidence": "high",
     "sources": [
@@ -15567,7 +17774,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8172"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "8793",
@@ -15586,15 +17795,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Brooklyn in 1921; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/27526/1317138617/large.jpg?1317138617",
+    "description": "Opened in Brooklyn in 1921; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8793"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "41500",
@@ -15615,7 +17830,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/75472/1372355395/large.JPG?1372355395",
     "description": "Operated in Brooklyn from 1908 to 1915. Opening year is approximate (1908).",
     "confidence": "low",
     "sources": [
@@ -15623,7 +17838,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/41500"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "16964",
@@ -15645,7 +17862,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/264541/1548828250/large.jpg?1548828250",
     "description": "Operated in Brooklyn from 1912 to 1950. Reopened in 1950 after an earlier closure.",
     "confidence": "high",
     "sources": [
@@ -15653,7 +17870,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/16964"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "25081",
@@ -15672,15 +17891,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1936; the closing year wasn't recorded. Opening year represents an approximate decade reference (1936). Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/297529/1581701527/large.JPG?1581701527",
+    "description": "Opened in Manhattan in 1936; the closing year wasn't recorded. Opening year represents an approximate decade reference (1936). Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "low",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/25081"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "7655",
@@ -15701,15 +17926,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Brooklyn in 1927; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/190526/1478458516/large.gif?1478458516",
+    "description": "Opened in Brooklyn in 1927; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7655"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "6303",
@@ -15739,7 +17970,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6303"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "11006",
@@ -15766,7 +17999,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/11006"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "59895",
@@ -15785,15 +18020,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1913; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/270744/1556557286/large.png?1556557286",
+    "description": "Opened in Manhattan in 1913; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/59895"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "12360",
@@ -15813,14 +18054,20 @@ export const theaters: Theater[] = [
     "operator": null,
     "featured": false,
     "image": null,
-    "description": "Opened in Bronx in 1926; the closing year wasn't recorded. Not stated on source page: closing year, image.",
+    "description": "Opened in Bronx in 1926; the closing year wasn't recorded. Not stated on source page: closing year, image. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/12360"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "8429",
@@ -15842,15 +18089,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1994; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/54328/1346655740/large.jpg?1346655740",
+    "description": "Opened in Manhattan in 1994; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by Big bus information desk at madame Tussauds.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8429"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": {
+      "name": "Big bus information desk at madame Tussauds",
+      "category": "shop",
+      "type": "ticket"
+    }
   },
   {
     "id": "2925",
@@ -15877,7 +18134,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/70235/1364253364/large.jpg?1364253364",
     "description": "Operated in Manhattan from 1918 to 1998. Reopened in 1956 after an earlier closure. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -15885,7 +18142,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/2925"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "8649",
@@ -15906,7 +18165,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/117765/1423622178/large.JPG?1423622178",
     "description": "Operated in Queens from 1983 to 2018. Reopened in 2008 after an earlier closure. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -15914,7 +18173,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8649"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6220",
@@ -15937,7 +18198,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/35351/1328475537/large.jpg?1328475537",
     "description": "Operated in Manhattan from 1893 to 2002.",
     "confidence": "high",
     "sources": [
@@ -15945,7 +18206,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6220"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "40765",
@@ -15964,7 +18227,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/247233/1530208979/large.jpg?1530208979",
     "description": "Operating in Manhattan since 1984.",
     "confidence": "high",
     "sources": [
@@ -15972,7 +18235,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/40765"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "34819",
@@ -15993,7 +18258,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/258897/1540738270/large.jpg?1540738270",
     "description": "Operating in Queens since 1988. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -16001,7 +18266,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/34819"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "29552",
@@ -16020,7 +18287,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/214397/1500585122/large.jpg?1500585122",
     "description": "Operating in Staten Island since 1892.",
     "confidence": "high",
     "sources": [
@@ -16028,7 +18295,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/29552"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "8424",
@@ -16047,7 +18316,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/75471/1372355158/large.JPG?1372355158",
     "description": "Operated in Brooklyn from 1912 to 1949.",
     "confidence": "high",
     "sources": [
@@ -16055,7 +18324,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8424"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "3966",
@@ -16076,7 +18347,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/179598/1473095318/large.gif?1473095318",
     "description": "Operated in Brooklyn from 1921 to 1957. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -16084,7 +18355,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3966"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "16276",
@@ -16107,7 +18380,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/242524/1526083434/large.jpg?1526083434",
     "description": "Operated in Manhattan from 1913 to 1951. Reopened in 1941 after an earlier closure. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -16115,7 +18388,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/16276"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "4007",
@@ -16134,7 +18409,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/8700/1309548517/large.jpeg?1309548517",
     "description": "Operated in Manhattan from 1919 to 1963.",
     "confidence": "high",
     "sources": [
@@ -16142,7 +18417,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4007"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "30",
@@ -16161,7 +18438,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/9/1305911927/large.jpg?1305911927",
     "description": "Operating in Manhattan since 1903. Reopened in 1997 after an earlier closure. Most recent stated closing year retained. Most recent stated reopening year retained.",
     "confidence": "low",
     "sources": [
@@ -16169,7 +18446,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/30"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "47756",
@@ -16190,7 +18469,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/208760/1494864653/large.jpg?1494864653",
     "description": "Operated in Manhattan from 1870 to 1929.",
     "confidence": "high",
     "sources": [
@@ -16198,7 +18477,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/47756"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "3879",
@@ -16221,7 +18502,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/263966/1547849400/large.jpg?1547849400",
     "description": "Operated in Brooklyn from 1921 to 1977.",
     "confidence": "high",
     "sources": [
@@ -16229,7 +18510,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3879"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "12992",
@@ -16251,15 +18534,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1959; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/117374/1423197060/large.jpg?1423197060",
+    "description": "Opened in Manhattan in 1959; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/12992"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "8157",
@@ -16280,15 +18569,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1922; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/159014/1455709992/large.jpg?1455709992",
+    "description": "Opened in Manhattan in 1922; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by D3 Busline.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8157"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "A nearby mapped venue matched part of the name, but review did not confirm it as the same historical theater; the theater is closed and its closing year remains unknown."
+    },
+    "currentPlace": {
+      "name": "D3 Busline",
+      "category": "amenity",
+      "type": "bus_station"
+    }
   },
   {
     "id": "31771",
@@ -16307,7 +18606,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/241933/1525559872/large.jpg?1525559872",
     "description": "Operated in Manhattan from 1922 to 1940. Closing year is approximate (1940).",
     "confidence": "low",
     "sources": [
@@ -16315,7 +18614,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/31771"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "13722",
@@ -16339,15 +18640,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1909; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/229792/1514939677/large.jpg?1514939677",
+    "description": "Opened in Manhattan in 1909; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by Classic Nail & Spa.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/13722"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": {
+      "name": "Classic Nail & Spa",
+      "category": "shop",
+      "type": "beauty"
+    }
   },
   {
     "id": "38411",
@@ -16369,7 +18680,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/42723/1335112636/large.JPG?1335112636",
     "description": "Operated in Brooklyn from 1911 to 1922.",
     "confidence": "high",
     "sources": [
@@ -16377,7 +18688,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/38411"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "8099",
@@ -16398,7 +18711,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/262540/1545607671/large.jpg?1545607671",
     "description": "Operated in Queens from 1931 to 1964. Opening year is an upper bound ('prior to/before 1931').",
     "confidence": "low",
     "sources": [
@@ -16406,7 +18719,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8099"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "25326",
@@ -16427,7 +18742,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/77330/1375021893/large.JPG?1375021893",
     "description": "Operated in Brooklyn from 1939 to 1939. Reopened in 1931 after an earlier closure. Most recent stated closing year retained. Most recent stated reopening year retained.",
     "confidence": "low",
     "sources": [
@@ -16435,7 +18750,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/25326"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "55885",
@@ -16454,7 +18771,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/311625/1595188481/large.gif?1595188481",
     "description": "Operated in Brooklyn from 1914 to 1921. Closing year is approximate (1921).",
     "confidence": "low",
     "sources": [
@@ -16462,7 +18779,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/55885"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "31761",
@@ -16484,14 +18803,20 @@ export const theaters: Theater[] = [
     "operator": null,
     "featured": false,
     "image": null,
-    "description": "Opened in Manhattan in 1911; the closing year wasn't recorded. Not stated on source page: closing year, image.",
+    "description": "Opened in Manhattan in 1911; the closing year wasn't recorded. Not stated on source page: closing year, image. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/31761"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "7894",
@@ -16515,7 +18840,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/32156/1324433016/large.JPG?1324433016",
     "description": "Operated in Manhattan from 1989 to 2020. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -16523,7 +18848,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7894"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "44249",
@@ -16552,7 +18879,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/44249"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "50193",
@@ -16573,7 +18902,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/140046/1445437567/large.JPG?1445437567",
     "description": "Operated in Brooklyn from 1914 to 1932. Reopened in 1931 after an earlier closure. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -16581,7 +18910,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/50193"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "12191",
@@ -16600,15 +18931,59 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Queens in 1913; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/163218/1458844991/large.jpg?1458844991",
+    "description": "Opened in Queens in 1913; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/12191"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
+  },
+  {
+    "id": "270",
+    "name": "New Victory Theater",
+    "alternateNames": [
+      "Theatre Republic",
+      "Belasco Theatre",
+      "Republic Theatre",
+      "Victory Theatre"
+    ],
+    "address": "209 W. 42nd Street, New York, NY 10036",
+    "latitude": 40.7563431,
+    "longitude": -73.9876341,
+    "borough": "Manhattan",
+    "openingYear": 1900,
+    "closingYear": null,
+    "reopeningYear": null,
+    "status": "open",
+    "theaterType": "unknown",
+    "screens": 1,
+    "seats": null,
+    "operator": null,
+    "featured": false,
+    "image": "https://photos.cinematreasures.org/production/photos/265863/1550843298/large.jpg?1550843298",
+    "description": "Operating in Manhattan since 1900. Opening year verified from New Victory Theater.",
+    "confidence": "high",
+    "sources": [
+      {
+        "label": "Cinema Treasures",
+        "url": "https://cinematreasures.org/theaters/270"
+      },
+      {
+        "label": "New Victory Theater",
+        "url": "https://www.newvictory.org/about/theater-history/"
+      }
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "11152",
@@ -16631,7 +19006,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/55544/1347826190/large.jpg?1347826190",
     "description": "Operating in Manhattan since 1989.",
     "confidence": "high",
     "sources": [
@@ -16639,7 +19014,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/11152"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6604",
@@ -16664,15 +19041,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1940; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/202110/1487969903/large.jpg?1487969903",
+    "description": "Opened in Manhattan in 1940; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6604"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "A nearby mapped venue matched part of the name, but review did not confirm it as the same historical theater; the theater is closed and its closing year remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "3354",
@@ -16694,7 +19077,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/135046/1441467171/large.jpg?1441467171",
     "description": "Operated in Manhattan from 1914 to 1985.",
     "confidence": "high",
     "sources": [
@@ -16702,7 +19085,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3354"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "3988",
@@ -16724,7 +19109,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/264181/1548222955/large.jpg?1548222955",
     "description": "Operated in Brooklyn from 1910 to 1940. Reopened in 1928 after an earlier closure. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -16732,7 +19117,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3988"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6500",
@@ -16753,15 +19140,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Queens in 1916; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/260352/1542224294/large.gif?1542224294",
+    "description": "Opened in Queens in 1916; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6500"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "20040",
@@ -16780,7 +19173,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/347356/1623709225/large.jpg?1623709225",
     "description": "Operated in Bronx from 1908 to 1917.",
     "confidence": "high",
     "sources": [
@@ -16788,7 +19181,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/20040"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "1268",
@@ -16810,7 +19205,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/263305/1546820031/large.JPG?1546820031",
     "description": "Operating in Brooklyn since 1996. Reopened in 2018 after an earlier closure. Most recent stated closing year retained. Most recent stated reopening year retained.",
     "confidence": "low",
     "sources": [
@@ -16818,7 +19213,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/1268"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "36693",
@@ -16837,7 +19234,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/26821/1316618819/large.jpg?1316618819",
     "description": "Operating in Brooklyn since 2011.",
     "confidence": "high",
     "sources": [
@@ -16845,7 +19242,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/36693"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7670",
@@ -16864,15 +19263,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1938; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/45398/1338047796/large.jpg?1338047796",
+    "description": "Opened in Manhattan in 1938; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by Citi Bike - E 53 St & Madison Ave.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7670"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": {
+      "name": "Citi Bike - E 53 St & Madison Ave",
+      "category": "amenity",
+      "type": "bicycle_rental"
+    }
   },
   {
     "id": "5844",
@@ -16894,7 +19303,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/68273/1362241031/large.PNG?1362241031",
     "description": "Operated in Brooklyn from 1928 to 1955.",
     "confidence": "high",
     "sources": [
@@ -16902,7 +19311,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/5844"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "17837",
@@ -16921,7 +19332,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/139941/1445350544/large.JPG?1445350544",
     "description": "Operated in Brooklyn from 1914 to 1928.",
     "confidence": "high",
     "sources": [
@@ -16929,7 +19340,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/17837"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "3856",
@@ -16948,7 +19361,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/49013/1342184057/large.jpg?1342184057",
     "description": "Operated in Brooklyn from 1938 to 1984. Reopened in 1984 after an earlier closure.",
     "confidence": "high",
     "sources": [
@@ -16956,7 +19369,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3856"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "36583",
@@ -16975,7 +19390,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/21528/1313249593/large.JPG?1313249593",
     "description": "Operated in Brooklyn from 1915 to 1933.",
     "confidence": "high",
     "sources": [
@@ -16983,7 +19398,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/36583"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "40047",
@@ -17002,7 +19419,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/193172/1480042525/large.jpg?1480042525",
     "description": "Operated in Brooklyn from 1910 to 1928. Reopened in 1913 after an earlier closure. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -17010,7 +19427,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/40047"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "289",
@@ -17033,7 +19452,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/42/1305960545/large.png?1305960545",
     "description": "Operated in Manhattan from 1913 to 2002. Opening year is approximate (1913).",
     "confidence": "low",
     "sources": [
@@ -17041,7 +19460,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/289"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "4624",
@@ -17060,7 +19481,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/1872/1307033573/large.jpg?1307033573",
     "description": "Operated in Queens from 1927 to 1978.",
     "confidence": "high",
     "sources": [
@@ -17068,7 +19489,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4624"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "1379",
@@ -17092,7 +19515,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/275631/1559960430/large.jpg?1559960430",
     "description": "Operating in Brooklyn since 1934. Reopened in 2022 after an earlier closure. Most recent stated closing year retained. Most recent stated reopening year retained.",
     "confidence": "low",
     "sources": [
@@ -17100,7 +19523,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/1379"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "12576",
@@ -17119,15 +19544,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1911; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/264232/1548371574/large.jpg?1548371574",
+    "description": "Opened in Manhattan in 1911; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by Union Baptist Church.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/12576"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": {
+      "name": "Union Baptist Church",
+      "category": "amenity",
+      "type": "place_of_worship"
+    }
   },
   {
     "id": "7909",
@@ -17146,15 +19581,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Bronx in 1922; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/113596/1417637468/large.jpg?1417637468",
+    "description": "Opened in Bronx in 1922; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7909"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "322",
@@ -17177,7 +19618,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/191/1306337552/large.jpg?1306337552",
     "description": "Operated in Manhattan from 1914 to 2002.",
     "confidence": "high",
     "sources": [
@@ -17185,7 +19626,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/322"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "2578",
@@ -17207,7 +19650,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/47299/1340210315/large.jpg?1340210315",
     "description": "Operated in Bronx from 1910 to 2006.",
     "confidence": "high",
     "sources": [
@@ -17215,7 +19658,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/2578"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "17699",
@@ -17234,7 +19679,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/137486/1443286616/large.jpg?1443286616",
     "description": "Operated in Manhattan from 1915 to 1952. Opening year is an upper bound ('prior to/before 1915'). Closing year is approximate (1952). Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -17242,7 +19687,46 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/17699"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
+  },
+  {
+    "id": "13829",
+    "name": "Orpheum Theatre",
+    "alternateNames": [
+      "Orpheum Concert Garden",
+      "New Orpheum Theatre",
+      "Orpheum Repertory Cinema"
+    ],
+    "address": "126 2nd Avenue, New York, NY 10003",
+    "latitude": 40.728188,
+    "longitude": -73.987498,
+    "borough": "Manhattan",
+    "openingYear": 1904,
+    "closingYear": null,
+    "reopeningYear": null,
+    "status": "open",
+    "theaterType": "unknown",
+    "screens": 1,
+    "seats": null,
+    "operator": null,
+    "featured": false,
+    "image": "https://photos.cinematreasures.org/production/photos/199076/1485221155/large.jpeg?1485221155",
+    "description": "Operating in Manhattan since 1904. Opening year verified from The City Record.",
+    "confidence": "high",
+    "sources": [
+      {
+        "label": "Cinema Treasures",
+        "url": "https://cinematreasures.org/theaters/13829"
+      },
+      {
+        "label": "The City Record",
+        "url": "https://a860-gpp.nyc.gov/downloads/z316q6459?locale=en"
+      }
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "8699",
@@ -17261,15 +19745,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Bronx in 1926; the closing year wasn't recorded. Opening year is an upper bound ('prior to/before 1926'). Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/209881/1496328357/large.jpg?1496328357",
+    "description": "Opened in Bronx in 1926; the closing year wasn't recorded. Opening year is an upper bound ('prior to/before 1926'). Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "low",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8699"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "16463",
@@ -17296,7 +19786,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/16463"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "3982",
@@ -17315,7 +19807,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/93551/1390773742/large.PNG?1390773742",
     "description": "Operated in Brooklyn from 1910 to 1945.",
     "confidence": "high",
     "sources": [
@@ -17323,7 +19815,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3982"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7886",
@@ -17342,7 +19836,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/159927/1456441687/large.jpg?1456441687",
     "description": "Operated in Bronx from 1927 to 1951.",
     "confidence": "high",
     "sources": [
@@ -17350,7 +19844,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7886"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "8363",
@@ -17369,7 +19865,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/143001/1447187156/large.jpg?1447187156",
     "description": "Operated in Manhattan from 1964 to 1992.",
     "confidence": "high",
     "sources": [
@@ -17377,7 +19873,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8363"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "41579",
@@ -17397,14 +19895,24 @@ export const theaters: Theater[] = [
     "operator": null,
     "featured": false,
     "image": null,
-    "description": "Opened in Manhattan in 1914; the closing year wasn't recorded. Opening year is an upper bound ('prior to/before 1914'). Not stated on source page: closing year, image.",
+    "description": "Opened in Manhattan in 1914; the closing year wasn't recorded. Opening year is an upper bound ('prior to/before 1914'). Not stated on source page: closing year, image. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by Redwood Apothecary.",
     "confidence": "low",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/41579"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "A nearby mapped venue matched part of the name, but review did not confirm it as the same historical theater; the theater is closed and its closing year remains unknown."
+    },
+    "currentPlace": {
+      "name": "Redwood Apothecary",
+      "category": "amenity",
+      "type": "pharmacy"
+    }
   },
   {
     "id": "17615",
@@ -17423,7 +19931,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/210078/1496616730/large.jpg?1496616730",
     "description": "Operated in Bronx from 1946 to 2018.",
     "confidence": "high",
     "sources": [
@@ -17431,7 +19939,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/17615"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "29326",
@@ -17450,7 +19960,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/94979/1392498274/large.JPG?1392498274",
     "description": "Operated in Staten Island from 1928 to 1928. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -17458,7 +19968,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/29326"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "1931",
@@ -17477,7 +19989,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/46075/1338654551/large.jpg?1338654551",
     "description": "Operated in Staten Island from 1916 to 1951. Opening year is an upper bound ('prior to/before 1916').",
     "confidence": "low",
     "sources": [
@@ -17485,7 +19997,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/1931"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "3869",
@@ -17506,7 +20020,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/165041/1460939838/large.jpg?1460939838",
     "description": "Operated in Brooklyn from 1914 to 1969.",
     "confidence": "high",
     "sources": [
@@ -17514,7 +20028,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3869"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6635",
@@ -17535,7 +20051,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/495520/1757996606/large.jpg?1757996606",
     "description": "Operating in Manhattan since 1970. Reopened in 2024 after an earlier closure.",
     "confidence": "high",
     "sources": [
@@ -17543,7 +20059,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6635"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "20607",
@@ -17565,15 +20083,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1906; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/368876/1650402406/large.jpg?1650402406",
+    "description": "Opened in Manhattan in 1906; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by Charrua Uruguayan Restaurant.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/20607"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "A nearby mapped venue matched part of the name, but review did not confirm it as the same historical theater; the theater is closed and its closing year remains unknown."
+    },
+    "currentPlace": {
+      "name": "Charrua Uruguayan Restaurant",
+      "category": "amenity",
+      "type": "restaurant"
+    }
   },
   {
     "id": "50120",
@@ -17600,7 +20128,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/50120"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "309",
@@ -17625,7 +20155,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/989/1306802977/large.jpg?1306802977",
     "description": "Operating in Manhattan since 2005. Reopened in 2020 after an earlier closure. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -17633,7 +20163,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/309"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "9310",
@@ -17655,7 +20187,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/4141/1308054102/large.jpg?1308054102",
     "description": "Operated in Brooklyn from 1914 to 1934.",
     "confidence": "high",
     "sources": [
@@ -17663,7 +20195,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/9310"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "13292",
@@ -17686,7 +20220,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/87976/1384827176/large.jpg?1384827176",
     "description": "Operated in Manhattan from 1914 to 1957.",
     "confidence": "high",
     "sources": [
@@ -17694,7 +20228,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/13292"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "2654",
@@ -17718,7 +20254,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/3726/1307766268/large.jpg?1307766268",
     "description": "Operated in Manhattan from 1970 to 1995.",
     "confidence": "high",
     "sources": [
@@ -17726,7 +20262,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/2654"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "548",
@@ -17745,7 +20283,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/23476/1314225506/large.jpg?1314225506",
     "description": "Operated in Manhattan from 1926 to 1966.",
     "confidence": "high",
     "sources": [
@@ -17753,7 +20291,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/548"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "1864",
@@ -17772,7 +20312,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/45698/1338300232/large.jpg?1338300232",
     "description": "Operated in Staten Island from 1930 to 1978. Reopened in 2010 after an earlier closure. Opening year is approximate (1930). Most recent stated reopening year retained.",
     "confidence": "low",
     "sources": [
@@ -17780,7 +20320,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/1864"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "41511",
@@ -17799,7 +20341,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/77348/1375026403/large.JPG?1375026403",
     "description": "Operated in Brooklyn from 1912 to 1917.",
     "confidence": "high",
     "sources": [
@@ -17807,7 +20349,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/41511"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "36286",
@@ -17826,7 +20370,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/6789/1308840388/large.jpg?1308840388",
     "description": "Operated in Brooklyn from 1924 to 1959. Opening year is approximate (1924).",
     "confidence": "low",
     "sources": [
@@ -17834,7 +20378,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/36286"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "17417",
@@ -17861,7 +20407,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/17417"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "307",
@@ -17882,7 +20430,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/31831/1323649207/large.JPG?1323649207",
     "description": "Operating in Manhattan since 1948. Reopened in 2023 after an earlier closure. Most recent stated closing year retained. Most recent stated reopening year retained.",
     "confidence": "low",
     "sources": [
@@ -17890,7 +20438,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/307"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6200",
@@ -17911,15 +20461,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1971; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/55637/1347909814/large.jpg?1347909814",
+    "description": "Opened in Manhattan in 1971; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by Staples.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6200"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": {
+      "name": "Staples",
+      "category": "shop",
+      "type": "stationery"
+    }
   },
   {
     "id": "6493",
@@ -17938,7 +20498,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/121617/1428191255/large.jpg?1428191255",
     "description": "Operated in Manhattan from 1946 to 1952.",
     "confidence": "high",
     "sources": [
@@ -17946,7 +20506,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6493"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6025",
@@ -17965,7 +20527,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/42393/1334683294/large.jpg?1334683294",
     "description": "Operated in Bronx from 1927 to 1966. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -17973,7 +20535,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6025"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "3875",
@@ -17992,7 +20556,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/140438/1445664191/large.jpg?1445664191",
     "description": "Operated in Brooklyn from 1914 to 1965.",
     "confidence": "high",
     "sources": [
@@ -18000,7 +20564,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3875"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "8328",
@@ -18019,15 +20585,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Queens in 1927; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/44351/1336782882/large.jpg?1336782882",
+    "description": "Opened in Queens in 1927; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8328"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "42281",
@@ -18046,7 +20618,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/77599/1375283943/large.JPG?1375283943",
     "description": "Operated in Brooklyn from 1908 to 1915. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -18054,7 +20626,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/42281"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "3981",
@@ -18073,7 +20647,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/7034/1308938408/large.jpg?1308938408",
     "description": "Operated in Brooklyn from 1915 to 1951.",
     "confidence": "high",
     "sources": [
@@ -18081,7 +20655,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3981"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6176",
@@ -18108,7 +20684,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6176"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "16839",
@@ -18127,7 +20705,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/160639/1457050815/large.jpg?1457050815",
     "description": "Operated in Bronx from 1927 to 1927.",
     "confidence": "high",
     "sources": [
@@ -18135,7 +20713,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/16839"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "4018",
@@ -18157,7 +20737,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/23113/1314045249/large.jpg?1314045249",
     "description": "Operated in Queens from 1949 to 1986.",
     "confidence": "high",
     "sources": [
@@ -18165,7 +20745,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4018"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "4622",
@@ -18184,15 +20766,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Queens in 1921; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/42249/1334586248/large.jpg?1334586248",
+    "description": "Opened in Queens in 1921; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4622"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "50066",
@@ -18211,7 +20799,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/136951/1442848059/large.JPG?1442848059",
     "description": "Operated in Brooklyn from 1907 to 1914. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -18219,7 +20807,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/50066"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "41512",
@@ -18238,7 +20828,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/77349/1375026677/large.JPG?1375026677",
     "description": "Operated in Brooklyn from 1912 to 1915.",
     "confidence": "high",
     "sources": [
@@ -18246,7 +20836,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/41512"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6167",
@@ -18265,15 +20857,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Brooklyn in 1928; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/48410/1341622593/large.jpg?1341622593",
+    "description": "Opened in Brooklyn in 1928; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by Peace Laundromat.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6167"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": {
+      "name": "Peace Laundromat",
+      "category": "shop",
+      "type": "laundry"
+    }
   },
   {
     "id": "7090",
@@ -18292,7 +20894,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/30796/1321807756/large.jpg?1321807756",
     "description": "Operated in Brooklyn from 1914 to 1965.",
     "confidence": "high",
     "sources": [
@@ -18300,7 +20902,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7090"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "12589",
@@ -18319,7 +20923,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/187775/1476854509/large.jpg?1476854509",
     "description": "Operated in Manhattan from 1938 to 1939.",
     "confidence": "high",
     "sources": [
@@ -18327,7 +20931,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/12589"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "33824",
@@ -18346,7 +20952,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/287528/1569861971/large.jpg?1569861971",
     "description": "Operated in Manhattan from 1910 to 1914.",
     "confidence": "high",
     "sources": [
@@ -18354,7 +20960,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/33824"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7690",
@@ -18376,7 +20984,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/42238/1334569192/large.jpg?1334569192",
     "description": "Operated in Brooklyn from 1931 to 1954. Reopened in 1937 after an earlier closure. Most recent stated reopening year retained.",
     "confidence": "low",
     "sources": [
@@ -18384,7 +20992,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7690"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7866",
@@ -18404,14 +21014,24 @@ export const theaters: Theater[] = [
     "operator": null,
     "featured": false,
     "image": null,
-    "description": "Opened in Brooklyn in 1912; the closing year wasn't recorded. Not stated on source page: closing year, image.",
+    "description": "Opened in Brooklyn in 1912; the closing year wasn't recorded. Not stated on source page: closing year, image. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by New Anthony Appliance Repair & Service.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7866"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": {
+      "name": "New Anthony Appliance Repair & Service",
+      "category": "shop",
+      "type": "kitchen"
+    }
   },
   {
     "id": "10918",
@@ -18432,7 +21052,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/19/1305941222/large.jpg?1305941222",
     "description": "Operated in Manhattan from 2000 to 2008.",
     "confidence": "high",
     "sources": [
@@ -18440,7 +21060,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/10918"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "8392",
@@ -18459,7 +21081,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/6828/1308847426/large.jpg?1308847426",
     "description": "Operated in Brooklyn from 1921 to 1955. Opening year is approximate (1921).",
     "confidence": "low",
     "sources": [
@@ -18467,7 +21089,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8392"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6496",
@@ -18490,15 +21114,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1939; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/81102/1378963156/large.jpeg?1378963156",
+    "description": "Opened in Manhattan in 1939; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6496"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "8412",
@@ -18519,15 +21149,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Queens in 1936; the closing year wasn't recorded. Opening year is an upper bound ('prior to/before 1936'). Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/242019/1525642836/large.jpg?1525642836",
+    "description": "Opened in Queens in 1936; the closing year wasn't recorded. Opening year is an upper bound ('prior to/before 1936'). Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "low",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8412"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "7531",
@@ -18554,15 +21190,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1915; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/205290/1490624040/large.gif?1490624040",
+    "description": "Opened in Manhattan in 1915; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7531"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "6138",
@@ -18581,7 +21223,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/26994/1316657228/large.jpg?1316657228",
     "description": "Operated in Manhattan from 1930 to 1996.",
     "confidence": "high",
     "sources": [
@@ -18589,7 +21231,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6138"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6732",
@@ -18612,15 +21256,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1908; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/67588/1361739618/large.jpg?1361739618",
+    "description": "Opened in Manhattan in 1908; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6732"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "7131",
@@ -18642,7 +21292,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/173082/1467998951/large.gif?1467998951",
     "description": "Operated in Queens from 1927 to 2005.",
     "confidence": "high",
     "sources": [
@@ -18650,7 +21300,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7131"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7752",
@@ -18669,7 +21321,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/215030/1501260792/large.gif?1501260792",
     "description": "Operated in Queens from 1926 to 1961. Opening year is an upper bound ('prior to/before 1926').",
     "confidence": "low",
     "sources": [
@@ -18677,7 +21329,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7752"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "55232",
@@ -18696,7 +21350,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/202331/1488208515/large.gif?1488208515",
     "description": "Operated in Bronx from 1912 to 1930. Opening year is approximate (1912). Closing year is approximate (1930).",
     "confidence": "low",
     "sources": [
@@ -18704,7 +21358,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/55232"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "42555",
@@ -18723,7 +21379,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/79007/1376747449/large.JPG?1376747449",
     "description": "Operated in Brooklyn from 1912 to 1915. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -18731,7 +21387,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/42555"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "3980",
@@ -18752,7 +21410,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/23795/1314548257/large.jpg?1314548257",
     "description": "Operated in Brooklyn from 1923 to 1977.",
     "confidence": "high",
     "sources": [
@@ -18760,7 +21418,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3980"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6094",
@@ -18781,7 +21441,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/160298/1456705762/large.jpg?1456705762",
     "description": "Operated in Bronx from 1929 to 1979.",
     "confidence": "high",
     "sources": [
@@ -18789,7 +21449,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6094"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "24997",
@@ -18817,7 +21479,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/242516/1526080452/large.jpg?1526080452",
     "description": "Operated in Manhattan from 1926 to 1956. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -18825,7 +21487,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/24997"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "4164",
@@ -18852,7 +21516,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/363017/1642677985/large.png?1642677985",
     "description": "Operated in Manhattan from 1913 to 1933. Reopened in 1933 after an earlier closure.",
     "confidence": "high",
     "sources": [
@@ -18860,7 +21524,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4164"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "44952",
@@ -18882,7 +21548,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/181945/1474403198/large.gif?1474403198",
     "description": "Operated in Manhattan from 1895 to 1927.",
     "confidence": "high",
     "sources": [
@@ -18890,7 +21556,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/44952"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "50157",
@@ -18909,7 +21577,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/139101/1444669517/large.JPG?1444669517",
     "description": "Operated in Brooklyn from 1909 to 1915.",
     "confidence": "high",
     "sources": [
@@ -18917,7 +21585,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/50157"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "17101",
@@ -18938,7 +21608,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/237490/1521579665/large.png?1521579665",
     "description": "Operated in Brooklyn from 1914 to 1927.",
     "confidence": "high",
     "sources": [
@@ -18946,7 +21616,45 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/17101"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
+  },
+  {
+    "id": "9741",
+    "name": "Public Theater",
+    "alternateNames": [
+      "Anthology Film Archives",
+      "Little Theatre at the Public"
+    ],
+    "address": "425 Lafayette Street, New York, NY 10003",
+    "latitude": 40.7291369,
+    "longitude": -73.9920281,
+    "borough": "Manhattan",
+    "openingYear": 1967,
+    "closingYear": null,
+    "reopeningYear": null,
+    "status": "open",
+    "theaterType": "unknown",
+    "screens": 1,
+    "seats": null,
+    "operator": null,
+    "featured": false,
+    "image": "https://photos.cinematreasures.org/production/photos/75248/1372085630/large.JPG?1372085630",
+    "description": "Operating in Manhattan since 1967. Opening year verified from The Public Theater.",
+    "confidence": "high",
+    "sources": [
+      {
+        "label": "Cinema Treasures",
+        "url": "https://cinematreasures.org/theaters/9741"
+      },
+      {
+        "label": "The Public Theater",
+        "url": "https://publictheater.org/about-the-public/welcome-to-the-public-theater/"
+      }
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7217",
@@ -18967,7 +21675,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/206971/1492292769/large.jpg?1492292769",
     "description": "Operating in Manhattan since 1972. Reopened in 2017 after an earlier closure. Most recent stated reopening year retained.",
     "confidence": "low",
     "sources": [
@@ -18975,7 +21683,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7217"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "3919",
@@ -18994,7 +21704,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/283826/1566417856/large.jpg?1566417856",
     "description": "Operated in Queens from 1927 to 1990. Reopened in 1990 after an earlier closure. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -19002,7 +21712,45 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3919"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
+  },
+  {
+    "id": "7005",
+    "name": "Queens Theatre",
+    "alternateNames": [
+      "New York State Theatreama",
+      "Queens Theatre in the Park"
+    ],
+    "address": "New York State Pavilion, Corona, NY 11368",
+    "latitude": 40.7356829,
+    "longitude": -73.8403342,
+    "borough": "Queens",
+    "openingYear": 1964,
+    "closingYear": null,
+    "reopeningYear": null,
+    "status": "open",
+    "theaterType": "unknown",
+    "screens": 1,
+    "seats": null,
+    "operator": null,
+    "featured": false,
+    "image": "https://photos.cinematreasures.org/production/photos/52059/1344827251/large.jpg?1344827251",
+    "description": "Operating in Queens since 1964. Opening year verified from Queens Theatre.",
+    "confidence": "medium",
+    "sources": [
+      {
+        "label": "Cinema Treasures",
+        "url": "https://cinematreasures.org/theaters/7005"
+      },
+      {
+        "label": "Queens Theatre",
+        "url": "https://www.queenstheatre.org/theme/theaterama-nkft"
+      }
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "3872",
@@ -19021,15 +21769,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Brooklyn in 2004; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/260704/1542807533/large.jpg?1542807533",
+    "description": "Opened in Brooklyn in 2004; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3872"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "55",
@@ -19048,7 +21802,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": true,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/241911/1525544821/large.jpg?1525544821",
     "description": "Operating in Manhattan since 1932.",
     "confidence": "high",
     "sources": [
@@ -19056,7 +21810,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/55"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "4082",
@@ -19077,7 +21833,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/263813/1547623682/large.jpg?1547623682",
     "description": "Operated in Brooklyn from 1914 to 1950. Opening year is an upper bound ('prior to/before 1914').",
     "confidence": "low",
     "sources": [
@@ -19085,7 +21841,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4082"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7922",
@@ -19108,15 +21866,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Bronx in 1917; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/123683/1430094945/large.jpg?1430094945",
+    "description": "Opened in Bronx in 1917; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7922"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "3763",
@@ -19135,7 +21899,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/287926/1570262387/large.jpg?1570262387",
     "description": "Operated in Staten Island from 1976 to 1987.",
     "confidence": "high",
     "sources": [
@@ -19143,7 +21907,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3763"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "44459",
@@ -19165,15 +21931,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Brooklyn in 1914; the closing year wasn't recorded. Reopened in 1922 after an earlier closure. Opening year is approximate (1914). Most recent stated reopening year retained. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/137379/1443118682/large.jpg?1443118682",
+    "description": "Opened in Brooklyn in 1914; the closing year wasn't recorded. Reopened in 1922 after an earlier closure. Opening year is approximate (1914). Most recent stated reopening year retained. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by Soul Kofa.",
     "confidence": "low",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/44459"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": {
+      "name": "Soul Kofa",
+      "category": "amenity",
+      "type": "fast_food"
+    }
   },
   {
     "id": "10480",
@@ -19196,7 +21972,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/269621/1555373810/large.JPG?1555373810",
     "description": "Operating in Manhattan since 2000. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -19204,7 +21980,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/10480"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "59975",
@@ -19225,7 +22003,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/273539/1558302536/large.jpg?1558302536",
     "description": "Operating in Staten Island since 2019.",
     "confidence": "high",
     "sources": [
@@ -19233,7 +22011,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/59975"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "43139",
@@ -19254,7 +22034,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/108648/1410834468/large.jpg?1410834468",
     "description": "Operating in Bronx since 1991. Reopened in 2025 after an earlier closure. Most recent stated closing year retained. Most recent stated reopening year retained.",
     "confidence": "low",
     "sources": [
@@ -19262,7 +22042,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/43139"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "59710",
@@ -19281,7 +22063,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/269222/1555034634/large.JPG?1555034634",
     "description": "Operating in Manhattan since 2019.",
     "confidence": "high",
     "sources": [
@@ -19289,7 +22071,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/59710"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "66166",
@@ -19308,7 +22092,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/358821/1636511813/large.png?1636511813",
     "description": "Operating in Queens since 2021.",
     "confidence": "high",
     "sources": [
@@ -19316,7 +22100,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/66166"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "10461",
@@ -19339,7 +22125,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/15492/1311111868/large.jpg?1311111868",
     "description": "Operating in Manhattan since 1999.",
     "confidence": "high",
     "sources": [
@@ -19347,7 +22133,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/10461"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "17037",
@@ -19368,7 +22156,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/362928/1642521673/large.JPG?1642521673",
     "description": "Operated in Brooklyn from 2000 to 2022.",
     "confidence": "high",
     "sources": [
@@ -19376,7 +22164,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/17037"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "8731",
@@ -19399,7 +22189,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/5674/1308500508/large.jpg?1308500508",
     "description": "Operating in Queens since 1999.",
     "confidence": "high",
     "sources": [
@@ -19407,7 +22197,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8731"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "3277",
@@ -19429,7 +22221,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/102/1306110701/large.jpg?1306110701",
     "description": "Operating in Queens since 1942. Reopened in 1998 after an earlier closure.",
     "confidence": "high",
     "sources": [
@@ -19437,7 +22229,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3277"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6070",
@@ -19459,7 +22253,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/212757/1498955594/large.JPG?1498955594",
     "description": "Operating in Brooklyn since 1987.",
     "confidence": "high",
     "sources": [
@@ -19467,7 +22261,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6070"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "11963",
@@ -19488,7 +22284,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/122380/1428617707/large.jpg?1428617707",
     "description": "Operated in Staten Island from 2001 to 2023. Reopened in 2021 after an earlier closure. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -19496,7 +22292,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/11963"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "10478",
@@ -19519,7 +22317,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/32805/1325551127/large.jpg?1325551127",
     "description": "Operating in Manhattan since 1998.",
     "confidence": "high",
     "sources": [
@@ -19527,7 +22325,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/10478"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "1199",
@@ -19548,15 +22348,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1931; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/165414/1461367652/large.jpg?1461367652",
+    "description": "Opened in Manhattan in 1931; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by Citi Bike - W 67 St & Broadway.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/1199"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "A nearby mapped venue matched part of the name, but review did not confirm it as the same historical theater; the theater is closed and its closing year remains unknown."
+    },
+    "currentPlace": {
+      "name": "Citi Bike - W 67 St & Broadway",
+      "category": "amenity",
+      "type": "bicycle_rental"
+    }
   },
   {
     "id": "6818",
@@ -19577,7 +22387,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/115831/1421306455/large.jpg?1421306455",
     "description": "Operated in Manhattan from 1913 to 1963.",
     "confidence": "high",
     "sources": [
@@ -19585,7 +22395,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6818"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "31740",
@@ -19606,15 +22418,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1914; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/264243/1548373073/large.jpg?1548373073",
+    "description": "Opened in Manhattan in 1914; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/31740"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "44158",
@@ -19641,7 +22459,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/44158"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "21751",
@@ -19660,15 +22480,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1978; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/385517/1665817550/large.jpg?1665817550",
+    "description": "Opened in Manhattan in 1978; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by Avis.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/21751"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": {
+      "name": "Avis",
+      "category": "amenity",
+      "type": "car_rental"
+    }
   },
   {
     "id": "8711",
@@ -19689,7 +22519,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/261970/1544476063/large.jpg?1544476063",
     "description": "Operated in Brooklyn from 1914 to 1957. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -19697,7 +22527,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8711"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "3971",
@@ -19718,7 +22550,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/30175/1320665892/large.jpg?1320665892",
     "description": "Operated in Brooklyn from 1921 to 2020. Reopened in 1937 after an earlier closure. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -19726,7 +22558,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3971"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "44817",
@@ -19753,7 +22587,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/44817"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "8001",
@@ -19774,15 +22610,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Bronx in 1921; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/261985/1544488018/large.jpg?1544488018",
+    "description": "Opened in Bronx in 1921; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8001"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "552",
@@ -19804,7 +22646,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/74260/1370527632/large.jpg?1370527632",
     "description": "Operated in Manhattan from 1916 to 1935. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -19812,7 +22654,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/552"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6605",
@@ -19831,15 +22675,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Brooklyn in 1916; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/28255/1318019790/large.jpg?1318019790",
+    "description": "Opened in Brooklyn in 1916; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6605"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "16666",
@@ -19858,7 +22708,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/42072/1334368532/large.jpg?1334368532",
     "description": "Operated in Manhattan from 1916 to 1935.",
     "confidence": "high",
     "sources": [
@@ -19866,7 +22716,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/16666"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6271",
@@ -19885,15 +22737,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Staten Island in 1967; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/124055/1430483643/large.jpg?1430483643",
+    "description": "Opened in Staten Island in 1967; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6271"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "31853",
@@ -19912,7 +22770,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/46059/1338602233/large.jpg?1338602233",
     "description": "Operated in Staten Island from 1906 to 1948.",
     "confidence": "high",
     "sources": [
@@ -19920,7 +22778,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/31853"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "4021",
@@ -19941,7 +22801,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/32146/1324416675/large.jpg?1324416675",
     "description": "Operated in Queens from 1916 to 2008. Reopened in 2009 after an earlier closure.",
     "confidence": "high",
     "sources": [
@@ -19949,7 +22809,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4021"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "3987",
@@ -19972,7 +22834,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/45750/1338342253/large.jpg?1338342253",
     "description": "Operated in Brooklyn from 1904 to 1973. Reopened in 1959 after an earlier closure.",
     "confidence": "high",
     "sources": [
@@ -19980,7 +22842,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3987"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "1930",
@@ -19999,7 +22863,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/83528/1381237576/large.jpg?1381237576",
     "description": "Operated in Staten Island from 1924 to 1968.",
     "confidence": "high",
     "sources": [
@@ -20007,7 +22871,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/1930"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "3876",
@@ -20028,7 +22894,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/36636/1330096782/large.jpg?1330096782",
     "description": "Operated in Brooklyn from 1926 to 1959.",
     "confidence": "high",
     "sources": [
@@ -20036,7 +22902,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3876"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "11496",
@@ -20058,7 +22926,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/168305/1463778636/large.jpg?1463778636",
     "description": "Operated in Bronx from 1922 to 1950.",
     "confidence": "high",
     "sources": [
@@ -20066,7 +22934,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/11496"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "17563",
@@ -20087,7 +22957,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/77966/1375774797/large.jpg?1375774797",
     "description": "Operated in Queens from 1910 to 1927.",
     "confidence": "high",
     "sources": [
@@ -20095,7 +22965,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/17563"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7472",
@@ -20117,7 +22989,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/25431/1315789742/large.jpg?1315789742",
     "description": "Operated in Manhattan from 1911 to 1974. Closing year is approximate (1974).",
     "confidence": "low",
     "sources": [
@@ -20125,7 +22997,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7472"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "12437",
@@ -20144,7 +23018,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/262274/1545003252/large.jpg?1545003252",
     "description": "Operated in Queens from 1920 to 1964. Opening year is an upper bound ('prior to/before 1920').",
     "confidence": "low",
     "sources": [
@@ -20152,7 +23026,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/12437"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "555",
@@ -20174,7 +23050,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/51039/1344029097/large.jpg?1344029097",
     "description": "Operated in Manhattan from 1917 to 1987.",
     "confidence": "high",
     "sources": [
@@ -20182,7 +23058,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/555"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7087",
@@ -20203,7 +23081,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/93965/1391304165/large.jpg?1391304165",
     "description": "Operated in Brooklyn from 1910 to 1963. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -20211,7 +23089,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7087"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "563",
@@ -20233,7 +23113,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/145721/1448321282/large.jpg?1448321282",
     "description": "Operated in Manhattan from 1938 to 1960.",
     "confidence": "high",
     "sources": [
@@ -20241,7 +23121,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/563"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "3430",
@@ -20262,7 +23144,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/32131/1324373032/large.jpg?1324373032",
     "description": "Operated in Manhattan from 1916 to 1953.",
     "confidence": "high",
     "sources": [
@@ -20270,7 +23152,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3430"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "3371",
@@ -20292,7 +23176,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/164519/1460320094/large.gif?1460320094",
     "description": "Operated in Manhattan from 1926 to 1968.",
     "confidence": "high",
     "sources": [
@@ -20300,7 +23184,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3371"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "1302",
@@ -20321,7 +23207,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/114823/1419950956/large.jpg?1419950956",
     "description": "Operated in Brooklyn from 1925 to 1978.",
     "confidence": "high",
     "sources": [
@@ -20329,7 +23215,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/1302"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "4244",
@@ -20352,7 +23240,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/159188/1455908309/large.gif?1455908309",
     "description": "Operated in Queens from 1928 to 1982.",
     "confidence": "high",
     "sources": [
@@ -20360,7 +23248,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4244"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "3899",
@@ -20382,7 +23272,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/2243/1307184717/large.JPG?1307184717",
     "description": "Operated in Manhattan from 1905 to 1964.",
     "confidence": "high",
     "sources": [
@@ -20390,7 +23280,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3899"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "1322",
@@ -20411,7 +23303,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/23950/1314627597/large.jpg?1314627597",
     "description": "Operated in Brooklyn from 1911 to 1969. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -20419,7 +23311,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/1322"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "901",
@@ -20440,7 +23334,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/173374/1468440627/large.gif?1468440627",
     "description": "Operated in Bronx from 1927 to 1969.",
     "confidence": "high",
     "sources": [
@@ -20448,7 +23342,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/901"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7022",
@@ -20467,7 +23363,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/172364/1467127755/large.gif?1467127755",
     "description": "Operated in Bronx from 1927 to 1968.",
     "confidence": "high",
     "sources": [
@@ -20475,7 +23371,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7022"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "3889",
@@ -20497,15 +23395,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Queens in 1913; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/172373/1467131328/large.gif?1467131328",
+    "description": "Opened in Queens in 1913; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3889"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "3873",
@@ -20526,7 +23430,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/7018/1308932977/large.jpg?1308932977",
     "description": "Operated in Brooklyn from 1926 to 1977.",
     "confidence": "high",
     "sources": [
@@ -20534,7 +23438,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3873"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6253",
@@ -20555,7 +23461,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/65549/1359319311/large.jpg?1359319311",
     "description": "Operated in Bronx from 1921 to 1986.",
     "confidence": "high",
     "sources": [
@@ -20563,7 +23469,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6253"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6913",
@@ -20584,15 +23492,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Bronx in 1921; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/21166/1313062626/large.JPG?1313062626",
+    "description": "Opened in Bronx in 1921; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6913"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "4136",
@@ -20614,7 +23528,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/208066/1493902930/large.jpg?1493902930",
     "description": "Operated in Brooklyn from 1908 to 1965.",
     "confidence": "high",
     "sources": [
@@ -20622,7 +23536,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4136"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "1353",
@@ -20643,7 +23559,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/29787/1319949350/large.jpg?1319949350",
     "description": "Operated in Manhattan from 1913 to 1965. Reopened in 2022 after an earlier closure.",
     "confidence": "high",
     "sources": [
@@ -20651,7 +23567,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/1353"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "1357",
@@ -20672,15 +23590,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1913; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/26929/1316652929/large.jpg?1316652929",
+    "description": "Opened in Manhattan in 1913; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/1357"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "3972",
@@ -20701,7 +23625,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/7167/1309033694/large.jpg?1309033694",
     "description": "Operated in Queens from 1929 to 1968.",
     "confidence": "high",
     "sources": [
@@ -20709,7 +23633,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3972"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "834",
@@ -20732,7 +23658,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": true,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/21494/1313205851/large.jpg?1313205851",
     "description": "Operated in Queens from 1928 to 1986. Reopened in 1976 after an earlier closure. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -20740,7 +23666,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/834"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "4621",
@@ -20761,7 +23689,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/242629/1526162838/large.jpg?1526162838",
     "description": "Operated in Queens from 1927 to 1978.",
     "confidence": "high",
     "sources": [
@@ -20769,7 +23697,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4621"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "1364",
@@ -20790,7 +23720,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/128831/1435025262/large.jpg?1435025262",
     "description": "Operated in Bronx from 1928 to 1967. Closing year is approximate (1967).",
     "confidence": "low",
     "sources": [
@@ -20798,7 +23728,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/1364"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "1853",
@@ -20820,7 +23752,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/7464/1309113340/large.jpg?1309113340",
     "description": "Operated in Manhattan from 1972 to 1998.",
     "confidence": "high",
     "sources": [
@@ -20828,7 +23760,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/1853"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "1924",
@@ -20850,7 +23784,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/45858/1338413235/large.jpg?1338413235",
     "description": "Operated in Brooklyn from 1900 to 1953. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -20858,7 +23792,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/1924"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "1298",
@@ -20883,7 +23819,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/196055/1482939713/large.gif?1482939713",
     "description": "Operated in Manhattan from 1899 to 1953.",
     "confidence": "high",
     "sources": [
@@ -20891,7 +23827,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/1298"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "5990",
@@ -20913,7 +23851,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/172214/1466955479/large.gif?1466955479",
     "description": "Operated in Manhattan from 1928 to 1967.",
     "confidence": "high",
     "sources": [
@@ -20921,7 +23859,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/5990"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "1390",
@@ -20943,7 +23883,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/131332/1437677513/large.jpg?1437677513",
     "description": "Operated in Brooklyn from 1914 to 1967.",
     "confidence": "high",
     "sources": [
@@ -20951,7 +23891,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/1390"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6912",
@@ -20973,7 +23915,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/188777/1477502498/large.gif?1477502498",
     "description": "Operated in Bronx from 1913 to 1968.",
     "confidence": "high",
     "sources": [
@@ -20981,7 +23923,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6912"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "3877",
@@ -21002,7 +23946,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/7023/1308933836/large.jpg?1308933836",
     "description": "Operated in Brooklyn from 1924 to 1951.",
     "confidence": "high",
     "sources": [
@@ -21010,7 +23954,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3877"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "3973",
@@ -21031,15 +23977,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Queens in 1919; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/172371/1467131001/large.gif?1467131001",
+    "description": "Opened in Queens in 1919; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3973"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "2975",
@@ -21066,7 +24018,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": true,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/242613/1526159022/large.jpg?1526159022",
     "description": "Operated in Manhattan from 1914 to 1952.",
     "confidence": "high",
     "sources": [
@@ -21074,7 +24026,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/2975"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "4664",
@@ -21095,7 +24049,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/194928/1481563070/large.JPG?1481563070",
     "description": "Operated in Queens from 1966 to 1991. Closing year is approximate (1991).",
     "confidence": "low",
     "sources": [
@@ -21103,7 +24057,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4664"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6586",
@@ -21122,7 +24078,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/7036/1308938951/large.jpg?1308938951",
     "description": "Operated in Brooklyn from 1936 to 1967. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -21130,7 +24086,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6586"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "42057",
@@ -21149,7 +24107,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/137999/1443718206/large.JPG?1443718206",
     "description": "Operated in Brooklyn from 1913 to 1923.",
     "confidence": "high",
     "sources": [
@@ -21157,7 +24115,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/42057"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "72828",
@@ -21176,7 +24136,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/492325/1755038639/large.jpg?1755038639",
     "description": "Operating in Manhattan since 2025.",
     "confidence": "high",
     "sources": [
@@ -21184,7 +24144,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/72828"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "4042",
@@ -21203,15 +24165,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Queens in 1921; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/112824/1416184810/large.jpg?1416184810",
+    "description": "Opened in Queens in 1921; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4042"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "40160",
@@ -21230,15 +24198,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1914; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/270891/1556751406/large.jpg?1556751406",
+    "description": "Opened in Manhattan in 1914; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/40160"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "A nearby mapped venue matched part of the name, but review did not confirm it as the same historical theater; the theater is closed and its closing year remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "8178",
@@ -21257,7 +24231,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/66273/1360353213/large.jpg?1360353213",
     "description": "Operated in Manhattan from 1926 to 1941. Opening year is an upper bound ('prior to/before 1926'). Closing year is approximate (1941). Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -21265,7 +24239,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8178"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "8093",
@@ -21284,15 +24260,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Bronx in 1926; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/261978/1544483859/large.jpg?1544483859",
+    "description": "Opened in Bronx in 1926; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8093"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "10372",
@@ -21311,7 +24293,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/112173/1415320262/large.jpg?1415320262",
     "description": "Operated in Manhattan from 1982 to 1996.",
     "confidence": "high",
     "sources": [
@@ -21319,7 +24301,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/10372"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "9225",
@@ -21342,7 +24326,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/261948/1544450138/large.jpg?1544450138",
     "description": "Operating in Brooklyn since 1914.",
     "confidence": "high",
     "sources": [
@@ -21350,7 +24334,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/9225"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "556",
@@ -21369,7 +24355,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/4330/1308112504/large.jpg?1308112504",
     "description": "Operated in Manhattan from 1926 to 2022. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -21377,7 +24363,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/556"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "69945",
@@ -21396,15 +24384,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 2009; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/432128/1711520032/large.jpg?1711520032",
+    "description": "Opened in Manhattan in 2009; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/69945"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "9680",
@@ -21423,7 +24417,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/230750/1515627358/large.jpg?1515627358",
     "description": "Operated in Manhattan from 1918 to 1950. Reopened in 1945 after an earlier closure. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -21431,7 +24425,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/9680"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "41700",
@@ -21452,7 +24448,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/75314/1372183401/large.JPG?1372183401",
     "description": "Operated in Manhattan from 1926 to 1929. Opening year is an upper bound ('prior to/before 1926').",
     "confidence": "low",
     "sources": [
@@ -21460,7 +24456,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/41700"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "13541",
@@ -21479,7 +24477,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/362496/1641913063/large.JPG?1641913063",
     "description": "Operated in Manhattan from 1926 to 1940.",
     "confidence": "high",
     "sources": [
@@ -21487,7 +24485,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/13541"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "3922",
@@ -21508,7 +24508,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/143831/1447567751/large.jpg?1447567751",
     "description": "Operated in Brooklyn from 1926 to 1986.",
     "confidence": "high",
     "sources": [
@@ -21516,7 +24516,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3922"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "13580",
@@ -21537,15 +24539,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1914; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/366068/1647133921/large.png?1647133921",
+    "description": "Opened in Manhattan in 1914; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/13580"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "2097",
@@ -21570,7 +24578,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/1943/1307057614/large.JPG?1307057614",
     "description": "Operating in Manhattan since 1963.",
     "confidence": "high",
     "sources": [
@@ -21578,7 +24586,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/2097"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "31435",
@@ -21600,7 +24610,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/99278/1399438990/large.jpg?1399438990",
     "description": "Operating in Manhattan since 1925.",
     "confidence": "high",
     "sources": [
@@ -21608,7 +24618,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/31435"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "17577",
@@ -21628,14 +24640,20 @@ export const theaters: Theater[] = [
     "operator": null,
     "featured": false,
     "image": null,
-    "description": "Opened in Manhattan in 1972; the closing year wasn't recorded. Not stated on source page: closing year, image.",
+    "description": "Opened in Manhattan in 1972; the closing year wasn't recorded. Not stated on source page: closing year, image. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/17577"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "41561",
@@ -21654,15 +24672,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Brooklyn in 1913; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/78587/1376314782/large.JPG?1376314782",
+    "description": "Opened in Brooklyn in 1913; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/41561"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "6069",
@@ -21683,15 +24707,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Brooklyn in 1928; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/43806/1336255321/large.jpg?1336255321",
+    "description": "Opened in Brooklyn in 1928; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6069"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "6529",
@@ -21712,15 +24742,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Queens in 1920; the closing year wasn't recorded. Reopened in 1929 after an earlier closure. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/83709/1381414649/large.jpg?1381414649",
+    "description": "Opened in Queens in 1920; the closing year wasn't recorded. Reopened in 1929 after an earlier closure. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6529"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "7704",
@@ -21747,7 +24783,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7704"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "10967",
@@ -21777,7 +24815,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/10967"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "11983",
@@ -21799,7 +24839,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/117527/1423347054/large.jpg?1423347054",
     "description": "Operated in Manhattan from 1969 to 1978.",
     "confidence": "high",
     "sources": [
@@ -21807,7 +24847,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/11983"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "3884",
@@ -21826,7 +24868,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/121009/1427656623/large.jpg?1427656623",
     "description": "Operated in Brooklyn from 1961 to 1961.",
     "confidence": "high",
     "sources": [
@@ -21834,7 +24876,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3884"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "10995",
@@ -21855,7 +24899,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/78916/1376666496/large.JPG?1376666496",
     "description": "Operated in Brooklyn from 1914 to 1928. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -21863,7 +24907,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/10995"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "4083",
@@ -21882,7 +24928,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/32757/1325521260/large.jpg?1325521260",
     "description": "Operated in Brooklyn from 1926 to 1958.",
     "confidence": "high",
     "sources": [
@@ -21890,7 +24936,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4083"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "3446",
@@ -21909,7 +24957,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/67836/1362005136/large.PNG?1362005136",
     "description": "Operated in Brooklyn from 1929 to 1970.",
     "confidence": "high",
     "sources": [
@@ -21917,7 +24965,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3446"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "8812",
@@ -21936,7 +24986,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/180380/1473537222/large.jpg?1473537222",
     "description": "Operated in Brooklyn from 1917 to 1931. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -21944,7 +24994,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8812"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "4081",
@@ -21973,7 +25025,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4081"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "24681",
@@ -21992,7 +25046,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/139914/1445340933/large.JPG?1445340933",
     "description": "Operated in Brooklyn from 1917 to 1933. Opening year is an upper bound ('prior to/before 1917').",
     "confidence": "low",
     "sources": [
@@ -22000,7 +25054,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/24681"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "595",
@@ -22022,7 +25078,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/43378/1335735667/large.jpg?1335735667",
     "description": "Operated in Brooklyn from 1925 to 1973. Closing year is approximate (1973).",
     "confidence": "low",
     "sources": [
@@ -22030,7 +25086,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/595"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "23978",
@@ -22049,7 +25107,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/60945/1352939123/large.jpg?1352939123",
     "description": "Operated in Manhattan from 1976 to 1995. Opening year represents an approximate decade reference (1976).",
     "confidence": "low",
     "sources": [
@@ -22057,7 +25115,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/23978"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "13588",
@@ -22079,15 +25139,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1926; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/41809/1334068031/large.jpg?1334068031",
+    "description": "Opened in Manhattan in 1926; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/13588"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "66081",
@@ -22095,7 +25161,7 @@ export const theaters: Theater[] = [
     "alternateNames": [],
     "address": "1 Oak Street, Brooklyn, NY 11222",
     "latitude": 40.7274771,
-    "longitude": -73.96115449999999,
+    "longitude": -73.9611545,
     "borough": "Brooklyn",
     "openingYear": 2020,
     "closingYear": null,
@@ -22106,15 +25172,58 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Brooklyn in 2020; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/356873/1633974131/large.png?1633974131",
+    "description": "Opened in Brooklyn in 2020; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/66081"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
+  },
+  {
+    "id": "8373",
+    "name": "Soho Playhouse",
+    "alternateNames": [
+      "Thalia Soho",
+      "Vandam Theatre",
+      "Le Cinematographe"
+    ],
+    "address": "15 Vandam Street, New York, NY 10013",
+    "latitude": 40.7265299,
+    "longitude": -74.004373,
+    "borough": "Manhattan",
+    "openingYear": 1961,
+    "closingYear": null,
+    "reopeningYear": null,
+    "status": "open",
+    "theaterType": "unknown",
+    "screens": 1,
+    "seats": null,
+    "operator": null,
+    "featured": false,
+    "image": "https://photos.cinematreasures.org/production/photos/176940/1471468206/large.jpg?1471468206",
+    "description": "Operating in Manhattan since 1961. Opening year verified from SoHo Playhouse.",
+    "confidence": "high",
+    "sources": [
+      {
+        "label": "Cinema Treasures",
+        "url": "https://cinematreasures.org/theaters/8373"
+      },
+      {
+        "label": "SoHo Playhouse",
+        "url": "https://www.sohoplayhouse.com/our-history"
+      }
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "1941",
@@ -22136,7 +25245,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/79543/1377307249/large.jpg?1377307249",
     "description": "Operated in Queens from 1939 to 1999.",
     "confidence": "high",
     "sources": [
@@ -22144,7 +25253,42 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/1941"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
+  },
+  {
+    "id": "36271",
+    "name": "Spectacle Theater",
+    "alternateNames": [],
+    "address": "124 S. 3rd Street, Brooklyn, NY 11211",
+    "latitude": 40.712901,
+    "longitude": -73.963505,
+    "borough": "Brooklyn",
+    "openingYear": 2010,
+    "closingYear": null,
+    "reopeningYear": null,
+    "status": "open",
+    "theaterType": "unknown",
+    "screens": 1,
+    "seats": null,
+    "operator": null,
+    "featured": false,
+    "image": "https://photos.cinematreasures.org/production/photos/75455/1372347663/large.JPG?1372347663",
+    "description": "Operating in Brooklyn since 2010. Opening year verified from Spectacle Theater.",
+    "confidence": "high",
+    "sources": [
+      {
+        "label": "Cinema Treasures",
+        "url": "https://cinematreasures.org/theaters/36271"
+      },
+      {
+        "label": "Spectacle Theater",
+        "url": "https://www.spectacletheater.com/about/"
+      }
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "9226",
@@ -22166,15 +25310,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Queens in 1910; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/262747/1546009197/large.gif?1546009197",
+    "description": "Opened in Queens in 1910; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by NY Best Auto Repair Inc.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/9226"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": {
+      "name": "NY Best Auto Repair Inc",
+      "category": "shop",
+      "type": "car_repair"
+    }
   },
   {
     "id": "3881",
@@ -22195,7 +25349,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/68256/1362236210/large.PNG?1362236210",
     "description": "Operated in Brooklyn from 1927 to 1965.",
     "confidence": "high",
     "sources": [
@@ -22203,7 +25357,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3881"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "1865",
@@ -22222,7 +25378,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": true,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/188286/1477235369/large.gif?1477235369",
     "description": "Operating in Staten Island since 1978.",
     "confidence": "high",
     "sources": [
@@ -22230,7 +25386,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/1865"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "3383",
@@ -22251,7 +25409,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/8123/1309369626/large.jpg?1309369626",
     "description": "Operated in Staten Island from 1927 to 1957.",
     "confidence": "high",
     "sources": [
@@ -22259,7 +25417,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3383"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "15018",
@@ -22280,7 +25440,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/212910/1499135173/large.jpg?1499135173",
     "description": "Operated in Manhattan from 1921 to 1944.",
     "confidence": "high",
     "sources": [
@@ -22288,7 +25448,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/15018"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "11514",
@@ -22307,7 +25469,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/215793/1502320632/large.jpg?1502320632",
     "description": "Operated in Manhattan from 1914 to 1956. Opening year is approximate (1914).",
     "confidence": "low",
     "sources": [
@@ -22315,7 +25477,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/11514"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7871",
@@ -22337,15 +25501,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1955; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/154502/1452714413/large.gif?1452714413",
+    "description": "Opened in Manhattan in 1955; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by Spectrum.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7871"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": {
+      "name": "Spectrum",
+      "category": "shop",
+      "type": "telecommunication"
+    }
   },
   {
     "id": "10629",
@@ -22364,15 +25538,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Bronx in 1914; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/233093/1518248059/large.jpg?1518248059",
+    "description": "Opened in Bronx in 1914; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/10629"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "24176",
@@ -22393,15 +25573,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Brooklyn in 1890; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/263604/1547336414/large.jpg?1547336414",
+    "description": "Opened in Brooklyn in 1890; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/24176"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "41502",
@@ -22420,7 +25606,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/77321/1375020061/large.JPG?1375020061",
     "description": "Operated in Brooklyn from 1912 to 1914.",
     "confidence": "high",
     "sources": [
@@ -22428,7 +25614,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/41502"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "8018",
@@ -22447,7 +25635,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/165289/1461211384/large.jpg?1461211384",
     "description": "Operated in Brooklyn from 1926 to 1968.",
     "confidence": "high",
     "sources": [
@@ -22455,7 +25643,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8018"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "4867",
@@ -22476,7 +25666,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/158357/1455305769/large.jpg?1455305769",
     "description": "Operated in Brooklyn from 1921 to 1965.",
     "confidence": "high",
     "sources": [
@@ -22484,7 +25674,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4867"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "8864",
@@ -22504,14 +25696,20 @@ export const theaters: Theater[] = [
     "operator": null,
     "featured": false,
     "image": null,
-    "description": "Opened in Queens in 1940; the closing year wasn't recorded. Opening year is an upper bound ('prior to/before 1940'). Not stated on source page: closing year, image.",
+    "description": "Opened in Queens in 1940; the closing year wasn't recorded. Opening year is an upper bound ('prior to/before 1940'). Not stated on source page: closing year, image. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "low",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8864"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "10705",
@@ -22530,7 +25728,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/208924/1495071181/large.jpg?1495071181",
     "description": "Operated in Staten Island from 1948 to 1965.",
     "confidence": "high",
     "sources": [
@@ -22538,7 +25736,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/10705"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "44542",
@@ -22558,14 +25758,20 @@ export const theaters: Theater[] = [
     "operator": null,
     "featured": false,
     "image": null,
-    "description": "Opened in Queens in 1915; the closing year wasn't recorded. Not stated on source page: closing year, image.",
+    "description": "Opened in Queens in 1915; the closing year wasn't recorded. Not stated on source page: closing year, image. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/44542"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "3905",
@@ -22584,7 +25790,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/94558/1391947328/large.PNG?1391947328",
     "description": "Operated in Brooklyn from 1927 to 1952.",
     "confidence": "high",
     "sources": [
@@ -22592,7 +25798,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3905"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "3367",
@@ -22614,7 +25822,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/85008/1382580231/large.jpg?1382580231",
     "description": "Operated in Manhattan from 1914 to 1956.",
     "confidence": "high",
     "sources": [
@@ -22622,7 +25830,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3367"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "8425",
@@ -22641,7 +25851,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/145604/1448297582/large.png?1448297582",
     "description": "Operated in Brooklyn from 1920 to 1966.",
     "confidence": "high",
     "sources": [
@@ -22649,7 +25859,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8425"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6929",
@@ -22668,23 +25880,33 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Queens in 1941; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/163481/1459098095/large.gif?1459098095",
+    "description": "Opened in Queens in 1941; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by Family Market.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6929"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": {
+      "name": "Family Market",
+      "category": "shop",
+      "type": "supermarket"
+    }
   },
   {
     "id": "64677",
     "name": "Stuart Cinema & Cafe",
     "alternateNames": [],
     "address": "79 West Street, Brooklyn, NY 11222",
-    "latitude": 40.72931130000001,
-    "longitude": -73.95958949999999,
+    "latitude": 40.7293113,
+    "longitude": -73.9595895,
     "borough": "Brooklyn",
     "openingYear": 2018,
     "closingYear": 2026,
@@ -22695,7 +25917,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/341183/1617036142/large.jpeg?1617036142",
     "description": "Operated in Brooklyn from 2018 to 2026. Reopened in 2021 after an earlier closure. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -22703,7 +25925,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/64677"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "73794",
@@ -22722,7 +25946,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/513107/1776974780/large.jpg?1776974780",
     "description": "Operating in Queens since 2027.",
     "confidence": "high",
     "sources": [
@@ -22730,7 +25954,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/73794"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "12052",
@@ -22749,7 +25975,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/6496/1308692794/large.jpg?1308692794",
     "description": "Operated in Brooklyn from 1914 to 1967.",
     "confidence": "high",
     "sources": [
@@ -22757,7 +25983,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/12052"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "23776",
@@ -22778,7 +26006,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/77370/1375031924/large.JPG?1375031924",
     "description": "Operated in Brooklyn from 1914 to 1932. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -22786,7 +26014,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/23776"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "10396",
@@ -22810,7 +26040,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/44141/1336587735/large.jpg?1336587735",
     "description": "Operated in Manhattan from 1921 to 1995. Reopened in 1935 after an earlier closure. Closing year is approximate (1995). Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -22818,7 +26048,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/10396"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "9301",
@@ -22840,7 +26072,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/178329/1472469754/large.png?1472469754",
     "description": "Operated in Brooklyn from 1912 to 1959.",
     "confidence": "high",
     "sources": [
@@ -22848,7 +26080,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/9301"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6112",
@@ -22867,15 +26101,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Queens in 1926; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/176844/1471349640/large.jpg?1471349640",
+    "description": "Opened in Queens in 1926; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6112"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "1907",
@@ -22897,7 +26137,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/12/1305912727/large.jpg?1305912727",
     "description": "Operated in Manhattan from 1916 to 2018. Reopened in 2001 after an earlier closure. Opening year is approximate (1916). Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -22905,7 +26145,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/1907"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "13547",
@@ -22928,15 +26170,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1875; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/215291/1501632289/large.jpg?1501632289",
+    "description": "Opened in Manhattan in 1875; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by Cafe Mania.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/13547"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": {
+      "name": "Cafe Mania",
+      "category": "shop",
+      "type": "cannabis"
+    }
   },
   {
     "id": "47755",
@@ -22955,7 +26207,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/142954/1447171012/large.jpg?1447171012",
     "description": "Operated in Manhattan from 1926 to 1930. Opening year is an upper bound ('prior to/before 1926').",
     "confidence": "low",
     "sources": [
@@ -22963,7 +26215,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/47755"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7305",
@@ -22982,7 +26236,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/198430/1484617868/large.png?1484617868",
     "description": "Operated in Brooklyn from 1918 to 1956.",
     "confidence": "high",
     "sources": [
@@ -22990,7 +26244,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7305"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "3888",
@@ -23012,7 +26268,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/241014/1524682074/large.jpg?1524682074",
     "description": "Operated in Queens from 1971 to 1996. Reopened in 1981 after an earlier closure.",
     "confidence": "high",
     "sources": [
@@ -23020,7 +26276,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3888"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7995",
@@ -23039,15 +26297,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Bronx in 1935; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/48224/1341282388/large.jpg?1341282388",
+    "description": "Opened in Bronx in 1935; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7995"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "3967",
@@ -23069,7 +26333,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/264770/1549151564/large.jpg?1549151564",
     "description": "Operated in Brooklyn from 1927 to 1977. Reopened in 1974 after an earlier closure.",
     "confidence": "high",
     "sources": [
@@ -23077,7 +26341,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3967"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "285",
@@ -23098,7 +26364,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/495202/1757681443/large.jpg?1757681443",
     "description": "Operating in Manhattan since 1931.",
     "confidence": "high",
     "sources": [
@@ -23106,7 +26372,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/285"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "14084",
@@ -23127,7 +26395,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/36724/1330184786/large.jpg?1330184786",
     "description": "Operating in Manhattan since 1918.",
     "confidence": "high",
     "sources": [
@@ -23135,7 +26403,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/14084"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "51494",
@@ -23154,7 +26424,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/155527/1453317243/large.jpg?1453317243",
     "description": "Operating in Brooklyn since 2016.",
     "confidence": "high",
     "sources": [
@@ -23162,7 +26432,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/51494"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "18057",
@@ -23189,15 +26461,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1924; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/178473/1472550501/large.jpg?1472550501",
+    "description": "Opened in Manhattan in 1924; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/18057"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "10639",
@@ -23222,7 +26500,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/220307/1507313108/large.jpg?1507313108",
     "description": "Operating in Manhattan since 1911. Opening year is an upper bound ('prior to/before 1911').",
     "confidence": "low",
     "sources": [
@@ -23230,7 +26508,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/10639"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "3870",
@@ -23249,15 +26529,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Brooklyn in 1926; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/131315/1437613273/large.jpg?1437613273",
+    "description": "Opened in Brooklyn in 1926; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3870"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "7660",
@@ -23276,7 +26562,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/263507/1547124947/large.jpg?1547124947",
     "description": "Operated in Manhattan from 1937 to 1960.",
     "confidence": "high",
     "sources": [
@@ -23284,7 +26570,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7660"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "54358",
@@ -23305,7 +26593,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/194027/1480806706/large.jpg?1480806706",
     "description": "Operating in Manhattan since 2016.",
     "confidence": "high",
     "sources": [
@@ -23313,7 +26601,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/54358"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "72664",
@@ -23322,7 +26612,7 @@ export const theaters: Theater[] = [
       "Emerging Cinema"
     ],
     "address": "410 W. 42nd Street, New York, NY 10036",
-    "latitude": 40.75837629999999,
+    "latitude": 40.7583763,
     "longitude": -73.9934141,
     "borough": "Manhattan",
     "openingYear": 1978,
@@ -23342,7 +26632,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/72664"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "21833",
@@ -23361,15 +26653,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1926; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/193787/1480656177/large.jpg?1480656177",
+    "description": "Opened in Manhattan in 1926; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/21833"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "11712",
@@ -23391,7 +26689,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/125596/1432003017/large.jpg?1432003017",
     "description": "Operated in Brooklyn from 1923 to 1956. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -23399,7 +26697,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/11712"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "1034",
@@ -23418,15 +26718,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1920; the closing year wasn't recorded. Reopened in 2011 after an earlier closure. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/1580/1306948143/large.jpg?1306948143",
+    "description": "Opened in Manhattan in 1920; the closing year wasn't recorded. Reopened in 2011 after an earlier closure. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/1034"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "11302",
@@ -23445,15 +26751,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1926; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/363015/1642675495/large.png?1642675495",
+    "description": "Opened in Manhattan in 1926; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/11302"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "A nearby mapped venue matched part of the name, but review did not confirm it as the same historical theater; the theater is closed and its closing year remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "3977",
@@ -23475,7 +26787,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/263569/1547251077/large.jpg?1547251077",
     "description": "Operated in Brooklyn from 1927 to 1952.",
     "confidence": "high",
     "sources": [
@@ -23483,7 +26795,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3977"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "1078",
@@ -23505,7 +26819,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/6827/1308846756/large.jpg?1308846756",
     "description": "Operating in Manhattan since 1918. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -23513,7 +26827,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/1078"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "8795",
@@ -23534,7 +26850,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/263606/1547336681/large.jpg?1547336681",
     "description": "Operated in Brooklyn from 1914 to 1955. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -23542,7 +26858,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8795"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "36584",
@@ -23561,7 +26879,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/21540/1313255004/large.JPG?1313255004",
     "description": "Operated in Brooklyn from 1911 to 2006. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -23569,7 +26887,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/36584"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "4128",
@@ -23590,15 +26910,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1926; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/51567/1344389431/large.jpg?1344389431",
+    "description": "Opened in Manhattan in 1926; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by Fat Boys Burgers.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4128"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": {
+      "name": "Fat Boys Burgers",
+      "category": "amenity",
+      "type": "fast_food"
+    }
   },
   {
     "id": "16932",
@@ -23619,15 +26949,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Brooklyn in 1925; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/261888/1544339907/large.jpg?1544339907",
+    "description": "Opened in Brooklyn in 1925; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/16932"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "6377",
@@ -23646,7 +26982,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/282843/1565662262/large.jpg?1565662262",
     "description": "Operated in Manhattan from 1938 to 1965.",
     "confidence": "high",
     "sources": [
@@ -23654,7 +26990,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6377"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "13799",
@@ -23675,7 +27013,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/225364/1511609442/large.jpg?1511609442",
     "description": "Operated in Manhattan from 1933 to 1933.",
     "confidence": "high",
     "sources": [
@@ -23683,7 +27021,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/13799"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7060",
@@ -23702,15 +27042,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1937; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/495381/1757868512/large.jpg?1757868512",
+    "description": "Opened in Manhattan in 1937; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by Lululemon.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7060"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": {
+      "name": "Lululemon",
+      "category": "shop",
+      "type": "clothes"
+    }
   },
   {
     "id": "13914",
@@ -23729,15 +27079,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1931; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/57648/1349457193/large.jpg?1349457193",
+    "description": "Opened in Manhattan in 1931; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/13914"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "13922",
@@ -23756,15 +27112,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1931; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/276530/1560906473/large.jpg?1560906473",
+    "description": "Opened in Manhattan in 1931; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/13922"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "3968",
@@ -23783,7 +27145,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/237680/1521820534/large.jpg?1521820534",
     "description": "Operated in Brooklyn from 1934 to 1951.",
     "confidence": "high",
     "sources": [
@@ -23791,7 +27153,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3968"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "20439",
@@ -23813,7 +27177,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/114310/1419291592/large.jpg?1419291592",
     "description": "Operated in Bronx from 1910 to 1960. Opening year is approximate (1910). Closing year is approximate (1960). Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -23821,7 +27185,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/20439"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "3951",
@@ -23840,7 +27206,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/6046/1308583352/large.jpg?1308583352",
     "description": "Operated in Brooklyn from 1936 to 1952.",
     "confidence": "high",
     "sources": [
@@ -23848,7 +27214,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3951"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "11150",
@@ -23869,7 +27237,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/189/1306337376/large.jpg?1306337376",
     "description": "Operated in Manhattan from 1995 to 2015. Opening year represents an approximate decade reference (1995).",
     "confidence": "low",
     "sources": [
@@ -23877,7 +27245,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/11150"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7603",
@@ -23898,15 +27268,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1935; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/40929/1333431040/large.jpg?1333431040",
+    "description": "Opened in Manhattan in 1935; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7603"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "4050",
@@ -23925,7 +27301,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/115817/1421261934/large.jpg?1421261934",
     "description": "Operated in Brooklyn from 1968 to 1977. Opening year is approximate (1968).",
     "confidence": "low",
     "sources": [
@@ -23933,7 +27309,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4050"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "4231",
@@ -23952,7 +27330,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/261872/1544314204/large.jpg?1544314204",
     "description": "Operated in Brooklyn from 1929 to 1963.",
     "confidence": "high",
     "sources": [
@@ -23960,7 +27338,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4231"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "10983",
@@ -23982,14 +27362,20 @@ export const theaters: Theater[] = [
     "operator": null,
     "featured": false,
     "image": null,
-    "description": "Opened in Brooklyn in 1912; the closing year wasn't recorded. Not stated on source page: closing year, image.",
+    "description": "Opened in Brooklyn in 1912; the closing year wasn't recorded. Not stated on source page: closing year, image. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/10983"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "2557",
@@ -24011,7 +27397,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/162422/1458325382/large.jpg?1458325382",
     "description": "Operated in Queens from 1920 to 2001.",
     "confidence": "high",
     "sources": [
@@ -24019,7 +27405,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/2557"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "4028",
@@ -24040,7 +27428,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/347298/1623608210/large.jpeg?1623608210",
     "description": "Operated in Queens from 1963 to 1999.",
     "confidence": "high",
     "sources": [
@@ -24048,7 +27436,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4028"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "4688",
@@ -24071,7 +27461,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/5884/1308527393/large.jpg?1308527393",
     "description": "Operated in Queens from 1924 to 2005.",
     "confidence": "high",
     "sources": [
@@ -24079,7 +27469,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4688"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7025",
@@ -24098,7 +27490,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/210352/1496890735/large.jpg?1496890735",
     "description": "Operated in Queens from 1990 to 2005. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -24106,7 +27498,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7025"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "2619",
@@ -24128,15 +27522,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Brooklyn in 1913; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/22215/1313621887/large.jpg?1313621887",
+    "description": "Opened in Brooklyn in 1913; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/2619"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "3273",
@@ -24157,7 +27557,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/242026/1525644970/large.jpg?1525644970",
     "description": "Operated in Queens from 1922 to 2020. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -24165,7 +27565,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3273"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "11960",
@@ -24175,7 +27577,7 @@ export const theaters: Theater[] = [
     ],
     "address": "145 E. Service Road, Staten Island, NY 10314",
     "latitude": 40.5879402,
-    "longitude": -74.19105909999999,
+    "longitude": -74.1910591,
     "borough": "Staten Island",
     "openingYear": 1987,
     "closingYear": 2005,
@@ -24186,7 +27588,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/358936/1636651450/large.png?1636651450",
     "description": "Operated in Staten Island from 1987 to 2005.",
     "confidence": "high",
     "sources": [
@@ -24194,7 +27596,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/11960"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "4734",
@@ -24215,7 +27619,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/123545/1429973209/large.jpg?1429973209",
     "description": "Operated in Queens from 1926 to 1997.",
     "confidence": "high",
     "sources": [
@@ -24223,7 +27627,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4734"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "33823",
@@ -24250,7 +27656,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/33823"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6121",
@@ -24272,7 +27680,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/3957/1307915061/large.jpg?1307915061",
     "description": "Operated in Manhattan from 1971 to 2012.",
     "confidence": "high",
     "sources": [
@@ -24280,7 +27688,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6121"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "10487",
@@ -24299,7 +27709,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/7263/1309057807/large.jpg?1309057807",
     "description": "Operated in Manhattan from 1970 to 2012.",
     "confidence": "high",
     "sources": [
@@ -24307,7 +27717,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/10487"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "44",
@@ -24329,7 +27741,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": true,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/104427/1405463797/large.jpg?1405463797",
     "description": "Operating in Manhattan since 1930.",
     "confidence": "high",
     "sources": [
@@ -24337,7 +27749,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/44"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "6097",
@@ -24367,7 +27781,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6097"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "559",
@@ -24386,7 +27802,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/259718/1541521620/large.gif?1541521620",
     "description": "Operated in Manhattan from 1921 to 2023.",
     "confidence": "high",
     "sources": [
@@ -24394,7 +27810,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/559"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "15327",
@@ -24413,7 +27831,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/7902/1309272660/large.jpg?1309272660",
     "description": "Operated in Brooklyn from 1920 to 1954.",
     "confidence": "high",
     "sources": [
@@ -24421,7 +27839,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/15327"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "3289",
@@ -24442,15 +27862,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Queens in 1942; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/42798/1335202140/large.jpg?1335202140",
+    "description": "Opened in Queens in 1942; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3289"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "7489",
@@ -24469,15 +27895,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Bronx in 1920; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/55909/1348150199/large.JPG?1348150199",
+    "description": "Opened in Bronx in 1920; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7489"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "21965",
@@ -24498,7 +27930,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/261972/1544479463/large.jpg?1544479463",
     "description": "Operated in Brooklyn from 1914 to 1949. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -24506,7 +27938,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/21965"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "17472",
@@ -24527,15 +27961,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1969; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/117519/1423345955/large.jpg?1423345955",
+    "description": "Opened in Manhattan in 1969; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/17472"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "44240",
@@ -24562,7 +28002,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/44240"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "19972",
@@ -24576,7 +28018,7 @@ export const theaters: Theater[] = [
     "longitude": -73.9415116,
     "borough": "Manhattan",
     "openingYear": 1926,
-    "closingYear": 2086,
+    "closingYear": null,
     "reopeningYear": null,
     "status": "closed",
     "theaterType": "unknown",
@@ -24584,15 +28026,17 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Operated in Manhattan from 1926 to 2086. Opening year is approximate (1926). Most recent stated closing year retained.",
+    "image": "https://photos.cinematreasures.org/production/photos/270709/1556493368/large.jpg?1556493368",
+    "description": "Opened in Manhattan in 1926; the closing year wasn't recorded. Opening year is approximate (1926). Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/19972"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "2945",
@@ -24617,15 +28061,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1918; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/23243/1314123166/large.jpg?1314123166",
+    "description": "Opened in Manhattan in 1918; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by T-Mobile.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/2945"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": {
+      "name": "T-Mobile",
+      "category": "shop",
+      "type": "mobile_phone"
+    }
   },
   {
     "id": "3398",
@@ -24646,7 +28100,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/94984/1392498548/large.jpg?1392498548",
     "description": "Operated in Staten Island from 1925 to 1961.",
     "confidence": "high",
     "sources": [
@@ -24654,7 +28108,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3398"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "50179",
@@ -24673,7 +28129,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/139621/1445100495/large.JPG?1445100495",
     "description": "Operated in Brooklyn from 1911 to 1929.",
     "confidence": "high",
     "sources": [
@@ -24681,7 +28137,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/50179"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "290",
@@ -24711,7 +28169,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/21/1305941380/large.jpg?1305941380",
     "description": "Operating in Manhattan since 1926. Reopened in 1991 after an earlier closure. Most recent stated closing year retained. Most recent stated reopening year retained.",
     "confidence": "low",
     "sources": [
@@ -24719,7 +28177,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/290"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "3914",
@@ -24741,7 +28201,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/122608/1428799810/large.jpg?1428799810",
     "description": "Operated in Brooklyn from 1925 to 1956.",
     "confidence": "high",
     "sources": [
@@ -24749,7 +28209,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3914"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7880",
@@ -24770,7 +28232,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/248244/1531168688/large.jpg?1531168688",
     "description": "Operated in Bronx from 1928 to 1935. Reopened in 1935 after an earlier closure.",
     "confidence": "high",
     "sources": [
@@ -24778,7 +28240,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7880"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "48364",
@@ -24805,7 +28269,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/48364"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "3927",
@@ -24826,7 +28292,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/228770/1514375614/large.jpg?1514375614",
     "description": "Operated in Brooklyn from 1921 to 1979. Reopened in 1943 after an earlier closure. Most recent stated closing year retained. Most recent stated reopening year retained.",
     "confidence": "low",
     "sources": [
@@ -24834,7 +28300,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/3927"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "8092",
@@ -24853,15 +28321,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Bronx in 1927; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/61235/1353507438/large.jpg?1353507438",
+    "description": "Opened in Bronx in 1927; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8092"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "8798",
@@ -24880,15 +28354,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Brooklyn in 1934; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/261895/1544376202/large.gif?1544376202",
+    "description": "Opened in Brooklyn in 1934; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8798"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "11667",
@@ -24907,15 +28387,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1926; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/150235/1450799496/large.gif?1450799496",
+    "description": "Opened in Manhattan in 1926; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by Avra Rockefeller Center.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/11667"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": {
+      "name": "Avra Rockefeller Center",
+      "category": "amenity",
+      "type": "restaurant"
+    }
   },
   {
     "id": "1597",
@@ -24934,7 +28424,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/95563/1393409777/large.jpg?1393409777",
     "description": "Operated in Brooklyn from 1926 to 1988.",
     "confidence": "high",
     "sources": [
@@ -24942,7 +28432,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/1597"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "30503",
@@ -24963,7 +28455,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/119222/1425506704/large.jpg?1425506704",
     "description": "Operating in Manhattan since 1921. Reopened in 1937 after an earlier closure. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -24971,7 +28463,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/30503"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7846",
@@ -24990,7 +28484,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/8621/1309521900/large.jpg?1309521900",
     "description": "Operating in Manhattan since 1991.",
     "confidence": "high",
     "sources": [
@@ -24998,7 +28492,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7846"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "8208",
@@ -25017,7 +28513,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/38726/1331667877/large.jpg?1331667877",
     "description": "Operated in Bronx from 1927 to 1927.",
     "confidence": "high",
     "sources": [
@@ -25025,7 +28521,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8208"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "8915",
@@ -25053,7 +28551,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/22295/1313625198/large.jpg?1313625198",
     "description": "Operated in Manhattan from 1924 to 1948.",
     "confidence": "high",
     "sources": [
@@ -25061,7 +28559,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8915"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "50196",
@@ -25080,7 +28580,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/140078/1445445179/large.JPG?1445445179",
     "description": "Operated in Brooklyn from 1913 to 1920. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -25088,7 +28588,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/50196"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "11133",
@@ -25115,7 +28617,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/11133"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7045",
@@ -25134,15 +28638,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1910; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/115829/1421306259/large.jpg?1421306259",
+    "description": "Opened in Manhattan in 1910; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7045"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "16275",
@@ -25165,15 +28675,25 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1892; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/193548/1480373863/large.jpg?1480373863",
+    "description": "Opened in Manhattan in 1892; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown. The site is now occupied by Citi Bike - Broadway & W 29 St.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/16275"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": {
+      "name": "Citi Bike - Broadway & W 29 St",
+      "category": "amenity",
+      "type": "bicycle_rental"
+    }
   },
   {
     "id": "7982",
@@ -25193,14 +28713,20 @@ export const theaters: Theater[] = [
     "operator": null,
     "featured": false,
     "image": null,
-    "description": "Opened in Bronx in 1910; the closing year wasn't recorded. Opening year is approximate (1910). Not stated on source page: closing year, image.",
+    "description": "Opened in Bronx in 1910; the closing year wasn't recorded. Opening year is approximate (1910). Not stated on source page: closing year, image. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "low",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7982"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "12426",
@@ -25221,7 +28747,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/224163/1510619419/large.jpg?1510619419",
     "description": "Operated in Manhattan from 1902 to 1975. Reopened in 1937 after an earlier closure. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -25229,7 +28755,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/12426"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "13664",
@@ -25248,15 +28776,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Brooklyn in 1914; the closing year wasn't recorded. Opening year is an upper bound ('prior to/before 1914'). Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/32794/1325547158/large.jpg?1325547158",
+    "description": "Opened in Brooklyn in 1914; the closing year wasn't recorded. Opening year is an upper bound ('prior to/before 1914'). Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "low",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/13664"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "6938",
@@ -25277,7 +28811,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/55854/1348091748/large.jpg?1348091748",
     "description": "Operated in Bronx from 1949 to 2013. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -25285,7 +28819,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/6938"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "18380",
@@ -25304,7 +28840,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/108630/1410832534/large.jpg?1410832534",
     "description": "Operated in Bronx from 1983 to 2013.",
     "confidence": "high",
     "sources": [
@@ -25312,7 +28848,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/18380"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "8426",
@@ -25331,15 +28869,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Queens in 1912; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/150905/1451351578/large.jpg?1451351578",
+    "description": "Opened in Queens in 1912; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8426"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "40375",
@@ -25358,7 +28902,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/63950/1357171094/large.jpg?1357171094",
     "description": "Operating in Brooklyn since 2012.",
     "confidence": "high",
     "sources": [
@@ -25366,7 +28910,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/40375"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "1414",
@@ -25387,7 +28933,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/52644/1345298651/large.jpg?1345298651",
     "description": "Operated in Brooklyn from 1914 to 1985. Reopened in 1959 after an earlier closure. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -25395,7 +28941,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/1414"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "8019",
@@ -25414,7 +28962,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/123757/1430185289/large.jpg?1430185289",
     "description": "Operated in Brooklyn from 1913 to 1951.",
     "confidence": "high",
     "sources": [
@@ -25422,7 +28970,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8019"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "16060",
@@ -25443,7 +28993,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/45457/1338073157/large.jpg?1338073157",
     "description": "Operated in Brooklyn from 1919 to 1945. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -25451,7 +29001,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/16060"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "4080",
@@ -25470,7 +29022,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/159168/1455841905/large.jpg?1455841905",
     "description": "Operated in Brooklyn from 1928 to 1959.",
     "confidence": "high",
     "sources": [
@@ -25478,7 +29030,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/4080"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "8049",
@@ -25497,15 +29051,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Bronx in 1920; the closing year wasn't recorded. Opening year is approximate (1920). Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/55851/1348090704/large.jpg?1348090704",
+    "description": "Opened in Bronx in 1920; the closing year wasn't recorded. Opening year is approximate (1920). Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "low",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8049"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "13523",
@@ -25526,15 +29086,21 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
-    "description": "Opened in Manhattan in 1926; the closing year wasn't recorded. Not stated on source page: closing year.",
+    "image": "https://photos.cinematreasures.org/production/photos/243407/1526802151/large.jpg?1526802151",
+    "description": "Opened in Manhattan in 1926; the closing year wasn't recorded. Not stated on source page: closing year. Current-address audit found no confirmed continuation of this theater; it is closed, but the closing year is unknown.",
     "confidence": "medium",
     "sources": [
       {
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/13523"
       }
-    ]
+    ],
+    "closureAudit": {
+      "result": "closed_unknown_date",
+      "confidence": "medium",
+      "note": "No matching current theater was found at the geocoded address. Closing date remains unknown."
+    },
+    "currentPlace": null
   },
   {
     "id": "839",
@@ -25556,7 +29122,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/92149/1389540537/large.jpg?1389540537",
     "description": "Operating in Manhattan since 1911. Reopened in 2001 after an earlier closure.",
     "confidence": "high",
     "sources": [
@@ -25564,7 +29130,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/839"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "8421",
@@ -25583,7 +29151,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/7975/1309287788/large.jpg?1309287788",
     "description": "Operated in Brooklyn from 1923 to 1959.",
     "confidence": "high",
     "sources": [
@@ -25591,7 +29159,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8421"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "7934",
@@ -25610,7 +29180,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/1887/1307035401/large.jpg?1307035401",
     "description": "Operated in Brooklyn from 1915 to 1951.",
     "confidence": "high",
     "sources": [
@@ -25618,7 +29188,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/7934"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "8709",
@@ -25640,7 +29212,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/266885/1552003127/large.jpg?1552003127",
     "description": "Operated in Manhattan from 1964 to 1964.",
     "confidence": "high",
     "sources": [
@@ -25648,7 +29220,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/8709"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "12",
@@ -25667,7 +29241,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/2870/1307392323/large.jpg?1307392323",
     "description": "Operated in Manhattan from 1969 to 2017. Reopened in 2017 after an earlier closure. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -25675,7 +29249,9 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/12"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   },
   {
     "id": "2251",
@@ -25696,7 +29272,7 @@ export const theaters: Theater[] = [
     "seats": null,
     "operator": null,
     "featured": false,
-    "image": null,
+    "image": "https://photos.cinematreasures.org/production/photos/495519/1757996431/large.jpg?1757996431",
     "description": "Operated in Manhattan from 1969 to 2016. Most recent stated closing year retained.",
     "confidence": "low",
     "sources": [
@@ -25704,6 +29280,8 @@ export const theaters: Theater[] = [
         "label": "Cinema Treasures",
         "url": "https://cinematreasures.org/theaters/2251"
       }
-    ]
+    ],
+    "closureAudit": null,
+    "currentPlace": null
   }
 ] satisfies Theater[];

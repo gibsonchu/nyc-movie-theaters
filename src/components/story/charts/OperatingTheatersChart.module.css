@@ -1,0 +1,141 @@
+.wrap {
+  position: relative;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 18px;
+  margin-bottom: 18px;
+}
+
+.filterBtn {
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 2px 0 6px;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: var(--ink-faint);
+  cursor: pointer;
+}
+
+.filterBtn:hover {
+  color: var(--ink);
+}
+
+.filterBtnActive {
+  color: var(--ink);
+  border-bottom-color: var(--accent);
+  font-weight: 700;
+}
+
+.svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  touch-action: none;
+  cursor: crosshair;
+}
+
+.gridLine {
+  stroke: var(--rule);
+  stroke-width: 1;
+}
+
+.axisLine {
+  stroke: var(--ink);
+  stroke-width: 1;
+}
+
+.yLabel,
+.xLabel {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  fill: var(--ink-faint);
+}
+
+.confirmedArea {
+  fill: var(--accent);
+  fill-opacity: 0.82;
+}
+
+.uncertainArea {
+  fill: var(--accent);
+  fill-opacity: 0.22;
+}
+
+.hoverLine {
+  stroke: var(--ink);
+  stroke-width: 1;
+  stroke-dasharray: 2 2;
+  pointer-events: none;
+}
+
+.tooltip {
+  position: absolute;
+  top: 8px;
+  transform: translateX(-50%);
+  background: var(--card-bg);
+  border: 1px solid var(--ink);
+  padding: 8px 12px;
+  pointer-events: none;
+  white-space: nowrap;
+  box-shadow: 2px 2px 0 rgba(26, 26, 24, 0.08);
+}
+
+.tooltipYear {
+  margin: 0 0 4px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.tooltipRow {
+  margin: 0;
+  font-size: 11px;
+  color: var(--ink-soft);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 20px;
+  margin-top: 14px;
+}
+
+.legendItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--ink-faint);
+}
+
+.swatchConfirmed,
+.swatchUncertain {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  flex: 0 0 auto;
+}
+
+.swatchConfirmed {
+  background: var(--accent);
+  opacity: 0.82;
+}
+
+.swatchUncertain {
+  background: var(--accent);
+  opacity: 0.22;
+}
+
+@media (max-width: 640px) {
+  .tooltip {
+    left: 50% !important;
+    transform: translateX(-50%);
+  }
+}

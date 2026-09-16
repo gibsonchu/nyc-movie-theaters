@@ -27,6 +27,27 @@ export interface TheaterSource {
   url?: string;
 }
 
+/**
+ * What a geocoding + on-the-ground audit found at a theater's address today,
+ * for theaters whose closure was confirmed but whose exact closing year
+ * wasn't recoverable from the source. Only populated for that cohort.
+ */
+export interface ClosureAudit {
+  /** e.g. "closed_unknown_date" — the audit's finding. */
+  result: string;
+  confidence: Confidence | null;
+  note: string | null;
+}
+
+/** What occupies the theater's former address today, if the geocoder found something worth noting. */
+export interface CurrentPlace {
+  name: string | null;
+  /** Coarse OSM category, e.g. "amenity", "shop", "building", "highway". */
+  category: string | null;
+  /** Finer OSM type within that category, e.g. "restaurant", "convenience". */
+  type: string | null;
+}
+
 export interface Theater {
   id: string;
   name: string;
@@ -57,6 +78,10 @@ export interface Theater {
   description: string;
   confidence: Confidence;
   sources: TheaterSource[];
+  /** Set only for theaters confirmed closed whose exact closing year is unknown. */
+  closureAudit: ClosureAudit | null;
+  /** Set only when the geocoder found a present-day occupant worth surfacing. */
+  currentPlace: CurrentPlace | null;
 }
 
 export const THEATER_TYPE_LABELS: Record<TheaterType, string> = {
