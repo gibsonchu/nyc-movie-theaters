@@ -1,20 +1,22 @@
 @import "tailwindcss";
 
 :root {
-  --paper: #f4f1ea;
-  --paper-deep: #eae5d9;
-  --ink: #1a1a18;
-  --ink-soft: #4d4a43;
-  --ink-faint: #8b877d;
-  --rule: rgba(26, 26, 24, 0.16);
-  --rule-strong: rgba(26, 26, 24, 0.32);
+  --paper: #ffffff;
+  --paper-deep: #f2f2f3;
+  --ink: #161717;
+  --ink-pure: #000000;
+  --ink-soft: #3d3f3f;
+  --ink-faint: #86898a;
+  --meta: #7c9aa1;
+  --rule: rgba(22, 23, 23, 0.13);
+  --rule-strong: rgba(22, 23, 23, 0.28);
   --accent: #a4283c;
   --accent-soft: rgba(164, 40, 60, 0.1);
-  --card-bg: #fbf8f2;
+  --card-bg: #fafafa;
 
-  --font-serif: Georgia, "Iowan Old Style", "Palatino Linotype", "URW Palladio L", P052, serif;
-  --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --font-sans: var(--font-grotesk), "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-serif: var(--font-sans);
+  --font-mono: var(--font-sans);
 }
 
 * {
@@ -30,6 +32,8 @@ body {
   background: var(--paper);
   color: var(--ink);
   font-family: var(--font-sans);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
   -webkit-font-smoothing: antialiased;
 }
 

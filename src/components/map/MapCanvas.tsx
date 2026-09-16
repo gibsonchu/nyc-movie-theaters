@@ -87,7 +87,7 @@ export function MapCanvas({ children }: { children?: React.ReactNode }) {
         source: "zoning",
         layout: { visibility: "none" },
         paint: {
-          "line-color": "#2a2a28",
+          "line-color": "#161717",
           "line-opacity": 0.18,
           "line-width": 0.6,
         },
@@ -103,7 +103,7 @@ export function MapCanvas({ children }: { children?: React.ReactNode }) {
           "circle-color": "#a4283c",
           "circle-radius": circleRadiusExpression(year),
           "circle-opacity": circleOpacityExpression(year),
-          "circle-stroke-color": "#fbf7f0",
+          "circle-stroke-color": "#ffffff",
           "circle-stroke-width": 1.2,
           "circle-stroke-opacity": circleOpacityExpression(year),
           "circle-radius-transition": { duration: 260 },
@@ -120,7 +120,7 @@ export function MapCanvas({ children }: { children?: React.ReactNode }) {
         paint: {
           "circle-radius": 13,
           "circle-color": "transparent",
-          "circle-stroke-color": "#1a1a18",
+          "circle-stroke-color": "#161717",
           "circle-stroke-width": 1.4,
         },
       });

@@ -38,10 +38,12 @@
 
 .name {
   margin: 0 0 4px;
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-size: 24px;
-  line-height: 1.15;
-  font-weight: 700;
+  line-height: 1.1;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  color: var(--ink-pure);
 }
 
 .alternateNames {
@@ -53,8 +55,10 @@
 
 .years {
   margin: 0 0 16px;
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 13px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
   color: var(--accent);
 }
 
@@ -92,8 +96,10 @@
 
 .stat dd {
   margin: 0;
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 14px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
 }
 
 .description {
@@ -131,8 +137,9 @@
 }
 
 .sources a {
-  text-decoration: underline;
-  text-underline-offset: 2px;
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent);
 }
 
 .confidenceNote {

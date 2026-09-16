@@ -20,8 +20,9 @@
 
 .yLabel,
 .xLabel {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 10.5px;
+  font-weight: 600;
   fill: var(--ink-faint);
 }
 
@@ -54,14 +55,14 @@
   padding: 8px 12px;
   pointer-events: none;
   white-space: nowrap;
-  box-shadow: 2px 2px 0 rgba(26, 26, 24, 0.08);
 }
 
 .tooltipDecade {
   margin: 0 0 4px;
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
 }
 
 .tooltipRow {

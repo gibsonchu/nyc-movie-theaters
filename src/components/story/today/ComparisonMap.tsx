@@ -42,7 +42,7 @@ export function ComparisonMap() {
         source: "all-theaters",
         paint: {
           "circle-radius": 3,
-          "circle-color": "#1a1a18",
+          "circle-color": "#161717",
           "circle-opacity": 0.28,
         },
       });
@@ -55,7 +55,7 @@ export function ComparisonMap() {
         paint: {
           "circle-radius": 5,
           "circle-color": "#a4283c",
-          "circle-stroke-color": "#fbf7f0",
+          "circle-stroke-color": "#ffffff",
           "circle-stroke-width": 1.2,
         },
       });

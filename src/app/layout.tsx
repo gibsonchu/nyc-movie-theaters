@@ -1,5 +1,12 @@
 import type { Metadata } from "next";
+import { Archivo } from "next/font/google";
 import "./globals.css";
+
+const archivo = Archivo({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-grotesk",
+});
 
 export const metadata: Metadata = {
   title: "Reel City — A History of New York's Movie Theaters",
@@ -9,7 +16,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className="h-full">
+    <html lang="en" className={`h-full ${archivo.variable}`}>
       <body className="h-full">{children}</body>
     </html>
   );

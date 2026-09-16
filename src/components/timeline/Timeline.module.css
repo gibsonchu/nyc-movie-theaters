@@ -22,6 +22,7 @@
   border: 1px solid var(--ink);
   padding: 9px 16px;
   font-size: 12px;
+  font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   cursor: pointer;
@@ -35,8 +36,10 @@
 
 .yearReadout {
   flex: 0 0 auto;
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 30px;
+  font-weight: 900;
+  color: var(--ink-pure);
   font-variant-numeric: tabular-nums;
   min-width: 4.4ch;
   text-align: right;
@@ -98,8 +101,9 @@
 
 .tickLabel {
   margin-top: 4px;
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 10px;
+  font-weight: 600;
   color: var(--ink-faint);
   white-space: nowrap;
 }

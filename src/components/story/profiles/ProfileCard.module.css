@@ -42,16 +42,20 @@
 
 .name {
   margin: 0 0 4px;
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-size: 22px;
-  font-weight: 700;
-  line-height: 1.15;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  color: var(--ink-pure);
 }
 
 .meta {
   margin: 0 0 14px;
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 12px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
   color: var(--ink-faint);
 }
 
@@ -76,7 +80,8 @@
   display: inline-block;
   margin-top: 14px;
   font-size: 11px;
+  font-weight: 700;
   letter-spacing: 0.03em;
   text-transform: uppercase;
-  border-bottom: 1px solid var(--ink);
+  border-bottom: 1px solid var(--accent);
 }

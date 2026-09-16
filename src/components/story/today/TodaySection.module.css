@@ -34,10 +34,14 @@
   font-weight: 600;
 }
 
+.boroughTable td {
+  font-weight: 700;
+}
+
 .boroughTable td:not(:first-child),
 .boroughTable th:not(:first-child) {
   text-align: right;
-  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
 }
 
 .returnPrompt {
