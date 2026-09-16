@@ -29,7 +29,7 @@ export function DisappearanceSection() {
   return (
     <section className={section.section} id="the-great-disappearance">
       <div className={section.inner}>
-        <p className={section.kicker}>Part Two</p>
+        <p className={section.kicker}>Part One</p>
         <h2 className={section.heading}>The Great Disappearance</h2>
         <p className={section.lede}>
           This dataset tracks {theaters.length.toLocaleString()} movie theaters that have operated somewhere in New

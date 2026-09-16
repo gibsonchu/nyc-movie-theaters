@@ -13,7 +13,7 @@ export function ProfilesSection() {
   return (
     <section className={section.section} id="every-dot-was-a-place">
       <div className={section.inner}>
-        <p className={section.kicker}>Part Four</p>
+        <p className={section.kicker}>Part Three</p>
         <h2 className={section.heading}>Every Dot Was a Place</h2>
         <p className={section.lede}>
           Numbers flatten the story. Behind each one is an address, a marquee, a name that sometimes changed more

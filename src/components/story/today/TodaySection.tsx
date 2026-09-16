@@ -24,7 +24,7 @@ export function TodaySection() {
   return (
     <section className={section.section} id="what-remains-today">
       <div className={section.inner}>
-        <p className={section.kicker}>Part Five</p>
+        <p className={section.kicker}>Part Four</p>
         <h2 className={section.heading}>What Remains Today</h2>
         <p className={section.lede}>
           Every faint dot below is a theater this dataset has a record of, anywhere in the city, at any point since
@@ -66,17 +66,10 @@ export function TodaySection() {
       </div>
 
       <div className={styles.returnPrompt}>
-        <p className={section.prose} style={{ margin: "0 auto 18px", textAlign: "center" }}>
-          Scroll back up to explore the full map and timeline — drag through 1896&ndash;2026, filter by zoning, and
-          click any theater for its full record.
+        <p className={section.prose} style={{ margin: "0 auto", textAlign: "center" }}>
+          That&rsquo;s the shape of the decline. Keep scrolling for the full interactive map — every theater, any
+          year, on your own terms.
         </p>
-        <button
-          type="button"
-          className={styles.returnBtn}
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-        >
-          Back to the map
-        </button>
       </div>
     </section>
   );

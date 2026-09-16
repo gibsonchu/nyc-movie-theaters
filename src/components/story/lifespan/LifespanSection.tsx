@@ -21,7 +21,7 @@ export function LifespanSection() {
   return (
     <section className={section.section} id="every-theater-had-a-lifespan">
       <div className={section.inner}>
-        <p className={section.kicker}>Part Three</p>
+        <p className={section.kicker}>Part Two</p>
         <h2 className={section.heading}>Every Theater Had a Lifespan</h2>
         <p className={section.lede}>
           Behind every dot on the map is a stretch of years — a year it opened its doors, and, for most, a year it

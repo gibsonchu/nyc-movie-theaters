@@ -1,5 +1,5 @@
 .card {
-  position: fixed;
+  position: absolute;
   z-index: 16;
   width: min(260px, calc(100vw - 32px));
   background: var(--card-bg);

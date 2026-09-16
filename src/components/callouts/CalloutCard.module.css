@@ -1,14 +1,12 @@
 .connectorLayer {
-  position: fixed;
+  position: absolute;
   inset: 0;
-  width: 100vw;
-  height: 100vh;
   z-index: 14;
   pointer-events: none;
 }
 
 .card {
-  position: fixed;
+  position: absolute;
   z-index: 15;
   width: min(300px, calc(100vw - 32px));
   background: var(--card-bg);

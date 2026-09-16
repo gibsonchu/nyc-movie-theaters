@@ -1,0 +1,32 @@
+.wrap {
+  padding-top: 96px;
+}
+
+.mapFrame {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 560px;
+  margin-top: 48px;
+  border-top: 1px solid var(--ink);
+  overflow: hidden;
+}
+
+.mapPlaceholder {
+  width: 100%;
+  height: 100vh;
+  min-height: 560px;
+  margin-top: 48px;
+  border-top: 1px solid var(--ink);
+  background: var(--paper-deep);
+}
+
+@media (max-width: 640px) {
+  .wrap {
+    padding-top: 64px;
+  }
+  .mapFrame,
+  .mapPlaceholder {
+    height: 100svh;
+  }
+}

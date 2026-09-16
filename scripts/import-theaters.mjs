@@ -77,8 +77,24 @@ function toIntOrNull(s) {
   return Number.isFinite(n) ? n : null;
 }
 
+// The source's "Open" status (39 rows) means the venue itself is still
+// operating, but doesn't confirm it's still showing films — in practice
+// most of these are Broadway/live-performance houses (Ambassador, Booth,
+// Golden, Helen Hayes...) that Cinema Treasures tracks for an earlier era
+// of film exhibition. Only "Open (Showing movies)" is treated as a movie
+// theater that's open today; bare "Open" is treated as closed-as-a-movie-
+// theater at an unrecorded date, the same honest treatment already used
+// for closures whose exact year wasn't recorded. This does mean a handful
+// of currently-operating cinemas whose source record wasn't tagged with
+// the "(Showing movies)" qualifier (e.g. Anthology Film Archives) will be
+// misclassified as closed — a limitation of the source data, not something
+// this script can resolve without better information.
 function deriveStatus(raw) {
-  return raw.startsWith("Open") ? "open" : "closed";
+  return raw === "Open (Showing movies)" ? "open" : "closed";
+}
+
+function wasOperatingButNotConfirmedShowingFilms(raw) {
+  return raw === "Open";
 }
 
 function deriveTheaterType(screens) {
@@ -117,10 +133,23 @@ function buildClosureAudit(raw) {
   };
 }
 
-function buildDescription({ borough, openingYear, closingYear, reopeningYear, status, notes, currentPlace }) {
+function buildDescription({
+  borough,
+  openingYear,
+  closingYear,
+  reopeningYear,
+  status,
+  notes,
+  currentPlace,
+  stillOperatingNotAsMovies,
+}) {
   const parts = [];
   if (status === "open") {
     parts.push(`Operating in ${borough} since ${openingYear}.`);
+  } else if (stillOperatingNotAsMovies) {
+    parts.push(
+      `Opened in ${borough} in ${openingYear}. The venue is still standing, but is no longer confirmed to show films — the exact year it stopped isn't recorded.`
+    );
   } else if (closingYear != null) {
     parts.push(`Operated in ${borough} from ${openingYear} to ${closingYear}.`);
   } else {
@@ -150,6 +179,7 @@ function main() {
   let withImage = 0;
   let withCurrentPlace = 0;
   let withClosureAudit = 0;
+  let notMoviesToday = 0;
 
   const theaters = [];
 
@@ -194,6 +224,8 @@ function main() {
 
     if (status === "closed" && closingYear == null) closedUnknownYear++;
     if (reopeningYear != null) hadReopening++;
+    const stillOperatingNotAsMovies = wasOperatingButNotConfirmedShowingFilms(raw.status);
+    if (stillOperatingNotAsMovies) notMoviesToday++;
 
     // Keep the true opening year here (a few dozen predate 1896, the year
     // film exhibition began in NYC — likely the building's construction
@@ -216,6 +248,7 @@ function main() {
       status,
       notes: raw.notes,
       currentPlace,
+      stillOperatingNotAsMovies,
     });
 
     const sources = [{ label: "Cinema Treasures", url: raw.source_url || undefined }];
@@ -285,6 +318,7 @@ export const theaters: Theater[] = ${JSON.stringify(theaters, null, 2)} satisfie
   console.log(`  with a closure audit: ${withClosureAudit}`);
   console.log(`  with a photo: ${withImage}`);
   console.log(`  with a citeable present-day occupant: ${withCurrentPlace}`);
+  console.log(`  still standing but no longer confirmed showing films: ${notMoviesToday}`);
 }
 
 main();

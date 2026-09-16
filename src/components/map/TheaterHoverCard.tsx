@@ -5,7 +5,7 @@ import styles from "./TheaterHoverCard.module.css";
 
 const OFFSET = 16;
 const CARD_WIDTH = 260;
-const SAFE_TOP = 96;
+const SAFE_TOP = 24;
 const SAFE_BOTTOM = 168;
 const SAFE_SIDE = 16;
 

@@ -1,41 +1,40 @@
 .wrap {
-  position: fixed;
-  top: 20px;
-  left: 24px;
-  z-index: 20;
-  pointer-events: none;
-  background: var(--paper);
-  padding: 8px 14px 10px 0;
-  max-width: min(78vw, 420px);
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 72px 28px 56px;
+  border-bottom: 1px solid var(--ink);
 }
 
 .title {
   font-family: var(--font-serif);
-  font-size: 22px;
+  font-size: clamp(36px, 6vw, 56px);
   font-weight: 700;
   letter-spacing: 0.01em;
   margin: 0;
-  line-height: 1.1;
+  line-height: 1.05;
 }
 
 .subtitle {
-  margin: 3px 0 0;
-  font-size: 11px;
-  letter-spacing: 0.04em;
+  margin: 8px 0 0;
+  font-size: 12.5px;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--ink-faint);
 }
 
+.dek {
+  margin: 22px 0 0;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  max-width: 60ch;
+}
+
 @media (max-width: 640px) {
   .wrap {
-    top: 12px;
-    left: 12px;
-    max-width: 70vw;
+    padding: 48px 18px 40px;
   }
-  .title {
-    font-size: 18px;
-  }
-  .subtitle {
-    font-size: 9.5px;
+  .dek {
+    font-size: 15px;
   }
 }

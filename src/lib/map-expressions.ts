@@ -45,17 +45,13 @@ export function circleOpacityExpression(year: number): ExpressionSpecification {
   ] as unknown as ExpressionSpecification;
 }
 
-export function circleRadiusExpression(year: number): ExpressionSpecification {
-  const baseRadius: ExpressionSpecification = [
-    "case",
-    ["==", ["get", "featured"], 1],
-    7,
-    4.5,
-  ] as unknown as ExpressionSpecification;
+/** Every theater renders at the same size — the map encodes when a theater operated, not how notable it is. */
+const BASE_RADIUS = 5;
 
+export function circleRadiusExpression(year: number): ExpressionSpecification {
   return [
     "*",
-    baseRadius,
+    BASE_RADIUS,
     ["max", 0.18, openProgressExpression(year)],
   ] as unknown as ExpressionSpecification;
 }
