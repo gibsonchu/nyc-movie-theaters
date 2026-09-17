@@ -9,7 +9,7 @@ const archivo = Archivo({
 });
 
 export const metadata: Metadata = {
-  title: "Reel City — A History of New York's Movie Theaters",
+  title: "Thank You for Coming to the Movies",
   description:
     "An editorial map of New York City's movie theaters, from the first public film screening in 1896 to today.",
 };
