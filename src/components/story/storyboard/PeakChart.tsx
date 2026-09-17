@@ -114,9 +114,6 @@ export function PeakChart({ showTv = false }: { showTv?: boolean }) {
 
   return (
     <div className={styles.wrap}>
-      <p className={styles.footnote}>
-        The movie theaters counted here excludes those in which we are missing either the opening or closing dates.
-      </p>
       <svg viewBox={`0 0 ${VIEW_W} ${VIEW_H}`} className={styles.svg} role="img" aria-label="Operating theaters over time, by borough">
         {yTicks.map((v) => (
           <g key={v}>
@@ -159,6 +156,10 @@ export function PeakChart({ showTv = false }: { showTv?: boolean }) {
           </span>
         )}
       </div>
+
+      <p className={styles.footnote}>
+        The movie theaters counted here excludes those in which we are missing either the opening or closing dates.
+      </p>
     </div>
   );
 }
