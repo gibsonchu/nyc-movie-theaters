@@ -10,7 +10,6 @@ import {
   peakDecade,
 } from "@/lib/theater-stats";
 import { US_MOVIE_INDUSTRY_PEAK_1946, TV_OWNERSHIP_BY_YEAR } from "@/lib/historical-context";
-import { MAX_YEAR } from "@/lib/timeline";
 import { useActiveStep } from "@/components/story/useActiveStep";
 import { PeakChart } from "./PeakChart";
 import { PosterGallery } from "./PosterGallery";
@@ -22,8 +21,6 @@ type Visual = "chart" | "posters" | "quotes";
 
 interface Step {
   visual: Visual;
-  /** How far along the timeline the area chart should be revealed while this step is active. */
-  revealYear: number;
   showTv?: boolean;
   caption?: string;
   text: React.ReactNode;
@@ -47,7 +44,6 @@ export function StoryboardSection() {
   const steps: Step[] = [
     {
       visual: "chart",
-      revealYear: 1896,
       text: (
         <>
           There have been approximately {theaters.length.toLocaleString()} movie theaters that have operated across
@@ -58,7 +54,6 @@ export function StoryboardSection() {
     },
     {
       visual: "chart",
-      revealYear: peakYear,
       text: (
         <>
           Over {peakTotal.toLocaleString()} theaters were operating across the boroughs, with a majority of them in{" "}
@@ -74,19 +69,16 @@ export function StoryboardSection() {
     },
     {
       visual: "posters",
-      revealYear: peakYear,
       caption: `Playing across New York, ${peakYear}`,
       text: <>A handful of what was on the marquee that year &mdash; placeholders, to be swapped in.</>,
     },
     {
       visual: "quotes",
-      revealYear: peakYear,
       caption: "What it felt like",
       text: <>Placeholder quotes &mdash; to be replaced with real recollections.</>,
     },
     {
       visual: "chart",
-      revealYear: 1950,
       text: (
         <>
           But as everyone knows, the advent of television was just around the corner. By the early 1950s, over{" "}
@@ -96,13 +88,11 @@ export function StoryboardSection() {
     },
     {
       visual: "chart",
-      revealYear: 1955,
       showTv: true,
       text: <>Television arrived just as New York&rsquo;s enormous theater network began shutting down.</>,
     },
     {
       visual: "chart",
-      revealYear: MAX_YEAR,
       showTv: true,
       text: (
         <>
@@ -153,10 +143,10 @@ export function StoryboardSection() {
                 <div className={styles.bgVideoScrim} />
               </div>
 
-              {/* The chart stays mounted the whole time (never unmounted) so its reveal
-                  animation keeps its place and continues forward when it fades back in. */}
+              {/* The chart stays mounted the whole time (never unmounted) so it cross-fades
+                  in and out cleanly instead of remounting each time it reappears. */}
               <div className={`${styles.visualLayer} ${current.visual === "chart" ? styles.visualLayerVisible : ""}`}>
-                <PeakChart revealYear={current.revealYear} showTv={current.showTv} />
+                <PeakChart showTv={current.showTv} />
               </div>
               <div className={`${styles.visualLayer} ${current.visual === "posters" ? styles.visualLayerVisible : ""}`}>
                 <PosterGallery />

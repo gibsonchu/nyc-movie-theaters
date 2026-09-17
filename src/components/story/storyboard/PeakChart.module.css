@@ -27,28 +27,17 @@
   fill: var(--ink-faint);
 }
 
-.confirmedArea {
-  fill: var(--accent);
-  fill-opacity: 0.82;
-  transition: d 700ms ease;
-}
-
-.uncertainArea {
-  fill: var(--accent);
-  fill-opacity: 0.22;
-  transition: d 700ms ease;
-}
-
 .tvArea {
   fill: var(--meta);
   fill-opacity: 0.55;
-  transition:
-    d 700ms ease,
-    opacity 500ms ease;
+  transition: opacity 500ms ease;
 }
 
-.revealRect {
-  transition: width 1100ms cubic-bezier(0.4, 0, 0.2, 1);
+.footnote {
+  margin: 0 0 10px;
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--ink-faint);
 }
 
 .legend {

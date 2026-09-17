@@ -1,10 +1,11 @@
 "use client";
 
-import { useId, useMemo } from "react";
+import { useMemo } from "react";
 import { theaters } from "@/data/theaters";
-import { activeCountsByYear, type YearCounts } from "@/lib/theater-stats";
+import { activeCountsByYearAndBorough, type YearCounts } from "@/lib/theater-stats";
 import { TV_OWNERSHIP_BY_YEAR } from "@/lib/historical-context";
 import { MIN_YEAR, MAX_YEAR } from "@/lib/timeline";
+import type { Borough } from "@/types/theater";
 import styles from "./PeakChart.module.css";
 
 const VIEW_W = 620;
@@ -12,6 +13,16 @@ const VIEW_H = 520;
 const MARGIN = { top: 16, right: 16, bottom: 34, left: 44 };
 const PLOT_W = VIEW_W - MARGIN.left - MARGIN.right;
 const PLOT_H = VIEW_H - MARGIN.top - MARGIN.bottom;
+
+const BOROUGH_ORDER: Borough[] = ["Manhattan", "Brooklyn", "Queens", "Bronx", "Staten Island"];
+
+const BOROUGH_COLORS: Record<Borough, string> = {
+  Manhattan: "#a4283c",
+  Brooklyn: "#3d6f8c",
+  Queens: "#c98a2e",
+  Bronx: "#5c7a45",
+  "Staten Island": "#8a6b9e",
+};
 
 function xForYear(year: number): number {
   return MARGIN.left + ((year - MIN_YEAR) / (MAX_YEAR - MIN_YEAR)) * PLOT_W;
@@ -42,21 +53,44 @@ function interpolateTvPercent(year: number): number {
   return 0;
 }
 
-export function PeakChart({ revealYear, showTv = false }: { revealYear: number; showTv?: boolean }) {
-  const clipId = useId();
-  const series = useMemo(() => activeCountsByYear(theaters), []);
-  const maxTotal = useMemo(() => Math.max(...series.map((d) => d.confirmed + d.uncertain)), [series]);
+export function PeakChart({ showTv = false }: { showTv?: boolean }) {
+  const byBorough = useMemo(() => activeCountsByYearAndBorough(theaters), []);
+  const years = useMemo(() => byBorough.Manhattan.map((d) => d.year), [byBorough]);
+
+  // Only the confirmed (dated) count per borough feeds the stack — see the
+  // chart's own footnote for why undated theaters are excluded entirely.
+  const maxTotal = useMemo(() => {
+    let max = 0;
+    for (let i = 0; i < years.length; i++) {
+      let sum = 0;
+      for (const borough of BOROUGH_ORDER) sum += byBorough[borough][i].confirmed;
+      if (sum > max) max = sum;
+    }
+    return max;
+  }, [byBorough, years]);
 
   const yScale = useMemo(() => (value: number) => MARGIN.top + PLOT_H - (value / maxTotal) * PLOT_H, [maxTotal]);
 
-  const confirmedPath = useMemo(
-    () => buildAreaPath(series, (d) => yScale(d.confirmed), () => yScale(0)),
-    [series, yScale]
-  );
-  const uncertainPath = useMemo(
-    () => buildAreaPath(series, (d) => yScale(d.confirmed + d.uncertain), (d) => yScale(d.confirmed)),
-    [series, yScale]
-  );
+  // Stack each borough's band on top of the previous one's running total.
+  const stackedAreas = useMemo(() => {
+    const cumulative = new Array(years.length).fill(0);
+    return BOROUGH_ORDER.map((borough) => {
+      const series = byBorough[borough];
+      const bottoms = cumulative.slice();
+      for (let i = 0; i < years.length; i++) cumulative[i] += series[i].confirmed;
+      const tops = cumulative.slice();
+
+      const topPoints = years.map((year, i) => `${xForYear(year)},${yScale(tops[i])}`);
+      const bottomPoints = years
+        .map((year, i) => `${xForYear(year)},${yScale(bottoms[i])}`)
+        .reverse();
+      return {
+        borough,
+        color: BOROUGH_COLORS[borough],
+        path: `M${topPoints.join(" L")} L${bottomPoints.join(" L")} Z`,
+      };
+    });
+  }, [byBorough, years, yScale]);
 
   // TV ownership scaled against the same theater-count axis so both lines
   // share one plot: percent-of-homes mapped onto the theater-count max.
@@ -78,21 +112,12 @@ export function PeakChart({ revealYear, showTv = false }: { revealYear: number; 
 
   const xTicks = [1900, 1920, 1940, 1960, 1980, 2000, 2020];
 
-  // The area is revealed left-to-right as the reader scrolls, rather than
-  // shown all at once — a clip rect grows toward revealYear and CSS
-  // transitions its width, so the reveal keeps animating smoothly forward
-  // (or backward) whenever revealYear changes between renders.
-  const revealWidth = Math.max(0, xForYear(revealYear) - MARGIN.left);
-
   return (
     <div className={styles.wrap}>
-      <svg viewBox={`0 0 ${VIEW_W} ${VIEW_H}`} className={styles.svg} role="img" aria-label="Operating theaters over time">
-        <defs>
-          <clipPath id={clipId}>
-            <rect x={MARGIN.left} y={0} width={revealWidth} height={VIEW_H} className={styles.revealRect} />
-          </clipPath>
-        </defs>
-
+      <p className={styles.footnote}>
+        The movie theaters counted here excludes those in which we are missing either the opening or closing dates.
+      </p>
+      <svg viewBox={`0 0 ${VIEW_W} ${VIEW_H}`} className={styles.svg} role="img" aria-label="Operating theaters over time, by borough">
         {yTicks.map((v) => (
           <g key={v}>
             <line x1={MARGIN.left} x2={VIEW_W - MARGIN.right} y1={yScale(v)} y2={yScale(v)} className={styles.gridLine} />
@@ -102,11 +127,10 @@ export function PeakChart({ revealYear, showTv = false }: { revealYear: number; 
           </g>
         ))}
 
-        <g clipPath={`url(#${clipId})`}>
-          <path d={confirmedPath} className={styles.confirmedArea} />
-          <path d={uncertainPath} className={styles.uncertainArea} />
-          <path d={tvPath} className={styles.tvArea} style={{ opacity: showTv ? 1 : 0 }} />
-        </g>
+        {stackedAreas.map(({ borough, color, path }) => (
+          <path key={borough} d={path} fill={color} fillOpacity={0.85} />
+        ))}
+        <path d={tvPath} className={styles.tvArea} style={{ opacity: showTv ? 1 : 0 }} />
 
         {xTicks.map((year) => (
           <text key={year} x={xForYear(year)} y={VIEW_H - MARGIN.bottom + 20} className={styles.xLabel} textAnchor="middle">
@@ -123,12 +147,11 @@ export function PeakChart({ revealYear, showTv = false }: { revealYear: number; 
       </svg>
 
       <div className={styles.legend}>
-        <span className={styles.legendItem}>
-          <span className={styles.swatch} style={{ background: "var(--accent)", opacity: 0.82 }} /> Theaters operating
-        </span>
-        <span className={styles.legendItem}>
-          <span className={styles.swatch} style={{ background: "var(--accent)", opacity: 0.22 }} /> Closing year unknown
-        </span>
+        {BOROUGH_ORDER.map((borough) => (
+          <span key={borough} className={styles.legendItem}>
+            <span className={styles.swatch} style={{ background: BOROUGH_COLORS[borough] }} /> {borough}
+          </span>
+        ))}
         {showTv && (
           <span className={styles.legendItem}>
             <span className={styles.swatch} style={{ background: "var(--meta)", opacity: 0.55 }} /> Homes with a TV
