@@ -8,7 +8,12 @@ import { decadeTicks, percentToYear, yearToPercent } from "@/lib/timeline-scale"
 import { MAX_YEAR, MIN_YEAR } from "@/lib/timeline";
 import styles from "./Timeline.module.css";
 
-export function Timeline() {
+interface TimelineProps {
+  isExpanded?: boolean;
+  onToggleExpanded?: () => void;
+}
+
+export function Timeline({ isExpanded = false, onToggleExpanded }: TimelineProps) {
   const { year, setYear, playing, togglePlay, pause } = useTimeline();
   const trackRef = useRef<HTMLDivElement | null>(null);
   const [dragging, setDragging] = useState(false);
@@ -121,6 +126,18 @@ export function Timeline() {
             <div className={styles.handle} style={{ left: `${handlePercent}%` }} />
           </div>
         </div>
+
+        {onToggleExpanded && (
+          <button
+            type="button"
+            className={styles.expandButton}
+            onClick={onToggleExpanded}
+            aria-label={isExpanded ? "Exit fullscreen" : "View fullscreen"}
+            title={isExpanded ? "Exit fullscreen" : "View fullscreen"}
+          >
+            {isExpanded ? "✕" : "⛶"}
+          </button>
+        )}
       </div>
     </div>
   );
