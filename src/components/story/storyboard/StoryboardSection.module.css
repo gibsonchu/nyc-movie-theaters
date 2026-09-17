@@ -22,15 +22,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
-
-/* Caption + stack together, as one measured block — see visualStackRef in
-   StoryboardSection.tsx, which sizes .textStack to match this exactly. */
-.visualContent {
-  display: flex;
-  flex-direction: column;
   gap: 14px;
-  width: 100%;
 }
 
 .visualStack {
@@ -80,39 +72,32 @@
 }
 
 .textCol {
-  position: relative;
+  padding-top: 8vh;
 }
 
-/*
- * The visible text lives here, pinned at the exact same sticky/centered spot
- * as the visual column (mirrors .visualSticky), and cross-fades between
- * steps — so it always starts at the same place the chart does, instead of
- * drifting to wherever a step's own box happens to have scrolled to.
- */
-.textSticky {
-  position: sticky;
-  top: 0;
-  height: 100vh;
+.step {
+  min-height: 70vh;
   display: flex;
   align-items: center;
+  padding: 6vh 0;
 }
 
-.textStack {
-  position: relative;
-  display: grid;
-  align-content: start;
-  width: 100%;
+.step:first-child {
+  min-height: 50vh;
+}
+
+.step:last-child {
+  min-height: 50vh;
+  padding-bottom: 12vh;
 }
 
 .stepText {
-  grid-area: 1 / 1;
-  align-self: start;
   font-size: 18px;
   font-weight: 500;
   line-height: 1.65;
   color: var(--ink-soft);
-  opacity: 0;
-  transition: opacity 900ms ease;
+  opacity: 0.25;
+  transition: opacity 500ms ease;
 }
 
 .stepTextActive {
@@ -120,21 +105,12 @@
   color: var(--ink);
 }
 
-/* Invisible spacers in normal flow, purely to drive useActiveStep's scroll tracking. */
-.stepTrigger {
-  min-height: 100vh;
-}
-
-.stepTextMobile {
-  display: none;
-}
-
 .stepCaption {
   font-size: 13px;
   font-weight: 700;
   color: var(--meta);
   opacity: 0.25;
-  transition: opacity 900ms ease;
+  transition: opacity 500ms ease;
 }
 
 .stepCaptionActive {
@@ -169,23 +145,11 @@
     padding-top: 24px;
   }
 
-  /* No sticky visual to line up against on mobile — fall back to plain flowing text. */
-  .textSticky {
-    display: none;
-  }
-
-  .stepTrigger {
+  .step {
     min-height: 46vh;
-    display: flex;
-    align-items: center;
-    padding: 6vh 0;
   }
 
-  .stepTextMobile {
-    display: block;
+  .stepText {
     font-size: 16px;
-    font-weight: 500;
-    line-height: 1.65;
-    color: var(--ink);
   }
 }
