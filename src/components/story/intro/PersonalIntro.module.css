@@ -1,0 +1,46 @@
+.wrap {
+  max-width: 640px;
+  margin: 56px auto 0;
+  padding: 0 28px 72px;
+  border-bottom: 1px solid var(--ink);
+}
+
+.quote {
+  border-left: 3px solid var(--accent);
+  padding-left: 22px;
+}
+
+.quote p {
+  margin: 0 0 18px;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.65;
+  color: var(--ink);
+}
+
+.quote p:last-child {
+  margin-bottom: 0;
+}
+
+.quote a {
+  font-weight: 700;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent);
+}
+
+.quote a:hover {
+  color: var(--accent);
+}
+
+@media (max-width: 640px) {
+  .wrap {
+    padding: 0 18px 48px;
+  }
+  .quote {
+    padding-left: 16px;
+  }
+  .quote p {
+    font-size: 16px;
+  }
+}

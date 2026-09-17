@@ -131,6 +131,12 @@ export interface Lifespan {
 /** How long a theater operated. `asOfYear` only affects still-open theaters (defaults to the timeline's present). */
 export function getLifespan(theater: Theater, asOfYear: number = MAX_YEAR): Lifespan {
   if (theater.status === "open") {
+    if (theater.openingYear > asOfYear) {
+      // A small number of theaters have a planned/announced opening year
+      // beyond the timeline's present (e.g. 2027) — not open yet as of
+      // `asOfYear`, so there's no meaningful lifespan to report.
+      return { years: null, openEnded: false, unknownEnd: true };
+    }
     return { years: asOfYear - theater.openingYear, openEnded: true, unknownEnd: false };
   }
   if (theater.closingYear != null) {
@@ -170,6 +176,11 @@ export function formerTheaters(theaters: Theater[]): Theater[] {
   return theaters.filter((t) => t.status === "closed");
 }
 
+/** Theaters whose venue still stands and operates in some form today, whether or not it still shows films. */
+export function survivingVenues(theaters: Theater[]): Theater[] {
+  return theaters.filter((t) => t.venueSurvives);
+}
+
 export function boroughCounts(theaters: Theater[]): Record<Borough, number> {
   const out: Record<Borough, number> = {
     Manhattan: 0,
@@ -182,8 +193,79 @@ export function boroughCounts(theaters: Theater[]): Record<Borough, number> {
   return out;
 }
 
+/** The borough with the most theaters in the given list. */
+export function majorityBorough(theaters: Theater[]): Borough {
+  const counts = boroughCounts(theaters);
+  return (Object.keys(counts) as Borough[]).reduce((max, b) => (counts[b] > counts[max] ? b : max));
+}
+
 /** The decade with the most openings (or closures, for a `closuresByDecade()` series). */
 export function peakDecade(series: DecadeCount[]): DecadeCount | null {
   if (series.length === 0) return null;
   return series.reduce((max, d) => (d.count > max.count ? d : max), series[0]);
+}
+
+/**
+ * Median lifespan in years, over theaters with a computable lifespan
+ * (excludes the ~300 confirmed-closed theaters with no recorded closing
+ * year — see {@link getLifespan}). Still-open theaters count their years
+ * to `asOfYear`, so the median reflects "how long has a theater in this
+ * dataset typically lasted," not just fully-closed ones.
+ */
+export function medianLifespan(theaters: Theater[], asOfYear: number = MAX_YEAR): number {
+  const years = theaters
+    .map((t) => getLifespan(t, asOfYear).years)
+    .filter((y): y is number => y != null)
+    .sort((a, b) => a - b);
+  if (years.length === 0) return 0;
+  const mid = Math.floor(years.length / 2);
+  return years.length % 2 === 0 ? (years[mid - 1] + years[mid]) / 2 : years[mid];
+}
+
+export interface LifespanBucket {
+  /** Lower bound of the bucket, in years (e.g. 10 means "10–19 years"). */
+  from: number;
+  count: number;
+}
+
+/** Histogram of lifespans in fixed-width year buckets, for theaters with a computable lifespan. */
+export function lifespanDistribution(
+  theaters: Theater[],
+  bucketSize: number = 10,
+  asOfYear: number = MAX_YEAR
+): LifespanBucket[] {
+  const counts = new Map<number, number>();
+  for (const t of theaters) {
+    const years = getLifespan(t, asOfYear).years;
+    if (years == null) continue;
+    const bucket = Math.floor(years / bucketSize) * bucketSize;
+    counts.set(bucket, (counts.get(bucket) ?? 0) + 1);
+  }
+  return [...counts.entries()]
+    .map(([from, count]) => ({ from, count }))
+    .sort((a, b) => a.from - b.from);
+}
+
+export interface CategoryCount {
+  category: string;
+  count: number;
+}
+
+/**
+ * What occupies the addresses of closed theaters today, grouped by the
+ * geocoder's coarse category (e.g. "shop", "amenity"). Only theaters with a
+ * citeable present-day occupant are counted (see `Theater.currentPlace`) —
+ * most closed theaters don't have one, either because nothing distinctive
+ * was found there or the address wasn't audited.
+ */
+export function currentPlaceCategoryCounts(theaters: Theater[]): CategoryCount[] {
+  const counts = new Map<string, number>();
+  for (const t of theaters) {
+    if (!t.currentPlace?.category) continue;
+    const category = t.currentPlace.category;
+    counts.set(category, (counts.get(category) ?? 0) + 1);
+  }
+  return [...counts.entries()]
+    .map(([category, count]) => ({ category, count }))
+    .sort((a, b) => b.count - a.count);
 }

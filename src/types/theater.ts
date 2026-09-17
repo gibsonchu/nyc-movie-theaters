@@ -68,6 +68,13 @@ export interface Theater {
   /** Year it reopened after an earlier closure, if it did and that's recorded. */
   reopeningYear: number | null;
   status: TheaterStatus;
+  /**
+   * True if the venue itself still stands and operates in some form today
+   * — including the ~38 venues (mostly Broadway/live-performance houses)
+   * that are open but not confirmed to still show films, so `status` reads
+   * "closed" for them even though the building is very much in use.
+   */
+  venueSurvives: boolean;
   theaterType: TheaterType;
   screens: number | null;
   seats: number | null;

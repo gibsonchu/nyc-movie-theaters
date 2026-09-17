@@ -1,0 +1,81 @@
+.wrapper {
+  position: relative;
+  height: 400vh;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  border-bottom: 1px solid var(--ink);
+}
+
+.map {
+  position: absolute;
+  inset: 0;
+}
+
+.overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 0 28px 28px;
+  pointer-events: none;
+}
+
+.year {
+  font-family: var(--font-sans);
+  font-size: clamp(48px, 9vw, 96px);
+  font-weight: 900;
+  line-height: 1;
+  color: var(--ink-pure);
+  font-variant-numeric: tabular-nums;
+  text-shadow:
+    2px 2px 0 var(--paper),
+    -2px -2px 0 var(--paper),
+    2px -2px 0 var(--paper),
+    -2px 2px 0 var(--paper);
+}
+
+.count {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--accent);
+  background: var(--paper);
+  padding: 6px 10px;
+  border: 1px solid var(--ink);
+  margin-bottom: 6px;
+}
+
+.cue {
+  position: absolute;
+  top: 28px;
+  left: 28px;
+  z-index: 2;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  background: var(--paper);
+  padding: 6px 10px;
+  border: 1px solid var(--rule-strong);
+}
+
+@media (max-width: 640px) {
+  .overlay {
+    padding: 0 16px 16px;
+  }
+  .cue {
+    top: 16px;
+    left: 16px;
+    font-size: 10px;
+  }
+}

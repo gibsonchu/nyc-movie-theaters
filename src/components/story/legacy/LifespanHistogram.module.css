@@ -1,0 +1,40 @@
+.wrap {
+  position: relative;
+}
+
+.svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.bar {
+  fill: var(--accent);
+  fill-opacity: 0.78;
+}
+
+.axisLine {
+  stroke: var(--ink);
+  stroke-width: 1;
+}
+
+.xLabel,
+.yLabel {
+  font-family: var(--font-sans);
+  font-size: 10.5px;
+  font-weight: 600;
+  fill: var(--ink-faint);
+}
+
+.medianLine {
+  stroke: var(--ink-pure);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 3;
+}
+
+.medianLabel {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 800;
+  fill: var(--ink-pure);
+}

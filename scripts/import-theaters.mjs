@@ -268,6 +268,7 @@ function main() {
       closingYear,
       reopeningYear,
       status,
+      venueSurvives: status === "open" || stillOperatingNotAsMovies,
       theaterType: deriveTheaterType(screens),
       screens,
       seats: null,
