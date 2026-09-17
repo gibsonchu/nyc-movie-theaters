@@ -35,6 +35,7 @@ export function CurrentZoningMap() {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<MapLibreMap | null>(null);
   const [ready, setReady] = useState(false);
+  const [openTodayOnly, setOpenTodayOnly] = useState(false);
   const { selectZoningTheater } = useTimeline();
 
   useEffect(() => {
@@ -138,6 +139,17 @@ export function CurrentZoningMap() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // Filter the theater dots down to ones actually showing movies today, matching
+  // the exact "Open (Showing movies)" status string theaters.ts treats as open.
+  useEffect(() => {
+    const instance = mapRef.current;
+    if (!instance || !ready) return;
+    instance.setFilter(
+      "current-zoning-theater-points",
+      openTodayOnly ? ["==", ["get", "historicalStatus"], "Open (Showing movies)"] : null
+    );
+  }, [openTodayOnly, ready]);
+
   return (
     <div className={styles.frame}>
       <div
@@ -147,14 +159,28 @@ export function CurrentZoningMap() {
       />
 
       {ready && (
-        <div className={styles.legend}>
-          {CATEGORY_ORDER.map((category) => (
-            <span key={category} className={styles.legendItem}>
-              <span className={styles.swatch} style={{ background: CURRENT_ZONING_COLORS[category] }} />
-              {CURRENT_ZONING_LABELS[category]}
+        <>
+          <button
+            type="button"
+            className={styles.toggle}
+            onClick={() => setOpenTodayOnly((prev) => !prev)}
+            aria-pressed={openTodayOnly}
+          >
+            <span className={`${styles.switch} ${openTodayOnly ? styles.switchOn : ""}`}>
+              <span className={styles.switchKnob} />
             </span>
-          ))}
-        </div>
+            Only show theaters open today
+          </button>
+
+          <div className={styles.legend}>
+            {CATEGORY_ORDER.map((category) => (
+              <span key={category} className={styles.legendItem}>
+                <span className={styles.swatch} style={{ background: CURRENT_ZONING_COLORS[category] }} />
+                {CURRENT_ZONING_LABELS[category]}
+              </span>
+            ))}
+          </div>
+        </>
       )}
 
       <CurrentZoningTheaterPanel />

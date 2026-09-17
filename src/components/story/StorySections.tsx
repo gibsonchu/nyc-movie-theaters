@@ -17,8 +17,8 @@ export function StorySections() {
       <StoryboardSection />
       <ClosedGallerySection />
       <LegacySection />
-      <SurvivesTodaySection />
       <ZoningTeaserSection />
+      <SurvivesTodaySection />
       <ExploreSection />
       <ClosingSection />
     </main>
