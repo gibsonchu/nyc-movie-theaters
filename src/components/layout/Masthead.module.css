@@ -12,15 +12,24 @@
   margin: 0;
   line-height: 1.05;
   color: var(--ink-pure);
-  text-align: center;
+  text-align: left;
 }
 
 .subtitle {
-  margin: 12px 0 40px;
+  margin: 12px 0 0;
   font-size: 15px;
   font-weight: 600;
   color: var(--meta);
-  text-align: center;
+  text-align: left;
+}
+
+.byline {
+  margin: 10px 0 40px;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--ink-faint);
+  text-align: left;
 }
 
 .heroImage {
@@ -33,7 +42,10 @@
     padding: 48px 18px 0;
   }
   .subtitle {
-    margin: 10px 0 28px;
+    margin: 10px 0 0;
     font-size: 13px;
+  }
+  .byline {
+    margin: 8px 0 28px;
   }
 }
