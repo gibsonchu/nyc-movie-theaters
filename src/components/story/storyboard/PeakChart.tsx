@@ -2,8 +2,7 @@
 
 import { useMemo } from "react";
 import { theaters } from "@/data/theaters";
-import { activeCountsByYearAndBorough, type YearCounts } from "@/lib/theater-stats";
-import { TV_OWNERSHIP_BY_YEAR } from "@/lib/historical-context";
+import { activeCountsByYearAndBorough } from "@/lib/theater-stats";
 import { MIN_YEAR, MAX_YEAR } from "@/lib/timeline";
 import type { Borough } from "@/types/theater";
 import styles from "./PeakChart.module.css";
@@ -28,32 +27,7 @@ function xForYear(year: number): number {
   return MARGIN.left + ((year - MIN_YEAR) / (MAX_YEAR - MIN_YEAR)) * PLOT_W;
 }
 
-function buildAreaPath(series: YearCounts[], top: (d: YearCounts) => number, bottom: (d: YearCounts) => number): string {
-  if (series.length === 0) return "";
-  const topPoints = series.map((d) => `${xForYear(d.year)},${top(d)}`);
-  const bottomPoints = series
-    .slice()
-    .reverse()
-    .map((d) => `${xForYear(d.year)},${bottom(d)}`);
-  return `M${topPoints.join(" L")} L${bottomPoints.join(" L")} Z`;
-}
-
-function interpolateTvPercent(year: number): number {
-  const points = TV_OWNERSHIP_BY_YEAR;
-  if (year <= points[0].year) return points[0].percentOfHomes;
-  if (year >= points[points.length - 1].year) return points[points.length - 1].percentOfHomes;
-  for (let i = 0; i < points.length - 1; i++) {
-    const a = points[i];
-    const b = points[i + 1];
-    if (year >= a.year && year <= b.year) {
-      const t = (year - a.year) / (b.year - a.year);
-      return a.percentOfHomes + t * (b.percentOfHomes - a.percentOfHomes);
-    }
-  }
-  return 0;
-}
-
-export function PeakChart({ showTv = false }: { showTv?: boolean }) {
+export function PeakChart() {
   const byBorough = useMemo(() => activeCountsByYearAndBorough(theaters), []);
   const years = useMemo(() => byBorough.Manhattan.map((d) => d.year), [byBorough]);
 
@@ -92,17 +66,6 @@ export function PeakChart({ showTv = false }: { showTv?: boolean }) {
     });
   }, [byBorough, years, yScale]);
 
-  // TV ownership scaled against the same theater-count axis so both lines
-  // share one plot: percent-of-homes mapped onto the theater-count max.
-  const tvPath = useMemo(() => {
-    const tvYears: YearCounts[] = [];
-    for (let year = MIN_YEAR; year <= MAX_YEAR; year += 2) {
-      const pct = interpolateTvPercent(year);
-      tvYears.push({ year, confirmed: (pct / 100) * maxTotal, uncertain: 0 });
-    }
-    return buildAreaPath(tvYears, (d) => yScale(d.confirmed), () => yScale(0));
-  }, [maxTotal, yScale]);
-
   const yTicks = useMemo(() => {
     const step = maxTotal > 400 ? 100 : 50;
     const ticks: number[] = [];
@@ -127,7 +90,6 @@ export function PeakChart({ showTv = false }: { showTv?: boolean }) {
         {stackedAreas.map(({ borough, color, path }) => (
           <path key={borough} d={path} fill={color} fillOpacity={0.85} />
         ))}
-        <path d={tvPath} className={styles.tvArea} style={{ opacity: showTv ? 1 : 0 }} />
 
         {xTicks.map((year) => (
           <text key={year} x={xForYear(year)} y={VIEW_H - MARGIN.bottom + 20} className={styles.xLabel} textAnchor="middle">
@@ -149,12 +111,6 @@ export function PeakChart({ showTv = false }: { showTv?: boolean }) {
             <span className={styles.swatch} style={{ background: BOROUGH_COLORS[borough] }} /> {borough}
           </span>
         ))}
-        {showTv && (
-          <span className={styles.legendItem}>
-            <span className={styles.swatch} style={{ background: "var(--meta)", opacity: 0.55 }} /> Homes with a TV
-            (scaled)
-          </span>
-        )}
       </div>
 
       <p className={styles.footnote}>

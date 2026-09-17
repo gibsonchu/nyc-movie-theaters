@@ -5,22 +5,25 @@
  * `theater-stats.ts`, which holds only CSV-derived functions.
  */
 
-/** US movie industry at its 1946 peak — the best-documented peak year nationally, a few years after NYC's own theater count (computed from the dataset) peaked around 1940. */
+/**
+ * US movie industry at its 1946 peak — the best-documented peak year
+ * nationally, a few years after NYC's own theater count (computed from the
+ * dataset) peaked around 1940.
+ *
+ * Sources (the exact citations are rendered as footnotes alongside these
+ * figures in StoryboardSection.tsx):
+ *  1. Historical Statistics of the United States, Table Dh388-391 (weekly
+ *     admissions, ticket price, box office).
+ *  2. "Moviegoers Speak Up," Los Angeles Times, Jan 3, 2006 (inflation-
+ *     adjusted ticket price).
+ *  3. Historical Statistics of the United States, Table Dh388-391
+ *     (inflation-adjusted box office).
+ */
 export const US_MOVIE_INDUSTRY_PEAK_1946 = {
   year: 1946,
   weeklyAdmissionsMillions: 90,
   averageTicketPriceCents: 42,
-  averageTicketPriceTodayUsd: 5.65,
+  averageTicketPriceTodayUsd: 7,
   boxOfficeBillionsUsd: 1.7,
-  boxOfficeTodayBillionsUsd: 27,
-  moviesReleasedPerYear: 400,
-  source: "Historical Statistics of the United States; contemporary trade press (Variety, Motion Picture Herald)",
+  boxOfficeTodayBillionsUsd: 29,
 };
-
-/** Share of US households owning a television, by year — the fastest mass-medium adoption in US history. */
-export const TV_OWNERSHIP_BY_YEAR: { year: number; percentOfHomes: number }[] = [
-  { year: 1946, percentOfHomes: 0 },
-  { year: 1950, percentOfHomes: 9 },
-  { year: 1955, percentOfHomes: 64.5 },
-  { year: 1960, percentOfHomes: 87.1 },
-];

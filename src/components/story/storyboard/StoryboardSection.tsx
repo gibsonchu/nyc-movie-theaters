@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef } from "react";
+import { useMemo } from "react";
 import { theaters } from "@/data/theaters";
 import {
   activeCountsByYear,
@@ -9,159 +9,101 @@ import {
   openingsByDecade,
   peakDecade,
 } from "@/lib/theater-stats";
-import { US_MOVIE_INDUSTRY_PEAK_1946, TV_OWNERSHIP_BY_YEAR } from "@/lib/historical-context";
+import { US_MOVIE_INDUSTRY_PEAK_1946 } from "@/lib/historical-context";
 import { useActiveStep } from "@/components/story/useActiveStep";
 import { PeakChart } from "./PeakChart";
-import { PosterGallery } from "./PosterGallery";
-import { QuoteGrid } from "./QuoteGrid";
 import section from "@/components/story/section.module.css";
 import styles from "./StoryboardSection.module.css";
 
-type Visual = "chart" | "posters" | "quotes";
-
 interface Step {
-  visual: Visual;
-  showTv?: boolean;
-  caption?: string;
   text: React.ReactNode;
 }
 
 export function StoryboardSection() {
-  const { peakYear, peakTotal, peakBorough, openingPeakDecade } = useMemo(() => {
+  const { peakTotal, peakBorough, openingPeakDecade } = useMemo(() => {
     const active = activeCountsByYear(theaters);
     const peak = active.reduce((max, y) => (y.confirmed + y.uncertain > max.confirmed + max.uncertain ? y : max));
     const atPeak = theaters.filter((t) => activityInYear(t, peak.year) !== "inactive");
     return {
-      peakYear: peak.year,
       peakTotal: peak.confirmed + peak.uncertain,
       peakBorough: majorityBorough(atPeak),
       openingPeakDecade: peakDecade(openingsByDecade(theaters))?.decade,
     };
   }, []);
 
-  const tvPeak1950 = TV_OWNERSHIP_BY_YEAR.find((d) => d.year === 1950)?.percentOfHomes ?? 9;
-
   const steps: Step[] = [
     {
-      visual: "chart",
       text: (
-        <>
+        <p>
           There have been approximately {theaters.length.toLocaleString()} movie theaters that have operated across
           NYC since the start of commercial cinema. New York built movie theaters at an extraordinary pace, with
           construction peaking in the {openingPeakDecade}s.
+        </p>
+      ),
+    },
+    {
+      text: (
+        <>
+          <p>
+            Over {peakTotal.toLocaleString()} theaters were operating across the boroughs, with a majority of them
+            in {peakBorough}.
+          </p>
+          <p>
+            Nationally, moviegoing reached its postwar peak in {US_MOVIE_INDUSTRY_PEAK_1946.year}. An estimated{" "}
+            {US_MOVIE_INDUSTRY_PEAK_1946.weeklyAdmissionsMillions} million Americans went to the movies each week,
+            <sup>1</sup> buying tickets that cost an average of just{" "}
+            {US_MOVIE_INDUSTRY_PEAK_1946.averageTicketPriceCents}&cent; &mdash; about $
+            {US_MOVIE_INDUSTRY_PEAK_1946.averageTicketPriceTodayUsd} today.<sup>2</sup> The industry took in nearly $
+            {US_MOVIE_INDUSTRY_PEAK_1946.boxOfficeBillionsUsd} billion at the box office that year, equivalent to
+            roughly ${US_MOVIE_INDUSTRY_PEAK_1946.boxOfficeTodayBillionsUsd} billion today.<sup>3</sup> It was a
+            remarkable high point for American moviegoing: theaters were drawing tens of millions of people every
+            week, and Hollywood was supplying them with hundreds of new films each year.
+          </p>
+          <ol className={styles.footnotes}>
+            <li>
+              Susan B. Carter et al., eds., <em>Historical Statistics of the United States: Millennial Edition</em>,
+              Table Dh388&ndash;391, &ldquo;Motion Picture Attendance, Box Office Receipts, and Admission Prices:
+              1922&ndash;1998&rdquo; (Cambridge University Press, 2006).
+            </li>
+            <li>
+              &ldquo;Moviegoers Speak Up,&rdquo; <em>Los Angeles Times</em>, January 3, 2006, citing Motion Picture
+              Association of America historical admissions data. Inflation adjustment based on the U.S. Consumer
+              Price Index.
+            </li>
+            <li>
+              Carter et al., <em>Historical Statistics of the United States</em>, Table Dh388&ndash;391. Inflation
+              adjustment based on the U.S. Consumer Price Index.
+            </li>
+          </ol>
         </>
       ),
     },
     {
-      visual: "chart",
       text: (
-        <>
-          Over {peakTotal.toLocaleString()} theaters were operating across the boroughs, with a majority of them in{" "}
-          {peakBorough}. Nationally, movie-going itself peaked a few years later, in {US_MOVIE_INDUSTRY_PEAK_1946.year}
-          : roughly {US_MOVIE_INDUSTRY_PEAK_1946.weeklyAdmissionsMillions} million tickets were sold every week, at
-          an average price of {US_MOVIE_INDUSTRY_PEAK_1946.averageTicketPriceCents}&cent; &mdash; about $
-          {US_MOVIE_INDUSTRY_PEAK_1946.averageTicketPriceTodayUsd.toFixed(2)} in today&rsquo;s dollars. The industry
-          earned ${US_MOVIE_INDUSTRY_PEAK_1946.boxOfficeBillionsUsd} billion at the box office that year, or roughly $
-          {US_MOVIE_INDUSTRY_PEAK_1946.boxOfficeTodayBillionsUsd} billion today, with Hollywood releasing more than{" "}
-          {US_MOVIE_INDUSTRY_PEAK_1946.moviesReleasedPerYear} movies a year to fill all those screens.
-        </>
-      ),
-    },
-    {
-      visual: "posters",
-      caption: `Playing across New York, ${peakYear}`,
-      text: <>A handful of what was on the marquee that year &mdash; placeholders, to be swapped in.</>,
-    },
-    {
-      visual: "quotes",
-      caption: "What it felt like",
-      text: <>Placeholder quotes &mdash; to be replaced with real recollections.</>,
-    },
-    {
-      visual: "chart",
-      text: (
-        <>
-          But as everyone knows, the advent of television was just around the corner. By the early 1950s, over{" "}
-          {tvPeak1950}% of American homes had a television.
-        </>
-      ),
-    },
-    {
-      visual: "chart",
-      showTv: true,
-      text: <>Television arrived just as New York&rsquo;s enormous theater network began shutting down.</>,
-    },
-    {
-      visual: "chart",
-      showTv: true,
-      text: (
-        <>
+        <p>
           New York started losing more and more theaters over time &mdash; single-screen neighborhood houses
           typically closing first, then the ornate movie palaces, until finally most of the theaters able to survive
           were the larger multiplexes.
-        </>
+        </p>
       ),
     },
   ];
 
   const { active, setRef } = useActiveStep(steps.length);
-  const current = steps[active];
-  const isMovieMoment = current.visual === "posters" || current.visual === "quotes";
-
-  const videoRef = useRef<HTMLVideoElement | null>(null);
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-    if (isMovieMoment) {
-      video.play().catch(() => {});
-    } else {
-      video.pause();
-    }
-  }, [isMovieMoment]);
 
   return (
     <section className={section.section} id="the-peak-and-the-decline">
       <div className={styles.grid}>
         <div className={styles.visualCol}>
           <div className={styles.visualSticky}>
-            {current.caption && (
-              <p className={`${styles.stepCaption} ${styles.stepCaptionActive}`}>{current.caption}</p>
-            )}
-
-            <div className={styles.visualStack}>
-              <div className={`${styles.bgVideoWrap} ${isMovieMoment ? styles.bgVideoWrapVisible : ""}`}>
-                <video
-                  ref={videoRef}
-                  className={styles.bgVideo}
-                  src="/movies-1940s.mov"
-                  muted
-                  loop
-                  playsInline
-                  preload="none"
-                  aria-hidden="true"
-                />
-                <div className={styles.bgVideoScrim} />
-              </div>
-
-              {/* The chart stays mounted the whole time (never unmounted) so it cross-fades
-                  in and out cleanly instead of remounting each time it reappears. */}
-              <div className={`${styles.visualLayer} ${current.visual === "chart" ? styles.visualLayerVisible : ""}`}>
-                <PeakChart showTv={current.showTv} />
-              </div>
-              <div className={`${styles.visualLayer} ${current.visual === "posters" ? styles.visualLayerVisible : ""}`}>
-                <PosterGallery />
-              </div>
-              <div className={`${styles.visualLayer} ${current.visual === "quotes" ? styles.visualLayerVisible : ""}`}>
-                <QuoteGrid />
-              </div>
-            </div>
+            <PeakChart />
           </div>
         </div>
 
         <div className={styles.textCol}>
           {steps.map((step, i) => (
             <div key={i} ref={setRef(i)} className={styles.step}>
-              <p className={`${styles.stepText} ${i === active ? styles.stepTextActive : ""}`}>{step.text}</p>
+              <div className={`${styles.stepText} ${i === active ? styles.stepTextActive : ""}`}>{step.text}</div>
             </div>
           ))}
         </div>

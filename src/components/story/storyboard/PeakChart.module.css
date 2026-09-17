@@ -27,12 +27,6 @@
   fill: var(--ink-faint);
 }
 
-.tvArea {
-  fill: var(--meta);
-  fill-opacity: 0.55;
-  transition: opacity 500ms ease;
-}
-
 .footnote {
   margin: 10px 0 0;
   font-size: 11px;

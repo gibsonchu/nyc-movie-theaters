@@ -4,7 +4,7 @@ import { useCallback, useMemo, useRef, useState } from "react";
 import { useTimeline } from "@/state/TimelineContext";
 import { narrativeEvents } from "@/data/narrativeEvents";
 import { zoningDatasets } from "@/data/zoning";
-import { decadeTicks, percentToYear, yearToPercent } from "@/lib/timeline-scale";
+import { decadeTicks, percentToYear, sparseTicks, yearToPercent } from "@/lib/timeline-scale";
 import { MAX_YEAR, MIN_YEAR } from "@/lib/timeline";
 import styles from "./Timeline.module.css";
 
@@ -18,7 +18,9 @@ export function Timeline({ isExpanded = false, onToggleExpanded }: TimelineProps
   const trackRef = useRef<HTMLDivElement | null>(null);
   const [dragging, setDragging] = useState(false);
 
-  const ticks = useMemo(() => decadeTicks(), []);
+  // The full decade-by-decade set of labels only fits without overlapping when the
+  // track is wide (fullscreen); at the smaller default size, show just three.
+  const ticks = useMemo(() => (isExpanded ? decadeTicks() : sparseTicks(3)), [isExpanded]);
   const eraBoundaries = useMemo(
     () => zoningDatasets.slice(1).map((d) => d.startYear),
     []

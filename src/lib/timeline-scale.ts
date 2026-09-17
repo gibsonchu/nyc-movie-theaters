@@ -19,3 +19,13 @@ export function decadeTicks(): number[] {
   if (ticks[ticks.length - 1] !== MAX_YEAR) ticks.push(MAX_YEAR);
   return ticks;
 }
+
+/** A handful of evenly-spaced year labels — for narrow tracks where every decade would overlap. */
+export function sparseTicks(count: number): number[] {
+  if (count <= 1) return [MIN_YEAR];
+  const ticks: number[] = [];
+  for (let i = 0; i < count; i++) {
+    ticks.push(Math.round(MIN_YEAR + (i / (count - 1)) * (MAX_YEAR - MIN_YEAR)));
+  }
+  return ticks;
+}
