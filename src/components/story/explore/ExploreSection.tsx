@@ -2,8 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { MapCanvas } from "@/components/map/MapCanvas";
-import { CalloutLayer } from "@/components/callouts/CalloutLayer";
-import { ZoningControl } from "@/components/controls/ZoningControl";
+import { TheaterDetailPanel } from "@/components/detail/TheaterDetailPanel";
 import { Timeline } from "@/components/timeline/Timeline";
 import { LazyMount } from "@/components/story/LazyMount";
 import section from "@/components/story/section.module.css";
@@ -43,10 +42,8 @@ export function ExploreSection() {
 
       <LazyMount fallback={<div className={styles.mapPlaceholder} />} rootMargin="400px">
         <div className={`${styles.mapFrame} ${expanded ? styles.mapFrameExpanded : ""}`}>
-          <MapCanvas>
-            <CalloutLayer />
-          </MapCanvas>
-          <ZoningControl />
+          <MapCanvas />
+          <TheaterDetailPanel />
           <Timeline isExpanded={expanded} onToggleExpanded={() => setExpanded((prev) => !prev)} />
         </div>
       </LazyMount>

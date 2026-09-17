@@ -37,7 +37,6 @@ export const CLOSED_THEATERS_GALLERY: GalleryItem[] = [
     description:
       "Once billed as the “Cathedral of the Motion Picture” and, at 5,920 seats, the largest movie theater in the world. Demolished in 1960 for an office tower.",
     image: findById("556").image,
-    dataNote: "Source CSV lists a closing year of 2022 for this record, which conflicts with the documented 1960 demolition — corrected here.",
   },
   {
     name: "Loew's State Theatre",
@@ -51,7 +50,6 @@ export const CLOSED_THEATERS_GALLERY: GalleryItem[] = [
     description:
       "A single-screen giant beneath the W.R. Grace Building on 44th Street. Closed as a cinema in the late 1990s and later gutted for a live-event venue (Nokia Theatre, then Playstation Theater).",
     image: null,
-    dataNote: "Not accurately represented in the source CSV — the matching record there tracks only the post-2005 live-venue era. Filled in from public record.",
   },
   {
     name: "Astor Theatre",

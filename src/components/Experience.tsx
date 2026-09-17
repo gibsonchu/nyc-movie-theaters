@@ -2,7 +2,6 @@
 
 import { TimelineProvider } from "@/state/TimelineContext";
 import { Masthead } from "@/components/layout/Masthead";
-import { TheaterDetailPanel } from "@/components/detail/TheaterDetailPanel";
 import { StorySections } from "@/components/story/StorySections";
 
 export function Experience() {
@@ -10,7 +9,6 @@ export function Experience() {
     <TimelineProvider>
       <Masthead />
       <StorySections />
-      <TheaterDetailPanel />
     </TimelineProvider>
   );
 }

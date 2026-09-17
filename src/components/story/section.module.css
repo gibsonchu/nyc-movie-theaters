@@ -61,6 +61,37 @@
   margin-top: 14px;
 }
 
+/** Matches the main essay/narrative body-text size (e.g. the intro section), for
+ *  paragraphs elsewhere in the article that should read as primary prose rather
+ *  than the smaller `.prose` caption-adjacent style. */
+.articleText {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.65;
+  color: var(--ink);
+  max-width: 62ch;
+}
+
+.articleText + .articleText {
+  margin-top: 18px;
+}
+
+.articleText a {
+  font-weight: 700;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent);
+}
+
+.articleText a:hover {
+  color: var(--accent);
+}
+
+/** Drops the default max-width cap, e.g. so a caption can span the full width of the chart/map above it. */
+.fullWidth {
+  max-width: none;
+}
+
 .statRow {
   display: flex;
   flex-wrap: wrap;
@@ -106,6 +137,9 @@
 @media (max-width: 640px) {
   .section {
     padding: 64px 18px;
+  }
+  .articleText {
+    font-size: 16px;
   }
   .statRow {
     gap: 22px;

@@ -55,9 +55,11 @@ export function StoryboardSection() {
             {US_MOVIE_INDUSTRY_PEAK_1946.averageTicketPriceCents}&cent; &mdash; about $
             {US_MOVIE_INDUSTRY_PEAK_1946.averageTicketPriceTodayUsd} today.<sup>2</sup> The industry took in nearly $
             {US_MOVIE_INDUSTRY_PEAK_1946.boxOfficeBillionsUsd} billion at the box office that year, equivalent to
-            roughly ${US_MOVIE_INDUSTRY_PEAK_1946.boxOfficeTodayBillionsUsd} billion today.<sup>3</sup> It was a
-            remarkable high point for American moviegoing: theaters were drawing tens of millions of people every
-            week, and Hollywood was supplying them with hundreds of new films each year.
+            roughly ${US_MOVIE_INDUSTRY_PEAK_1946.boxOfficeTodayBillionsUsd} billion today.<sup>3</sup>
+          </p>
+          <p>
+            It was a remarkable high point for American moviegoing: theaters were drawing tens of millions of people
+            every week, and Hollywood was supplying them with hundreds of new films each year.
           </p>
           <ol className={styles.footnotes}>
             <li>

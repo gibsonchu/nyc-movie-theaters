@@ -77,6 +77,7 @@ export function PeakChart() {
 
   return (
     <div className={styles.wrap}>
+      <p className={styles.chartTitle}>Operating Movie Theaters in NYC Over Time</p>
       <svg viewBox={`0 0 ${VIEW_W} ${VIEW_H}`} className={styles.svg} role="img" aria-label="Operating theaters over time, by borough">
         {yTicks.map((v) => (
           <g key={v}>

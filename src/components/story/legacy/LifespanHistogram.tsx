@@ -7,7 +7,9 @@ import styles from "./LifespanHistogram.module.css";
 
 const VIEW_W = 720;
 const VIEW_H = 320;
-const MARGIN = { top: 16, right: 16, bottom: 34, left: 36 };
+// Extra top margin gives the median callout room to sit above every bar,
+// rather than at a fixed height that can land inside a tall one.
+const MARGIN = { top: 34, right: 16, bottom: 34, left: 36 };
 const PLOT_W = VIEW_W - MARGIN.left - MARGIN.right;
 const PLOT_H = VIEW_H - MARGIN.top - MARGIN.bottom;
 const BUCKET_SIZE = 10;
@@ -31,6 +33,7 @@ export function LifespanHistogram() {
 
   return (
     <div className={styles.wrap}>
+      <p className={styles.chartTitle}>Distribution of theater lifespans in years.</p>
       <svg viewBox={`0 0 ${VIEW_W} ${VIEW_H}`} className={styles.svg} role="img" aria-label="Distribution of theater lifespans">
         {buckets.map((b) => (
           <rect
@@ -57,7 +60,7 @@ export function LifespanHistogram() {
         <line x1={MARGIN.left} x2={VIEW_W - MARGIN.right} y1={yScale(0)} y2={yScale(0)} className={styles.axisLine} />
 
         <line x1={medianX} x2={medianX} y1={MARGIN.top} y2={yScale(0)} className={styles.medianLine} />
-        <text x={medianX + 6} y={MARGIN.top + 12} className={styles.medianLabel}>
+        <text x={medianX} y={MARGIN.top - 10} textAnchor="middle" className={styles.medianLabel}>
           Median: {median} yrs
         </text>
       </svg>

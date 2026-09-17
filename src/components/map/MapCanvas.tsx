@@ -7,7 +7,6 @@ import { theaters } from "@/data/theaters";
 import type { Theater } from "@/types/theater";
 import { getActiveZoningDataset } from "@/data/zoning";
 import { useTimeline } from "@/state/TimelineContext";
-import { MapContext } from "@/state/MapContext";
 import { theatersToFeatureCollection } from "@/lib/theater-geo";
 import { circleColorExpression, circleOpacityExpression, circleRadiusExpression } from "@/lib/map-expressions";
 import { buildTheaterFilter } from "@/lib/theater-filter";
@@ -29,12 +28,10 @@ const theaterById = new Map(theaters.map((t) => [t.id, t]));
 // copy of the worker bundle instead.
 setWorkerUrl("/maplibre/maplibre-gl-worker.mjs");
 
-export function MapCanvas({ children }: { children?: React.ReactNode }) {
+export function MapCanvas() {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<MapLibreMap | null>(null);
   const [ready, setReady] = useState(false);
-  const [map, setMap] = useState<MapLibreMap | null>(null);
-  const [moveTick, setMoveTick] = useState(0);
   const [hover, setHover] = useState<{ theater: Theater; point: { x: number; y: number } } | null>(null);
 
   const { year, zoningVisible, selectTheater, selectedTheater } = useTimeline();
@@ -150,13 +147,9 @@ export function MapCanvas({ children }: { children?: React.ReactNode }) {
         }
       });
 
-      const bumpMoveTick = () => setMoveTick((t) => t + 1);
-      instance.on("move", bumpMoveTick);
-      instance.on("resize", bumpMoveTick);
       instance.on("movestart", () => setHover(null));
 
       setReady(true);
-      setMap(instance);
     });
 
     mapRef.current = instance;
@@ -204,10 +197,9 @@ export function MapCanvas({ children }: { children?: React.ReactNode }) {
   }, [selectedTheater, ready]);
 
   return (
-    <MapContext.Provider value={{ map, moveTick }}>
+    <>
       <div ref={containerRef} className={styles.mapRoot} aria-label="Map of New York City movie theaters" />
-      {ready && children}
       {hover && <TheaterHoverCard theater={hover.theater} point={hover.point} />}
-    </MapContext.Provider>
+    </>
   );
 }
