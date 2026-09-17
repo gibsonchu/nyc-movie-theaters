@@ -1,11 +1,11 @@
 .wrap {
-  padding-top: 96px;
+  padding-top: 40px;
 }
 
 .mapFrame {
   position: relative;
   width: 100%;
-  max-width: 640px;
+  max-width: 1040px;
   aspect-ratio: 16 / 10;
   margin: 48px auto 0;
   border: 1px solid var(--ink);
@@ -26,7 +26,7 @@
 
 .mapPlaceholder {
   width: 100%;
-  max-width: 640px;
+  max-width: 1040px;
   aspect-ratio: 16 / 10;
   margin: 48px auto 0;
   border: 1px solid var(--ink);

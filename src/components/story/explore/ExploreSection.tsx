@@ -29,15 +29,15 @@ export function ExploreSection() {
   return (
     <section className={styles.wrap} id="explore-the-map">
       <div className={section.inner}>
-        <p className={section.prose}>
+        <p className={section.articleText}>
           New York probably isn&rsquo;t going back to a city of 600 movie theaters. But the places where we watch
           movies aren&rsquo;t just screens and seats. They&rsquo;re neighborhood institutions, gathering places and
           pieces of the city&rsquo;s physical fabric.
         </p>
-        <p className={section.prose}>
+        <p className={section.articleText}>
           So before the credits roll on another one, maybe it&rsquo;s worth holding on to what we have left.
         </p>
-        <p className={section.prose}>Explore more of the theaters over time on this map here.</p>
+        <p className={section.articleText}>Explore more of the theaters over time on this map here.</p>
       </div>
 
       <LazyMount fallback={<div className={styles.mapPlaceholder} />} rootMargin="400px">

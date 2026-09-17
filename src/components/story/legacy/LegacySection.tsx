@@ -26,7 +26,7 @@ export function LegacySection() {
             Loew&rsquo;s theater in 1921 and has been showing movies for more than a century.
           </p>
         </div>
-        <div className={section.wide}>
+        <div className={section.wide} style={{ marginTop: 32 }}>
           <LifespanHistogram />
           <p className={`${section.caption} ${section.fullWidth}`}>
             This chart excludes theaters confirmed closed with no recorded closing year, and a handful with a
@@ -36,7 +36,7 @@ export function LegacySection() {
         </div>
       </section>
 
-      <section className={section.section} id="what-replaced-them">
+      <section className={section.section} id="what-replaced-them" style={{ paddingTop: 32, paddingBottom: 48 }}>
         <div className={section.inner}>
           <p className={section.lede}>
             For those that closed, a number of them were turned into other useful places for the city. Based on a

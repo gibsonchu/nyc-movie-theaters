@@ -6,7 +6,7 @@ import mapStyles from "@/components/zoning/CurrentZoningMap.module.css";
 
 export function ZoningTeaserSection() {
   return (
-    <section className={section.section} id="where-could-nyc-build-today">
+    <section className={section.section} id="where-could-nyc-build-today" style={{ paddingBottom: 40 }}>
       <div className={section.inner}>
         <p className={section.articleText}>Where could NYC build a movie theater today?</p>
         <p className={section.articleText}>

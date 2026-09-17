@@ -94,7 +94,7 @@ export function StoryboardSection() {
   const { active, setRef } = useActiveStep(steps.length);
 
   return (
-    <section className={section.section} id="the-peak-and-the-decline">
+    <section className={section.section} id="the-peak-and-the-decline" style={{ paddingBottom: 40 }}>
       <div className={styles.grid}>
         <div className={styles.visualCol}>
           <div className={styles.visualSticky}>
