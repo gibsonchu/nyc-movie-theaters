@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { theaters } from "@/data/theaters";
 import {
   activeCountsByYear,
@@ -10,6 +10,7 @@ import {
   peakDecade,
 } from "@/lib/theater-stats";
 import { US_MOVIE_INDUSTRY_PEAK_1946, TV_OWNERSHIP_BY_YEAR } from "@/lib/historical-context";
+import { MAX_YEAR } from "@/lib/timeline";
 import { useActiveStep } from "@/components/story/useActiveStep";
 import { PeakChart } from "./PeakChart";
 import { PosterGallery } from "./PosterGallery";
@@ -21,7 +22,8 @@ type Visual = "chart" | "posters" | "quotes";
 
 interface Step {
   visual: Visual;
-  dotYear: number;
+  /** How far along the timeline the area chart should be revealed while this step is active. */
+  revealYear: number;
   showTv?: boolean;
   caption?: string;
   text: React.ReactNode;
@@ -45,7 +47,7 @@ export function StoryboardSection() {
   const steps: Step[] = [
     {
       visual: "chart",
-      dotYear: 1896,
+      revealYear: 1896,
       text: (
         <>
           There have been approximately {theaters.length.toLocaleString()} movie theaters that have operated across
@@ -56,7 +58,7 @@ export function StoryboardSection() {
     },
     {
       visual: "chart",
-      dotYear: peakYear,
+      revealYear: peakYear,
       text: (
         <>
           Over {peakTotal.toLocaleString()} theaters were operating across the boroughs, with a majority of them in{" "}
@@ -72,19 +74,19 @@ export function StoryboardSection() {
     },
     {
       visual: "posters",
-      dotYear: peakYear,
+      revealYear: peakYear,
       caption: `Playing across New York, ${peakYear}`,
       text: <>A handful of what was on the marquee that year &mdash; placeholders, to be swapped in.</>,
     },
     {
       visual: "quotes",
-      dotYear: peakYear,
+      revealYear: peakYear,
       caption: "What it felt like",
       text: <>Placeholder quotes &mdash; to be replaced with real recollections.</>,
     },
     {
       visual: "chart",
-      dotYear: 1950,
+      revealYear: 1950,
       text: (
         <>
           But as everyone knows, the advent of television was just around the corner. By the early 1950s, over{" "}
@@ -94,13 +96,13 @@ export function StoryboardSection() {
     },
     {
       visual: "chart",
-      dotYear: 1955,
+      revealYear: 1955,
       showTv: true,
       text: <>Television arrived just as New York&rsquo;s enormous theater network began shutting down.</>,
     },
     {
       visual: "chart",
-      dotYear: 1990,
+      revealYear: MAX_YEAR,
       showTv: true,
       text: (
         <>
@@ -114,6 +116,18 @@ export function StoryboardSection() {
 
   const { active, setRef } = useActiveStep(steps.length);
   const current = steps[active];
+  const isMovieMoment = current.visual === "posters" || current.visual === "quotes";
+
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    if (isMovieMoment) {
+      video.play().catch(() => {});
+    } else {
+      video.pause();
+    }
+  }, [isMovieMoment]);
 
   return (
     <section className={`${styles.section} ${section.section}`} id="the-peak-and-the-decline">
@@ -123,9 +137,34 @@ export function StoryboardSection() {
             {current.caption && (
               <p className={`${styles.stepCaption} ${styles.stepCaptionActive}`}>{current.caption}</p>
             )}
-            {current.visual === "chart" && <PeakChart dotYear={current.dotYear} showTv={current.showTv} />}
-            {current.visual === "posters" && <PosterGallery />}
-            {current.visual === "quotes" && <QuoteGrid />}
+
+            <div className={styles.visualStack}>
+              <div className={`${styles.bgVideoWrap} ${isMovieMoment ? styles.bgVideoWrapVisible : ""}`}>
+                <video
+                  ref={videoRef}
+                  className={styles.bgVideo}
+                  src="/movies-1940s.mov"
+                  muted
+                  loop
+                  playsInline
+                  preload="none"
+                  aria-hidden="true"
+                />
+                <div className={styles.bgVideoScrim} />
+              </div>
+
+              {/* The chart stays mounted the whole time (never unmounted) so its reveal
+                  animation keeps its place and continues forward when it fades back in. */}
+              <div className={`${styles.visualLayer} ${current.visual === "chart" ? styles.visualLayerVisible : ""}`}>
+                <PeakChart revealYear={current.revealYear} showTv={current.showTv} />
+              </div>
+              <div className={`${styles.visualLayer} ${current.visual === "posters" ? styles.visualLayerVisible : ""}`}>
+                <PosterGallery />
+              </div>
+              <div className={`${styles.visualLayer} ${current.visual === "quotes" ? styles.visualLayerVisible : ""}`}>
+                <QuoteGrid />
+              </div>
+            </div>
           </div>
         </div>
 

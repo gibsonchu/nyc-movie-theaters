@@ -17,8 +17,58 @@
 
 .visualSticky {
   position: sticky;
-  top: 10vh;
-  min-height: 40vh;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 14px;
+}
+
+.visualStack {
+  position: relative;
+  display: grid;
+}
+
+.visualLayer {
+  grid-area: 1 / 1;
+  position: relative;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 600ms ease;
+  pointer-events: none;
+}
+
+.visualLayerVisible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.bgVideoWrap {
+  grid-area: 1 / 1;
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 800ms ease;
+  pointer-events: none;
+}
+
+.bgVideoWrapVisible {
+  opacity: 1;
+}
+
+.bgVideo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bgVideoScrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.78);
 }
 
 .textCol {
@@ -87,6 +137,8 @@
 
   .visualSticky {
     position: static;
+    height: auto;
+    display: block;
   }
 
   .textCol {

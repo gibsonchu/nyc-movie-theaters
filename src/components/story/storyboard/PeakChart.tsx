@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { useId, useMemo } from "react";
 import { theaters } from "@/data/theaters";
 import { activeCountsByYear, type YearCounts } from "@/lib/theater-stats";
 import { TV_OWNERSHIP_BY_YEAR } from "@/lib/historical-context";
@@ -42,7 +42,8 @@ function interpolateTvPercent(year: number): number {
   return 0;
 }
 
-export function PeakChart({ dotYear, showTv = false }: { dotYear: number; showTv?: boolean }) {
+export function PeakChart({ revealYear, showTv = false }: { revealYear: number; showTv?: boolean }) {
+  const clipId = useId();
   const series = useMemo(() => activeCountsByYear(theaters), []);
   const maxTotal = useMemo(() => Math.max(...series.map((d) => d.confirmed + d.uncertain)), [series]);
 
@@ -77,14 +78,21 @@ export function PeakChart({ dotYear, showTv = false }: { dotYear: number; showTv
 
   const xTicks = [1900, 1920, 1940, 1960, 1980, 2000, 2020];
 
-  const dotYearData = series.find((d) => d.year === Math.round(dotYear)) ?? series[0];
-  const dotX = xForYear(dotYear);
-  const dotY = yScale(dotYearData.confirmed + dotYearData.uncertain);
-  const dotLabelAbove = dotY > MARGIN.top + 24;
+  // The area is revealed left-to-right as the reader scrolls, rather than
+  // shown all at once — a clip rect grows toward revealYear and CSS
+  // transitions its width, so the reveal keeps animating smoothly forward
+  // (or backward) whenever revealYear changes between renders.
+  const revealWidth = Math.max(0, xForYear(revealYear) - MARGIN.left);
 
   return (
     <div className={styles.wrap}>
       <svg viewBox={`0 0 ${VIEW_W} ${VIEW_H}`} className={styles.svg} role="img" aria-label="Operating theaters over time">
+        <defs>
+          <clipPath id={clipId}>
+            <rect x={MARGIN.left} y={0} width={revealWidth} height={VIEW_H} className={styles.revealRect} />
+          </clipPath>
+        </defs>
+
         {yTicks.map((v) => (
           <g key={v}>
             <line x1={MARGIN.left} x2={VIEW_W - MARGIN.right} y1={yScale(v)} y2={yScale(v)} className={styles.gridLine} />
@@ -94,9 +102,11 @@ export function PeakChart({ dotYear, showTv = false }: { dotYear: number; showTv
           </g>
         ))}
 
-        <path d={confirmedPath} className={styles.confirmedArea} />
-        <path d={uncertainPath} className={styles.uncertainArea} />
-        <path d={tvPath} className={styles.tvArea} style={{ opacity: showTv ? 1 : 0 }} />
+        <g clipPath={`url(#${clipId})`}>
+          <path d={confirmedPath} className={styles.confirmedArea} />
+          <path d={uncertainPath} className={styles.uncertainArea} />
+          <path d={tvPath} className={styles.tvArea} style={{ opacity: showTv ? 1 : 0 }} />
+        </g>
 
         {xTicks.map((year) => (
           <text key={year} x={xForYear(year)} y={VIEW_H - MARGIN.bottom + 20} className={styles.xLabel} textAnchor="middle">
@@ -110,21 +120,14 @@ export function PeakChart({ dotYear, showTv = false }: { dotYear: number; showTv
           y2={VIEW_H - MARGIN.bottom}
           className={styles.axisLine}
         />
-
-        <circle cx={dotX} cy={dotY} r={7} className={styles.dot} />
-        <text
-          x={dotX}
-          y={dotLabelAbove ? dotY - 16 : dotY + 26}
-          textAnchor="middle"
-          className={styles.dotYear}
-        >
-          {Math.round(dotYear)}
-        </text>
       </svg>
 
       <div className={styles.legend}>
         <span className={styles.legendItem}>
           <span className={styles.swatch} style={{ background: "var(--accent)", opacity: 0.82 }} /> Theaters operating
+        </span>
+        <span className={styles.legendItem}>
+          <span className={styles.swatch} style={{ background: "var(--accent)", opacity: 0.22 }} /> Closing year unknown
         </span>
         {showTv && (
           <span className={styles.legendItem}>

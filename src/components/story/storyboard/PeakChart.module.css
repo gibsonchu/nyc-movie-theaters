@@ -47,21 +47,8 @@
     opacity 500ms ease;
 }
 
-.dot {
-  fill: var(--ink-pure);
-  stroke: var(--paper);
-  stroke-width: 2.5;
-  transition:
-    cx 900ms cubic-bezier(0.4, 0, 0.2, 1),
-    cy 900ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.dotYear {
-  font-family: var(--font-sans);
-  font-size: 15px;
-  font-weight: 900;
-  fill: var(--ink-pure);
-  transition: x 900ms cubic-bezier(0.4, 0, 0.2, 1);
+.revealRect {
+  transition: width 1100ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .legend {
