@@ -9,7 +9,7 @@ import { getActiveZoningDataset } from "@/data/zoning";
 import { useTimeline } from "@/state/TimelineContext";
 import { MapContext } from "@/state/MapContext";
 import { theatersToFeatureCollection } from "@/lib/theater-geo";
-import { circleOpacityExpression, circleRadiusExpression } from "@/lib/map-expressions";
+import { circleColorExpression, circleOpacityExpression, circleRadiusExpression } from "@/lib/map-expressions";
 import { buildTheaterFilter } from "@/lib/theater-filter";
 import { DEFAULT_ZOOM, MAX_ZOOM, MIN_ZOOM, MAP_STYLE_URL, NYC_CENTER, NYC_MAX_BOUNDS } from "@/lib/map-config";
 import { ZONING_CATEGORY_COLORS } from "@/types/zoning";
@@ -100,7 +100,7 @@ export function MapCanvas({ children }: { children?: React.ReactNode }) {
         source: "theaters",
         filter: buildTheaterFilter(year),
         paint: {
-          "circle-color": "#a4283c",
+          "circle-color": circleColorExpression(year),
           "circle-radius": circleRadiusExpression(year),
           "circle-opacity": circleOpacityExpression(year),
           "circle-stroke-color": "#ffffff",
@@ -173,6 +173,7 @@ export function MapCanvas({ children }: { children?: React.ReactNode }) {
   useEffect(() => {
     const instance = mapRef.current;
     if (!instance || !ready) return;
+    instance.setPaintProperty("theater-points", "circle-color", circleColorExpression(year));
     instance.setPaintProperty("theater-points", "circle-radius", circleRadiusExpression(year));
     instance.setPaintProperty("theater-points", "circle-opacity", circleOpacityExpression(year));
     instance.setPaintProperty("theater-points", "circle-stroke-opacity", circleOpacityExpression(year));

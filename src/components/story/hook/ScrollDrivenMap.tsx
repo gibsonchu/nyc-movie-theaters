@@ -5,7 +5,7 @@ import { Map as MapLibreMap, setWorkerUrl } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { theaters } from "@/data/theaters";
 import { theatersToFeatureCollection } from "@/lib/theater-geo";
-import { circleOpacityExpression, circleRadiusExpression } from "@/lib/map-expressions";
+import { circleColorExpression, circleOpacityExpression, circleRadiusExpression } from "@/lib/map-expressions";
 import { buildTheaterFilter } from "@/lib/theater-filter";
 import { activityInYear } from "@/lib/theater-stats";
 import { MAP_STYLE_URL, NYC_CENTER, NYC_MAX_BOUNDS, DEFAULT_ZOOM, MIN_ZOOM, MAX_ZOOM } from "@/lib/map-config";
@@ -49,7 +49,7 @@ export function ScrollDrivenMap() {
         source: "theaters",
         filter: buildTheaterFilter(MIN_YEAR),
         paint: {
-          "circle-color": "#a4283c",
+          "circle-color": circleColorExpression(MIN_YEAR),
           "circle-radius": circleRadiusExpression(MIN_YEAR),
           "circle-opacity": circleOpacityExpression(MIN_YEAR),
           "circle-stroke-color": "#ffffff",
@@ -75,6 +75,7 @@ export function ScrollDrivenMap() {
   useEffect(() => {
     const instance = mapRef.current;
     if (!instance || !readyRef.current) return;
+    instance.setPaintProperty("theater-points", "circle-color", circleColorExpression(year));
     instance.setPaintProperty("theater-points", "circle-radius", circleRadiusExpression(year));
     instance.setPaintProperty("theater-points", "circle-opacity", circleOpacityExpression(year));
     instance.setPaintProperty("theater-points", "circle-stroke-opacity", circleOpacityExpression(year));
@@ -111,7 +112,6 @@ export function ScrollDrivenMap() {
     <div ref={wrapperRef} className={styles.wrapper}>
       <div className={styles.sticky}>
         <div ref={containerRef} className={styles.map} aria-hidden="true" />
-        <p className={styles.cue}>Scroll to watch the theaters come and go</p>
         <div className={styles.overlay}>
           <span className={styles.year}>{year}</span>
           <span className={styles.count}>{count.toLocaleString()} on the map</span>

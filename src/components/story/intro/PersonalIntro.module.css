@@ -6,8 +6,8 @@
 }
 
 .quote {
-  border-left: 3px solid var(--accent);
-  padding-left: 22px;
+  margin: 0;
+  padding: 0;
 }
 
 .quote p {
@@ -36,9 +36,6 @@
 @media (max-width: 640px) {
   .wrap {
     padding: 0 18px 48px;
-  }
-  .quote {
-    padding-left: 16px;
   }
   .quote p {
     font-size: 16px;
