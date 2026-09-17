@@ -4,6 +4,12 @@ import { useTimeline } from "@/state/TimelineContext";
 import { CURRENT_ZONING_COLORS } from "@/types/current-zoning";
 import styles from "./CurrentZoningTheaterPanel.module.css";
 
+function formatZoningDataDate(isoDate: string): string {
+  const parsed = new Date(`${isoDate}T00:00:00`);
+  if (Number.isNaN(parsed.getTime())) return isoDate;
+  return parsed.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+}
+
 export function CurrentZoningTheaterPanel() {
   const { selectedZoningTheater, selectZoningTheater } = useTimeline();
 
@@ -17,7 +23,7 @@ export function CurrentZoningTheaterPanel() {
       </button>
 
       <p className={styles.eyebrow}>
-        {t.borough} &middot; {t.openingYear}&ndash;{t.closingYear ?? "?"}
+        {t.borough} &middot; {t.closingYear ? `${t.openingYear}–${t.closingYear}` : "Unknown Dates"}
       </p>
       <h3 className={styles.name}>{t.name}</h3>
       {t.alternateNames && <p className={styles.alternateNames}>also known as {t.alternateNames}</p>}
@@ -56,10 +62,17 @@ export function CurrentZoningTheaterPanel() {
         </div>
       </dl>
 
-      {t.manualReviewReason && <p className={styles.reviewFlag}>Flagged for review: {t.manualReviewReason}</p>}
+      {t.manualReviewReason && (
+        <p className={styles.reviewFlag}>
+          Special-purpose district may modify citywide rules. Verify this special district.
+        </p>
+      )}
 
+      <p className={styles.footnote}>Last Updated {formatZoningDataDate(t.zoningDataDate)}</p>
       <p className={styles.footnote}>
-        Screening confidence: {t.screeningConfidence}. {t.ruleCitation}. Data date {t.zoningDataDate}.
+        <a href="https://zola.planninglabs.nyc/" target="_blank" rel="noreferrer">
+          Review ZR for more details
+        </a>
       </p>
 
       {t.sourceUrl && (

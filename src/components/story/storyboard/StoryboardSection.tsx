@@ -130,7 +130,7 @@ export function StoryboardSection() {
   }, [isMovieMoment]);
 
   return (
-    <section className={`${styles.section} ${section.section}`} id="the-peak-and-the-decline">
+    <section className={section.section} id="the-peak-and-the-decline">
       <div className={styles.grid}>
         <div className={styles.visualCol}>
           <div className={styles.visualSticky}>

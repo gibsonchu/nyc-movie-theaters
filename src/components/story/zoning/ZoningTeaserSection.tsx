@@ -14,14 +14,13 @@ export function ZoningTeaserSection() {
           <CurrentZoningMap />
         </LazyMount>
         <p className={section.caption}>
-          Every zoning district in the city, screened against today&rsquo;s rules (ZR 32-181, 32-183, 42-181) and
-          colored by whether an ordinary indoor theater could go there &mdash; plus every historical theater site
-          from this piece, colored the same way. Click a dot for its full record. This is a planning screen, not a
-          legal opinion.
+          Zoning districts are colored based on whether an ordinary movie theater could be there today. Feel free to
+          read the{" "}
+          <a href="https://zoningresolution.planning.nyc.gov/" target="_blank" rel="noreferrer">
+            Zoning Resolution
+          </a>{" "}
+          for more details on &sect; ZR 32-181, 32-183, 42-181.
         </p>
-      </div>
-      <div className={section.inner}>
-        <p className={section.prose}>Kips Bay will become another dot on this map.</p>
       </div>
     </section>
   );

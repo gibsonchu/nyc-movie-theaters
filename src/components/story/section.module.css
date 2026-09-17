@@ -1,10 +1,5 @@
 .section {
   padding: 96px 28px;
-  border-bottom: 1px solid var(--rule);
-}
-
-.section:last-child {
-  border-bottom: none;
 }
 
 .inner {
