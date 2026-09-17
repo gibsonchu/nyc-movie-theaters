@@ -82,10 +82,14 @@
   padding: 6vh 0;
 }
 
-.step:first-child {
-  min-height: 50vh;
-}
-
+/*
+ * The intro step used to be a short 50vh, which made "There have been
+ * approximately..." activate almost immediately on entering the section —
+ * before the chart (which starts essentially empty at 1896) had scrolled
+ * enough to show any real progress. Giving it the same 70vh as every other
+ * step gives it a full scroll's worth of runway, so the text's pace better
+ * matches how much the chart has actually drawn by the time it lights up.
+ */
 .step:last-child {
   min-height: 50vh;
   padding-bottom: 12vh;
@@ -97,7 +101,7 @@
   line-height: 1.65;
   color: var(--ink-soft);
   opacity: 0.25;
-  transition: opacity 500ms ease;
+  transition: opacity 900ms ease;
 }
 
 .stepTextActive {
@@ -110,7 +114,7 @@
   font-weight: 700;
   color: var(--meta);
   opacity: 0.25;
-  transition: opacity 500ms ease;
+  transition: opacity 900ms ease;
 }
 
 .stepCaptionActive {
