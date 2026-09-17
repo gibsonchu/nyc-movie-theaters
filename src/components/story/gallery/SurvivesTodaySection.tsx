@@ -17,21 +17,12 @@ export function SurvivesTodaySection() {
   );
 
   return (
-    <section className={section.section} id="survives-today" style={{ paddingTop: 40 }}>
+    <section className={section.section} id="survives-today" style={{ paddingTop: 16 }}>
       <div className={section.inner}>
         <p className={section.lede}>
-          A number of theaters continue to survive today, with {survives.toLocaleString()} venues that once showed
-          films still standing, and {showingMovies.toLocaleString()} still actively showing movies. You can check
-          out and see what&rsquo;s playing on each of their individual sites, or across{" "}
-          <a
-            href="https://screenslate.com/"
-            target="_blank"
-            rel="noreferrer"
-            style={{ borderBottom: "1px solid var(--accent)" }}
-          >
-            Screen Slate
-          </a>{" "}
-          if you&rsquo;d rather go by movie.
+          Out of the theaters that continue to exist today, over {survives.toLocaleString()} venues of them
+          don&rsquo;t actively show films anymore, with {showingMovies.toLocaleString()} of them actively showing
+          movies.
         </p>
       </div>
       <div className={section.wide}>

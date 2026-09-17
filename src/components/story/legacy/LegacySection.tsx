@@ -1,19 +1,11 @@
-import { useMemo } from "react";
-import { theaters } from "@/data/theaters";
-import { currentPlaceCategoryCounts, formerTheaters } from "@/lib/theater-stats";
 import { LifespanHistogram } from "./LifespanHistogram";
 import { RepurposedChart } from "./RepurposedChart";
 import section from "@/components/story/section.module.css";
 
 export function LegacySection() {
-  const citeableCount = useMemo(
-    () => currentPlaceCategoryCounts(formerTheaters(theaters)).reduce((sum, c) => sum + c.count, 0),
-    []
-  );
-
   return (
     <>
-      <section className={section.section} id="how-long-they-lasted">
+      <section className={section.section} id="how-long-they-lasted" style={{ paddingTop: 24 }}>
         <div className={section.inner}>
           <p className={section.articleText}>
             Most movie theaters had a good run, with many of them lasting between twenty to forty years.
@@ -36,15 +28,11 @@ export function LegacySection() {
         </div>
       </section>
 
-      <section className={section.section} id="what-replaced-them" style={{ paddingTop: 32, paddingBottom: 48 }}>
+      <section className={section.section} id="what-replaced-them" style={{ paddingTop: 12, paddingBottom: 16 }}>
         <div className={section.inner}>
           <p className={section.lede}>
-            For those that closed, a number of them were turned into other useful places for the city. Based on a
-            geocoding audit of their former addresses, {citeableCount.toLocaleString()} closed theaters had a
-            citeable present-day occupant worth naming; most others are now just an ordinary building &mdash; that
-            is, whatever stands there today wasn&rsquo;t tagged with anything distinctive enough for the geocoder to
-            single out, so we can&rsquo;t say from this data alone whether it&rsquo;s residential, office, or
-            something else entirely.
+            For the theaters that closed, a majority of them were turned into amenity or shops, with most as regular
+            buildings for residential or office use.
           </p>
         </div>
         <div className={section.wide}>
