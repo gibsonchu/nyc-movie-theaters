@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { theaters } from "@/data/theaters";
 import {
   activeCountsByYear,
@@ -129,49 +129,79 @@ export function StoryboardSection() {
     }
   }, [isMovieMoment]);
 
+  // Match the text panel's reserved height to the visual's, and top-align the text within
+  // it, so the text always starts at the same spot the visual does, however tall each is.
+  const visualStackRef = useRef<HTMLDivElement | null>(null);
+  const [visualHeight, setVisualHeight] = useState<number | null>(null);
+  useEffect(() => {
+    const el = visualStackRef.current;
+    if (!el) return;
+    const observer = new ResizeObserver(([entry]) => setVisualHeight(entry.contentRect.height));
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section className={`${styles.section} ${section.section}`} id="the-peak-and-the-decline">
       <div className={styles.grid}>
         <div className={styles.visualCol}>
           <div className={styles.visualSticky}>
-            {current.caption && (
-              <p className={`${styles.stepCaption} ${styles.stepCaptionActive}`}>{current.caption}</p>
-            )}
+            <div className={styles.visualContent} ref={visualStackRef}>
+              {current.caption && (
+                <p className={`${styles.stepCaption} ${styles.stepCaptionActive}`}>{current.caption}</p>
+              )}
 
-            <div className={styles.visualStack}>
-              <div className={`${styles.bgVideoWrap} ${isMovieMoment ? styles.bgVideoWrapVisible : ""}`}>
-                <video
-                  ref={videoRef}
-                  className={styles.bgVideo}
-                  src="/movies-1940s.mov"
-                  muted
-                  loop
-                  playsInline
-                  preload="none"
-                  aria-hidden="true"
-                />
-                <div className={styles.bgVideoScrim} />
-              </div>
+              <div className={styles.visualStack}>
+                <div className={`${styles.bgVideoWrap} ${isMovieMoment ? styles.bgVideoWrapVisible : ""}`}>
+                  <video
+                    ref={videoRef}
+                    className={styles.bgVideo}
+                    src="/movies-1940s.mov"
+                    muted
+                    loop
+                    playsInline
+                    preload="none"
+                    aria-hidden="true"
+                  />
+                  <div className={styles.bgVideoScrim} />
+                </div>
 
-              {/* The chart stays mounted the whole time (never unmounted) so its reveal
-                  animation keeps its place and continues forward when it fades back in. */}
-              <div className={`${styles.visualLayer} ${current.visual === "chart" ? styles.visualLayerVisible : ""}`}>
-                <PeakChart revealYear={current.revealYear} showTv={current.showTv} />
-              </div>
-              <div className={`${styles.visualLayer} ${current.visual === "posters" ? styles.visualLayerVisible : ""}`}>
-                <PosterGallery />
-              </div>
-              <div className={`${styles.visualLayer} ${current.visual === "quotes" ? styles.visualLayerVisible : ""}`}>
-                <QuoteGrid />
+                {/* The chart stays mounted the whole time (never unmounted) so its reveal
+                    animation keeps its place and continues forward when it fades back in. */}
+                <div className={`${styles.visualLayer} ${current.visual === "chart" ? styles.visualLayerVisible : ""}`}>
+                  <PeakChart revealYear={current.revealYear} showTv={current.showTv} />
+                </div>
+                <div className={`${styles.visualLayer} ${current.visual === "posters" ? styles.visualLayerVisible : ""}`}>
+                  <PosterGallery />
+                </div>
+                <div className={`${styles.visualLayer} ${current.visual === "quotes" ? styles.visualLayerVisible : ""}`}>
+                  <QuoteGrid />
+                </div>
               </div>
             </div>
           </div>
         </div>
 
         <div className={styles.textCol}>
+          {/* Desktop: text is pinned at the same sticky/centered spot as the visual and
+              cross-fades between steps, so it always starts exactly where the chart does
+              instead of drifting to wherever a step's own box happens to scroll to. */}
+          <div className={styles.textSticky}>
+            <div className={styles.textStack} style={visualHeight ? { minHeight: visualHeight } : undefined}>
+              {steps.map((step, i) => (
+                <p key={i} className={`${styles.stepText} ${i === active ? styles.stepTextActive : ""}`}>
+                  {step.text}
+                </p>
+              ))}
+            </div>
+          </div>
+
+          {/* These stay in normal flow to drive useActiveStep's scroll tracking (both
+              breakpoints), and double as the visible, inline-flowing text on mobile, where
+              there's no sticky visual to line up against. */}
           {steps.map((step, i) => (
-            <div key={i} ref={setRef(i)} className={styles.step}>
-              <p className={`${styles.stepText} ${i === active ? styles.stepTextActive : ""}`}>{step.text}</p>
+            <div key={i} ref={setRef(i)} className={styles.stepTrigger}>
+              <p className={styles.stepTextMobile}>{step.text}</p>
             </div>
           ))}
         </div>
