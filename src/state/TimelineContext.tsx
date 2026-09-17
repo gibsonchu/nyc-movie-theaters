@@ -24,9 +24,7 @@ interface TimelineContextValue {
   toggleZoning: () => void;
   selectedTheater: Theater | null;
   selectTheater: (theater: Theater | null) => void;
-  /** The present-day "where could a theater open" screening — mutually exclusive with the historical zoning toggle. */
-  currentZoningMode: boolean;
-  toggleCurrentZoningMode: () => void;
+  /** The theater selected on the standalone present-day zoning-screen map (ZoningTeaserSection). */
   selectedZoningTheater: CurrentZoningTheaterProperties | null;
   selectZoningTheater: (theater: CurrentZoningTheaterProperties | null) => void;
 }
@@ -38,7 +36,6 @@ export function TimelineProvider({ children }: { children: React.ReactNode }) {
   const [playing, setPlaying] = useState(false);
   const [zoningVisible, setZoningVisible] = useState(false);
   const [selectedTheater, setSelectedTheater] = useState<Theater | null>(null);
-  const [currentZoningMode, setCurrentZoningMode] = useState(false);
   const [selectedZoningTheater, setSelectedZoningTheater] = useState<CurrentZoningTheaterProperties | null>(null);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
@@ -49,16 +46,8 @@ export function TimelineProvider({ children }: { children: React.ReactNode }) {
   const pause = useCallback(() => setPlaying(false), []);
   const play = useCallback(() => setPlaying(true), []);
   const togglePlay = useCallback(() => setPlaying((prev) => !prev), []);
-  const toggleZoning = useCallback(() => {
-    setZoningVisible((prev) => !prev);
-    setCurrentZoningMode(false);
-  }, []);
+  const toggleZoning = useCallback(() => setZoningVisible((prev) => !prev), []);
   const selectTheater = useCallback((theater: Theater | null) => setSelectedTheater(theater), []);
-  const toggleCurrentZoningMode = useCallback(() => {
-    setCurrentZoningMode((prev) => !prev);
-    setZoningVisible(false);
-    setSelectedZoningTheater(null);
-  }, []);
   const selectZoningTheater = useCallback(
     (theater: CurrentZoningTheaterProperties | null) => setSelectedZoningTheater(theater),
     []
@@ -94,8 +83,6 @@ export function TimelineProvider({ children }: { children: React.ReactNode }) {
       toggleZoning,
       selectedTheater,
       selectTheater,
-      currentZoningMode,
-      toggleCurrentZoningMode,
       selectedZoningTheater,
       selectZoningTheater,
     }),
@@ -110,8 +97,6 @@ export function TimelineProvider({ children }: { children: React.ReactNode }) {
       toggleZoning,
       selectedTheater,
       selectTheater,
-      currentZoningMode,
-      toggleCurrentZoningMode,
       selectedZoningTheater,
       selectZoningTheater,
     ]
