@@ -1,13 +1,12 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Map as MapLibreMap, setWorkerUrl } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { theaters } from "@/data/theaters";
 import { theatersToFeatureCollection } from "@/lib/theater-geo";
 import { circleColorExpression, circleOpacityExpression, circleRadiusExpression } from "@/lib/map-expressions";
 import { buildTheaterFilter } from "@/lib/theater-filter";
-import { activityInYear } from "@/lib/theater-stats";
 import { MAP_STYLE_URL, NYC_CENTER, NYC_MAX_BOUNDS, DEFAULT_ZOOM, MIN_ZOOM, MAX_ZOOM } from "@/lib/map-config";
 import { MIN_YEAR, MAX_YEAR, clampYear } from "@/lib/timeline";
 import styles from "./ScrollDrivenMap.module.css";
@@ -103,18 +102,12 @@ export function ScrollDrivenMap() {
     };
   }, []);
 
-  const count = useMemo(
-    () => theaters.filter((t) => activityInYear(t, year) !== "inactive").length,
-    [year]
-  );
-
   return (
     <div ref={wrapperRef} className={styles.wrapper}>
       <div className={styles.sticky}>
         <div ref={containerRef} className={styles.map} aria-hidden="true" />
         <div className={styles.overlay}>
           <span className={styles.year}>{year}</span>
-          <span className={styles.count}>{count.toLocaleString()} on the map</span>
         </div>
       </div>
     </div>

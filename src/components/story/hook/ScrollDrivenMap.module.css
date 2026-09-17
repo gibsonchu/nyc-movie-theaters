@@ -24,7 +24,6 @@
   z-index: 2;
   display: flex;
   align-items: flex-end;
-  justify-content: space-between;
   padding: 0 28px 28px;
   pointer-events: none;
 }
@@ -41,17 +40,6 @@
     -2px -2px 0 var(--paper),
     2px -2px 0 var(--paper),
     -2px 2px 0 var(--paper);
-}
-
-.count {
-  font-family: var(--font-sans);
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--accent);
-  background: var(--paper);
-  padding: 6px 10px;
-  border: 1px solid var(--ink);
-  margin-bottom: 6px;
 }
 
 @media (max-width: 640px) {
