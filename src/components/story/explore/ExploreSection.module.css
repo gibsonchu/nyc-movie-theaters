@@ -24,6 +24,17 @@
   border: none;
 }
 
+.controlsStack {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
 .mapPlaceholder {
   width: 100%;
   max-width: 640px;
@@ -36,5 +47,10 @@
 @media (max-width: 640px) {
   .wrap {
     padding-top: 64px;
+  }
+
+  .controlsStack {
+    top: 12px;
+    right: 12px;
   }
 }

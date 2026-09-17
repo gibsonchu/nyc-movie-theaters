@@ -4,7 +4,9 @@ import { useEffect, useState } from "react";
 import { MapCanvas } from "@/components/map/MapCanvas";
 import { CalloutLayer } from "@/components/callouts/CalloutLayer";
 import { ZoningControl } from "@/components/controls/ZoningControl";
+import { CurrentZoningControl } from "@/components/controls/CurrentZoningControl";
 import { Timeline } from "@/components/timeline/Timeline";
+import { CurrentZoningTheaterPanel } from "@/components/detail/CurrentZoningTheaterPanel";
 import { LazyMount } from "@/components/story/LazyMount";
 import section from "@/components/story/section.module.css";
 import styles from "./ExploreSection.module.css";
@@ -45,7 +47,11 @@ export function ExploreSection() {
           <MapCanvas>
             <CalloutLayer />
           </MapCanvas>
-          <ZoningControl />
+          <div className={styles.controlsStack}>
+            <ZoningControl />
+            <CurrentZoningControl />
+          </div>
+          <CurrentZoningTheaterPanel />
           <Timeline isExpanded={expanded} onToggleExpanded={() => setExpanded((prev) => !prev)} />
         </div>
       </LazyMount>

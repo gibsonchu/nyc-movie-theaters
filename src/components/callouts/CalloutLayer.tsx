@@ -11,10 +11,13 @@ import { CalloutCard } from "./CalloutCard";
 const theaterById = new Map(theaters.map((t) => [t.id, t]));
 
 export function CalloutLayer() {
-  const { year, selectTheater } = useTimeline();
+  const { year, selectTheater, currentZoningMode } = useTimeline();
   const { map, moveTick } = useMapInstance();
 
-  const event = useMemo(() => getActiveNarrativeEvent(narrativeEvents, year), [year]);
+  const event = useMemo(
+    () => (currentZoningMode ? null : getActiveNarrativeEvent(narrativeEvents, year)),
+    [year, currentZoningMode]
+  );
 
   const anchor = useMemo(() => {
     if (!event || !map) return null;

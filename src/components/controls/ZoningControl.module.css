@@ -1,8 +1,4 @@
 .wrap {
-  position: absolute;
-  top: 20px;
-  right: 24px;
-  z-index: 20;
   max-width: 260px;
   font-size: 12px;
 }
@@ -100,8 +96,6 @@
 
 @media (max-width: 640px) {
   .wrap {
-    top: 12px;
-    right: 12px;
     max-width: 58vw;
   }
 }

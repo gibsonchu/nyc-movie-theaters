@@ -13,6 +13,7 @@ import { circleColorExpression, circleOpacityExpression, circleRadiusExpression 
 import { buildTheaterFilter } from "@/lib/theater-filter";
 import { DEFAULT_ZOOM, MAX_ZOOM, MIN_ZOOM, MAP_STYLE_URL, NYC_CENTER, NYC_MAX_BOUNDS } from "@/lib/map-config";
 import { ZONING_CATEGORY_COLORS } from "@/types/zoning";
+import { CURRENT_ZONING_COLORS, type CurrentZoningTheaterProperties } from "@/types/current-zoning";
 import { TheaterHoverCard } from "./TheaterHoverCard";
 import styles from "./MapCanvas.module.css";
 
@@ -36,8 +37,10 @@ export function MapCanvas({ children }: { children?: React.ReactNode }) {
   const [map, setMap] = useState<MapLibreMap | null>(null);
   const [moveTick, setMoveTick] = useState(0);
   const [hover, setHover] = useState<{ theater: Theater; point: { x: number; y: number } } | null>(null);
+  const currentZoningLoadedRef = useRef(false);
 
-  const { year, zoningVisible, selectTheater, selectedTheater } = useTimeline();
+  const { year, zoningVisible, selectTheater, selectedTheater, currentZoningMode, selectZoningTheater } =
+    useTimeline();
 
   useEffect(() => {
     if (!containerRef.current || mapRef.current) return;
@@ -125,6 +128,71 @@ export function MapCanvas({ children }: { children?: React.ReactNode }) {
         },
       });
 
+      // Present-day "where could a theater open" screening — loaded on demand
+      // (see the currentZoningMode effect below), hidden until toggled on.
+      instance.addSource("current-zoning", { type: "geojson", data: EMPTY_FEATURE_COLLECTION });
+      instance.addLayer({
+        id: "current-zoning-fill",
+        type: "fill",
+        source: "current-zoning",
+        layout: { visibility: "none" },
+        paint: {
+          "fill-color": [
+            "match",
+            ["get", "classification"],
+            "permitted",
+            CURRENT_ZONING_COLORS.permitted,
+            "restricted",
+            CURRENT_ZONING_COLORS.restricted,
+            "special",
+            CURRENT_ZONING_COLORS.special,
+            "not_permitted",
+            CURRENT_ZONING_COLORS.not_permitted,
+            "#cccccc",
+          ],
+          "fill-opacity": 0.5,
+        },
+      });
+
+      instance.addSource("current-zoning-theaters", { type: "geojson", data: EMPTY_FEATURE_COLLECTION });
+      instance.addLayer({
+        id: "current-zoning-theater-points",
+        type: "circle",
+        source: "current-zoning-theaters",
+        layout: { visibility: "none" },
+        paint: {
+          "circle-radius": 5.5,
+          "circle-color": [
+            "match",
+            ["get", "classification"],
+            "permitted",
+            CURRENT_ZONING_COLORS.permitted,
+            "restricted",
+            CURRENT_ZONING_COLORS.restricted,
+            "special",
+            CURRENT_ZONING_COLORS.special,
+            "not_permitted",
+            CURRENT_ZONING_COLORS.not_permitted,
+            "#cccccc",
+          ],
+          "circle-stroke-color": "#ffffff",
+          "circle-stroke-width": 1.2,
+        },
+      });
+
+      instance.on("mouseenter", "current-zoning-theater-points", () => {
+        instance.getCanvas().style.cursor = "pointer";
+      });
+      instance.on("mouseleave", "current-zoning-theater-points", () => {
+        instance.getCanvas().style.cursor = "";
+      });
+      instance.on("click", "current-zoning-theater-points", (e) => {
+        const feature = e.features?.[0];
+        if (feature) {
+          selectZoningTheater(feature.properties as unknown as CurrentZoningTheaterProperties);
+        }
+      });
+
       instance.on("mouseenter", "theater-points", () => {
         instance.getCanvas().style.cursor = "pointer";
       });
@@ -182,16 +250,49 @@ export function MapCanvas({ children }: { children?: React.ReactNode }) {
   }, [year, ready]);
 
   // Swap in the zoning dataset that applies to the selected year, and toggle visibility.
+  // Hidden outright while the present-day current-zoning screen is showing.
   useEffect(() => {
     const instance = mapRef.current;
     if (!instance || !ready) return;
     const dataset = getActiveZoningDataset(year);
     const source = instance.getSource("zoning") as GeoJSONSource | undefined;
     source?.setData(dataset?.geojson ?? EMPTY_FEATURE_COLLECTION);
-    const visibility = zoningVisible && dataset ? "visible" : "none";
+    const visibility = zoningVisible && dataset && !currentZoningMode ? "visible" : "none";
     instance.setLayoutProperty("zoning-fill", "visibility", visibility);
     instance.setLayoutProperty("zoning-outline", "visibility", visibility);
-  }, [year, zoningVisible, ready]);
+  }, [year, zoningVisible, currentZoningMode, ready]);
+
+  // Load the present-day zoning-screen layers on first use, and toggle between
+  // them and the normal time-based theater dots.
+  useEffect(() => {
+    const instance = mapRef.current;
+    if (!instance || !ready) return;
+
+    if (currentZoningMode && !currentZoningLoadedRef.current) {
+      currentZoningLoadedRef.current = true;
+      Promise.all([
+        fetch("/zoning/current-zoning.geojson").then((r) => r.json()),
+        fetch("/zoning/theater-current-zoning.geojson").then((r) => r.json()),
+      ])
+        .then(([zoningData, theaterData]) => {
+          (instance.getSource("current-zoning") as GeoJSONSource | undefined)?.setData(zoningData);
+          (instance.getSource("current-zoning-theaters") as GeoJSONSource | undefined)?.setData(theaterData);
+        })
+        .catch((err) => {
+          currentZoningLoadedRef.current = false;
+          console.error("Failed to load current-zoning layers", err);
+        });
+    }
+
+    const currentVisibility = currentZoningMode ? "visible" : "none";
+    const normalVisibility = currentZoningMode ? "none" : "visible";
+    instance.setLayoutProperty("current-zoning-fill", "visibility", currentVisibility);
+    instance.setLayoutProperty("current-zoning-theater-points", "visibility", currentVisibility);
+    instance.setLayoutProperty("theater-points", "visibility", normalVisibility);
+    instance.setLayoutProperty("theater-selected-ring", "visibility", normalVisibility);
+    setHover(null);
+    selectZoningTheater(null);
+  }, [currentZoningMode, ready, selectZoningTheater]);
 
   useEffect(() => {
     const instance = mapRef.current;
