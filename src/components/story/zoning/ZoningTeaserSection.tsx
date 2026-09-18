@@ -24,7 +24,7 @@ export function ZoningTeaserSection() {
 
       <div className={section.inner} style={{ marginBottom: 32 }}>
         <p className={section.articleText}>
-          To make it a little easier, I plotted the existing locations of all the theaters on this map, labeled by
+          Using the ZoLa map, I plotted the existing locations of all the theaters on this map, labeled by
           whether a movie theater would be allowed to be there today, to show how zoning regulation has changed over
           time as well as where a new theater could be placed today.
         </p>
