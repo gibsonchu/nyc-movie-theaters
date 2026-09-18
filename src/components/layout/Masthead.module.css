@@ -4,6 +4,18 @@
   padding: 72px 28px 0;
 }
 
+.logoLink {
+  display: block;
+  width: 140px;
+  margin: 0 auto 24px;
+}
+
+.logo {
+  display: block;
+  width: 140px;
+  height: auto;
+}
+
 .title {
   font-family: var(--font-sans);
   font-size: clamp(32px, 5.6vw, 52px);
