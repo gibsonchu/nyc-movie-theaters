@@ -20,11 +20,11 @@ export function PersonalIntro() {
         </p>
         <p>
           This past year has been incredible for movies, with a rise of ticket sales and movie goers, spurred by so
-          many cultural factors including the popularity of Letterboxd (
+          many cultural factors including the popularity of{" "}
           <a href="https://letterboxd.com/gibsonchu/" target="_blank" rel="noreferrer">
-            follow me
+            Letterboxd
           </a>
-          ), the star-studded movies and casts of this year (<em>The Odyssey</em> and{" "}
+          , the star-studded movies and casts of this year (<em>The Odyssey</em> and{" "}
           <em>Spiderman: Brand New Day</em> alone have broken over $3B at the box office worldwide), and the cry for
           more shared spaces to hang out with friends in real life over online social media.
         </p>
@@ -36,7 +36,6 @@ export function PersonalIntro() {
           see it go.
         </p>
         <p>
-          If you haven&rsquo;t been living under a rock,{" "}
           <a
             href="https://gothamist.com/news/kips-bay-neighbors-rally-to-save-beloved-movie-theater-from-closure"
             target="_blank"
