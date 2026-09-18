@@ -13,8 +13,10 @@ export function Masthead() {
         {" "}&middot; Published: September 18, 2026
       </p>
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src="/AMC-kips-bay.jpg" alt="AMC Kips Bay 15" className={styles.heroImage} />
-      <p className={styles.heroCaption}>Photo by Jim.henderson on Wikimedia</p>
+      <img src="/personal-kipsbay.jpg" alt="Catching a film at AMC Kips Bay" className={styles.heroImage} />
+      <p className={styles.heroCaption}>
+        Film photo I shot of catching a film at AMC Kips Bay with my friend Michelle.
+      </p>
     </header>
   );
 }
