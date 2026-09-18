@@ -71,9 +71,6 @@ export function TheaterDetailPanel() {
               </li>
             ))}
           </ul>
-          {t.confidence !== "high" && (
-            <p className={styles.confidenceNote}>Source confidence: {t.confidence}</p>
-          )}
         </div>
       )}
     </aside>
