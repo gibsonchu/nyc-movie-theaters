@@ -46,6 +46,14 @@
   margin: 0;
 }
 
+.heroCaption {
+  margin: 8px 0 0;
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--ink-faint);
+  text-align: left;
+}
+
 @media (max-width: 640px) {
   .wrap {
     padding: 48px 18px 0;

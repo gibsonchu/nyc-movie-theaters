@@ -14,6 +14,7 @@ export function Masthead() {
       </p>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src="/AMC-kips-bay.jpg" alt="AMC Kips Bay 15" className={styles.heroImage} />
+      <p className={styles.heroCaption}>Photo by Jim.henderson on Wikimedia</p>
     </header>
   );
 }
