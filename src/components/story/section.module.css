@@ -142,7 +142,6 @@
   font-size: 12px;
   line-height: 1.55;
   color: var(--ink-faint);
-  max-width: 62ch;
 }
 
 .footnotes li {
