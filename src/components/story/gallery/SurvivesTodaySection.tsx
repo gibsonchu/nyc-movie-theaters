@@ -17,7 +17,7 @@ export function SurvivesTodaySection() {
   );
 
   return (
-    <section className={section.section} id="survives-today" style={{ paddingTop: 16 }}>
+    <section className={section.section} id="survives-today" style={{ paddingTop: 16, paddingBottom: 24 }}>
       <div className={section.inner}>
         <p className={section.lede}>
           Out of the theaters that continue to exist today, over {survives.toLocaleString()} venues of them

@@ -1,5 +1,5 @@
 .wrap {
-  padding-top: 16px;
+  padding-top: 0;
 }
 
 .mapFrame {
@@ -35,6 +35,6 @@
 
 @media (max-width: 640px) {
   .wrap {
-    padding-top: 32px;
+    padding-top: 8px;
   }
 }
