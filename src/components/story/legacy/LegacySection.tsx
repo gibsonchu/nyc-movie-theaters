@@ -66,6 +66,11 @@ export function LegacySection() {
             neighborhood when a movie theater goes away, losing a destination that can bring foot traffic to the
             street, customers to nearby businesses, and provide a natural place for residents to meet up.
           </p>
+          <p className={section.articleText}>
+            As Sean Fennessey from The Ringer on <em>The Big Picture</em> once said, &ldquo;I think people are
+            desperately in search of community right now and of feeling closer to other people and sharing things
+            and not feeling disconnected by technology.&rdquo;
+          </p>
           <ol className={section.footnotes}>
             <li>
               British Film Institute and Creative Industries Policy and Evidence Centre,{" "}
