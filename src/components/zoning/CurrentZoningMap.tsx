@@ -10,7 +10,7 @@ import {
   type CurrentZoningClassification,
   type CurrentZoningTheaterProperties,
 } from "@/types/current-zoning";
-import { DEFAULT_ZOOM, MAX_ZOOM, MIN_ZOOM, MAP_STYLE_URL, NYC_CENTER, NYC_MAX_BOUNDS } from "@/lib/map-config";
+import { DEFAULT_ZOOM, MAX_ZOOM, MAP_STYLE_URL, NYC_CENTER, NYC_MAX_BOUNDS } from "@/lib/map-config";
 import { CurrentZoningTheaterPanel } from "@/components/detail/CurrentZoningTheaterPanel";
 import styles from "./CurrentZoningMap.module.css";
 
@@ -46,7 +46,10 @@ export function CurrentZoningMap() {
       style: MAP_STYLE_URL,
       center: NYC_CENTER,
       zoom: DEFAULT_ZOOM,
-      minZoom: MIN_ZOOM,
+      // Unlike the historical timeline map, this snapshot has no scrubber to
+      // reorient a user who's zoomed out into New Jersey or Long Island, so
+      // it never zooms out past its default, NYC-framed view.
+      minZoom: DEFAULT_ZOOM,
       maxZoom: MAX_ZOOM,
       maxBounds: NYC_MAX_BOUNDS,
       attributionControl: { compact: true },
