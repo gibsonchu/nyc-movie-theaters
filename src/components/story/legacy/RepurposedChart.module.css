@@ -1,6 +1,6 @@
 .table {
   width: 100%;
-  max-width: 420px;
+  max-width: 520px;
   margin: 24px auto 0;
   border-collapse: collapse;
 }
@@ -23,7 +23,6 @@
 .category {
   font-size: 13px;
   font-weight: 700;
-  text-transform: capitalize;
   color: var(--ink);
 }
 
@@ -38,4 +37,16 @@
 .table th:last-child,
 .table td.count {
   text-align: right;
+}
+
+.totalRow td {
+  padding-top: 16px;
+  border-top: 1px solid var(--rule-strong);
+  border-bottom: none;
+}
+
+.totalRow .category,
+.totalRow .count {
+  font-weight: 800;
+  color: var(--ink-pure);
 }
