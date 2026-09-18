@@ -2,6 +2,21 @@
   padding-top: 0;
 }
 
+.photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 24px 0 0;
+  border: 1px solid var(--ink);
+}
+
+.photoCaption {
+  margin: 8px 0 24px;
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--ink-faint);
+}
+
 .mapFrame {
   position: relative;
   width: 100%;

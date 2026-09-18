@@ -40,6 +40,11 @@ export function ExploreSection() {
           The last movie I personally caught there was half of the animated film, <em>Flow</em>, before being kicked
           out due to an electrical issue.
         </p>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/personal-kipsbay.jpg" alt="Catching a film at AMC Kips Bay" className={styles.photo} />
+        <p className={styles.photoCaption}>
+          Film photo I shot of catching a film at AMC Kips Bay with my friend Michelle.
+        </p>
         <p className={section.articleText}>RIP AMC Kips Bay.</p>
         <p className={section.articleText}>
           New York won&rsquo;t be adding hundreds more movie theaters anymore. But these spaces aren&rsquo;t just to
