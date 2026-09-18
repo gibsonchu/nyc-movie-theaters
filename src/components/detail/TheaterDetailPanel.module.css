@@ -1,14 +1,24 @@
 .panel {
   position: absolute;
   left: 16px;
-  bottom: 16px;
+  /* This map has a Timeline scrubber docked to the frame's bottom edge
+     (unlike the zoning map's panel, which has clear space below it), so
+     anchor above that bar instead of the frame's true bottom edge. */
+  bottom: 100px;
   z-index: 25;
   width: min(300px, calc(100% - 32px));
-  max-height: calc(100% - 32px);
+  max-height: calc(100% - 116px);
   overflow-y: auto;
   background: var(--paper);
   border: 1px solid var(--ink);
   padding: 18px 18px 16px;
+}
+
+@media (max-width: 720px) {
+  .panel {
+    bottom: 76px;
+    max-height: calc(100% - 92px);
+  }
 }
 
 .close {
