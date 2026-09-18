@@ -2,13 +2,7 @@
 
 import { useMemo } from "react";
 import { theaters } from "@/data/theaters";
-import {
-  activeCountsByYear,
-  activityInYear,
-  majorityBorough,
-  openingsByDecade,
-  peakDecade,
-} from "@/lib/theater-stats";
+import { activeCountsByYear, openingsByDecade, peakDecade } from "@/lib/theater-stats";
 import { US_MOVIE_INDUSTRY_PEAK_1946 } from "@/lib/historical-context";
 import { useActiveStep } from "@/components/story/useActiveStep";
 import { PeakChart } from "./PeakChart";
@@ -20,13 +14,11 @@ interface Step {
 }
 
 export function StoryboardSection() {
-  const { peakTotal, peakBorough, openingPeakDecade } = useMemo(() => {
+  const { peakTotal, openingPeakDecade } = useMemo(() => {
     const active = activeCountsByYear(theaters);
     const peak = active.reduce((max, y) => (y.confirmed + y.uncertain > max.confirmed + max.uncertain ? y : max));
-    const atPeak = theaters.filter((t) => activityInYear(t, peak.year) !== "inactive");
     return {
       peakTotal: peak.confirmed + peak.uncertain,
-      peakBorough: majorityBorough(atPeak),
       openingPeakDecade: peakDecade(openingsByDecade(theaters))?.decade,
     };
   }, []);
@@ -45,8 +37,8 @@ export function StoryboardSection() {
       text: (
         <>
           <p>
-            Over {peakTotal.toLocaleString()} theaters were operating across the boroughs, with a majority of them
-            in {peakBorough}.
+            Near the peak of this time, around the 1940s, over {peakTotal.toLocaleString()} theaters were operating
+            across the boroughs.
           </p>
           <p>
             Nationally, moviegoing reached its postwar peak in {US_MOVIE_INDUSTRY_PEAK_1946.year}. An estimated{" "}
