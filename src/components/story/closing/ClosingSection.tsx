@@ -18,7 +18,10 @@ export function ClosingSection() {
           <a href="https://screenslate.com/" target="_blank" rel="noreferrer">
             Screen Slate
           </a>
-          . If you&rsquo;d like to keep up with other stories like or notice any issues, feel free to subscribe to{" "}
+          .
+        </p>
+        <p className={section.articleText} style={{ fontStyle: "italic" }}>
+          If you&rsquo;d like to keep up with other stories about city planning and spaces, subscribe to{" "}
           <a href="https://inspacesstudio.com/" target="_blank" rel="noreferrer">
             In Spaces
           </a>{" "}
