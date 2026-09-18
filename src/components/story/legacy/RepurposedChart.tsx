@@ -1,4 +1,3 @@
-import section from "@/components/story/section.module.css";
 import styles from "./RepurposedChart.module.css";
 
 // Hand-researched, not derived from the geocoder audit in theater-stats.ts —
@@ -42,7 +41,7 @@ export function RepurposedChart() {
           </tr>
         </tbody>
       </table>
-      <p className={`${section.caption} ${section.fullWidth}`}>
+      <p className={styles.footnote}>
         Another {UNDOCUMENTED_COUNT} closed theaters don&rsquo;t have a documented alternative use.
       </p>
     </>

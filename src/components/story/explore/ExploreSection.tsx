@@ -30,6 +30,18 @@ export function ExploreSection() {
     <section className={styles.wrap} id="explore-the-map">
       <div className={section.inner}>
         <p className={section.articleText}>
+          AMC Kips Bay is announced to be closing at the end of this year 2026, with the property purchased by NYU
+          Langone in 2025. Originally designed by David Rockwell, a Loews architect, this 15-screen, 3,000 seat
+          megaplex opened up back on May 14, 1999 as the Loews Kips Bay Theatre, before AMC took over, also adding
+          indie films to its lineup.
+        </p>
+        <p className={section.articleText}>
+          It will have run for over 27 years as one of the most popular movie venues to catch a flick in Manhattan.
+          The last movie I personally caught there was half of the animated film, <em>Flow</em>, before being kicked
+          out due to an electrical issue.
+        </p>
+        <p className={section.articleText}>RIP AMC Kips Bay.</p>
+        <p className={section.articleText}>
           New York won&rsquo;t be adding hundreds more movie theaters anymore. But these spaces aren&rsquo;t just to
           watch movies, but also neighborhood institutions, gathering places, and pieces of the city&rsquo;s physical
           fabric.

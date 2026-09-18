@@ -53,7 +53,7 @@ export function StoryboardSection() {
             It was a remarkable high point for American moviegoing: theaters were drawing tens of millions of people
             every week, and Hollywood was supplying them with hundreds of new films each year.
           </p>
-          <ol className={styles.footnotes}>
+          <ol className={section.footnotes}>
             <li>
               Susan B. Carter et al., eds., <em>Historical Statistics of the United States: Millennial Edition</em>,
               Table Dh388&ndash;391, &ldquo;Motion Picture Attendance, Box Office Receipts, and Admission Prices:

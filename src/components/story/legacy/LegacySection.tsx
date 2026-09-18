@@ -38,6 +38,51 @@ export function LegacySection() {
         <div className={section.wide}>
           <RepurposedChart />
         </div>
+        <div className={section.inner} style={{ marginTop: 32 }}>
+          <p className={section.articleText}>
+            A movie theater is one of the great businesses that give people a reason to visit a neighborhood. A 2023
+            study commissioned by the British Film Institute found that 55% of moviegoers typically ate or drank
+            somewhere else as part of a trip to the cinema, while 53% also went shopping, bringing some life to a
+            local neighborhood.<sup>1</sup>
+          </p>
+          <p className={section.articleText}>
+            Nearly two-thirds of moviegoers surveyed also said their cinema contributed to their sense of pride in
+            the area where they lived, with mainstay cinema hubs increasing that up to 70%.
+          </p>
+          <p className={section.articleText}>
+            Researchers estimated that these venues generated at least £600,000 in additional social value per
+            cinema each year, beyond the money generated through tickets, concessions, memberships, and other
+            sales.<sup>1</sup>
+          </p>
+          <p className={section.articleText}>
+            Other research also points to the same role for cinemas as community spaces. A study of local cinemas
+            and multi-arts venues in Scotland found that 85% of respondents considered their cinema a focal point
+            for the community, 95% described it as a safe and trusted place, and 81% considered it important for
+            young people growing up in the area. More than half said attending made them feel less lonely or
+            isolated.<sup>2</sup>
+          </p>
+          <p className={section.articleText}>
+            Now while these studies weren&rsquo;t conducted in NYC, this helps to illustrate what can affect a local
+            neighborhood when a movie theater goes away, losing a destination that can bring foot traffic to the
+            street, customers to nearby businesses, and provide a natural place for residents to meet up.
+          </p>
+          <ol className={section.footnotes}>
+            <li>
+              British Film Institute and Creative Industries Policy and Evidence Centre,{" "}
+              <a
+                href="https://www.bfi.org.uk/industry-data-insights/reports/measuring-economic-value-cinema-venues"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <em>Measuring the Economic Value of Cinema Venues</em>
+              </a>{" "}
+              (2023).
+            </li>
+            <li>
+              Regional Screen Scotland, <em>The Economic and Social Value of Local Cinema</em> (2016).
+            </li>
+          </ol>
+        </div>
       </section>
     </>
   );

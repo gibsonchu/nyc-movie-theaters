@@ -134,6 +134,25 @@
   max-width: 62ch;
 }
 
+.footnotes {
+  list-style: decimal;
+  margin: 1em 0 0;
+  padding: 10px 0 0 18px;
+  border-top: 1px solid var(--rule);
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--ink-faint);
+  max-width: 62ch;
+}
+
+.footnotes li {
+  margin-bottom: 4px;
+}
+
+.footnotes li:last-child {
+  margin-bottom: 0;
+}
+
 @media (max-width: 640px) {
   .section {
     padding: 64px 18px;
