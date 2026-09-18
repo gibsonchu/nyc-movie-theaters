@@ -7,3 +7,9 @@
 .wrap :global(.twitter-tweet) {
   margin: 0 auto;
 }
+
+@media print {
+  .wrap {
+    display: none;
+  }
+}

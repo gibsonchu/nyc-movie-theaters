@@ -69,3 +69,15 @@
     grid-template-columns: 1fr;
   }
 }
+
+@media print {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+
+  .card {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}

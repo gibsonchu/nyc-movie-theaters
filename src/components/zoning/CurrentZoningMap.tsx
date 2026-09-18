@@ -53,6 +53,9 @@ export function CurrentZoningMap() {
       maxZoom: MAX_ZOOM,
       maxBounds: NYC_MAX_BOUNDS,
       attributionControl: { compact: true },
+      // Without this, the WebGL canvas can read back as blank when captured
+      // outside a live paint cycle (e.g. print-to-PDF, screenshot tooling).
+      canvasContextAttributes: { preserveDrawingBuffer: true },
     });
 
     const resizeObserver = new ResizeObserver(() => instance.resize());

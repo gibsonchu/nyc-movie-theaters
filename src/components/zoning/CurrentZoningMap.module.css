@@ -114,3 +114,15 @@
     font-size: 10px;
   }
 }
+
+@media print {
+  .frame {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Non-functional in a static document; the legend alone explains the colors. */
+  .toggle {
+    display: none;
+  }
+}

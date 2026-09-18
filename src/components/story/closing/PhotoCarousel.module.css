@@ -39,3 +39,17 @@
   font-weight: 500;
   color: var(--ink-faint);
 }
+
+@media print {
+  .scroller {
+    flex-wrap: wrap;
+    overflow: visible;
+    scroll-snap-type: none;
+  }
+
+  .slide {
+    width: 140px;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}

@@ -196,3 +196,11 @@
     display: none;
   }
 }
+
+@media print {
+  /* Non-functional in a static document — the year readout and dots speak for themselves. */
+  .playButton,
+  .expandButton {
+    display: none;
+  }
+}

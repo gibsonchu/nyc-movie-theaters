@@ -120,3 +120,40 @@
     font-size: 16px;
   }
 }
+
+@media print {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    max-width: none;
+  }
+
+  .visualCol {
+    position: static;
+  }
+
+  .visualSticky {
+    position: static;
+    height: auto;
+    display: block;
+  }
+
+  .textCol {
+    padding-top: 12px;
+  }
+
+  .step,
+  .step:last-child {
+    min-height: auto;
+    padding: 8px 0;
+    display: block;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .stepText {
+    opacity: 1;
+    color: var(--ink);
+    transition: none;
+  }
+}

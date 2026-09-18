@@ -53,3 +53,14 @@
     padding-top: 8px;
   }
 }
+
+@media print {
+  /* The full historical dot-map needs to land intact on a single page rather
+     than being split across two — give it a fresh page and forbid breaking. */
+  .mapFrame {
+    break-before: page;
+    page-break-before: always;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}
