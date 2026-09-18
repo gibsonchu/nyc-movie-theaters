@@ -55,8 +55,6 @@ export function TheaterDetailPanel() {
         )}
       </dl>
 
-      <p className={styles.description}>{t.description}</p>
-
       {t.sources.length > 0 && (
         <div className={styles.sources}>
           <p className={styles.sourcesLabel}>Sources</p>

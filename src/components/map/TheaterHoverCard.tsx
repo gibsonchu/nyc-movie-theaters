@@ -41,7 +41,6 @@ export function TheaterHoverCard({ theater, point }: Props) {
           {theater.theaterType !== "unknown" ? ` · ${THEATER_TYPE_LABELS[theater.theaterType]}` : ""}
         </span>
       </p>
-      <p className={styles.blurb}>{theater.description}</p>
     </div>
   );
 }
