@@ -90,7 +90,6 @@ export const SURVIVING_THEATERS_GALLERY: GalleryItem[] = [
     years: "1948–present",
     description: "A single-screen house behind the Plaza Hotel that closed in 2019 and was revived within weeks by Netflix.",
     image: "/paris-theatre.jpg",
-    dataNote: "Not in the source CSV at all. Filled in from public record.",
   },
   {
     name: "Village East by Angelika",

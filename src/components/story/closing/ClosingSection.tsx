@@ -24,6 +24,13 @@ export function ClosingSection() {
           </a>
           .
         </p>
+        <p className={section.articleText}>
+          Feel free to check out what&rsquo;s playing by exploring the map or checking on{" "}
+          <a href="https://screenslate.com/" target="_blank" rel="noreferrer">
+            Screen Slate
+          </a>
+          .
+        </p>
       </div>
     </section>
   );

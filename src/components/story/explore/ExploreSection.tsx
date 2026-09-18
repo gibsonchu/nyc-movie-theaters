@@ -47,13 +47,6 @@ export function ExploreSection() {
           fabric.
         </p>
         <p className={section.articleText}>
-          Feel free to check out what&rsquo;s playing by exploring the map or checking on{" "}
-          <a href="https://screenslate.com/" target="_blank" rel="noreferrer">
-            Screen Slate
-          </a>
-          .
-        </p>
-        <p className={section.articleText}>
           So before the credits roll on another one, maybe it&rsquo;s worth holding on to what we have left. See you
           at the movies.
         </p>
